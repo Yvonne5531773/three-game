@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>3D Snake</title>
-	<script src="three.min.js"></script>
-	<script src="optimer_bold.typeface.js"></script>
-	<script src="dat.gui.js"></script>
+	<script src="../three.min.js"></script>
+	<!--<script src="optimer_bold.typeface.js"></script>-->
+	<!--<script src="dat.gui.js"></script>-->
 	<style>
 		#canvas3d{
 			margin:auto;
@@ -38,12 +38,12 @@
 	var board = new Array();  //The state of game
 	var the_last_head = head_for;  //The direction of snake
 	var snake = new Array();  //store snake
-	var controls = new function () {
-		this.speed=180;
-	}
-
-	var gui = new dat.GUI();
-	gui.add(controls, 'speed', 40, 200);
+//	var controls = new function () {
+//		this.speed=180;
+//	}
+//
+//	var gui = new dat.GUI();
+//	gui.add(controls, 'speed', 40, 200);
 	function Init() {
 		width = document.getElementById('canvas3d').clientWidth;
 		height = document.getElementById('canvas3d').clientHeight;
@@ -85,15 +85,15 @@
 		scene.add(directionalLight);
 
 		//start_scene
-		start_scene = new THREE.Scene();
-		word = CreateText('3D Snake', 80, 40);
-		word2 = CreateText('press any key to start', 30, 20);
-		word3 = CreateText('(p to pause)', 0, 20);
-		start_scene.add(word);
-		start_scene.add(word2);
-		start_scene.add(word3);
-		start_scene.add(light);
-		renderer.render(start_scene, camera);
+//		start_scene = new THREE.Scene();
+//		word = CreateText('3D Snake', 80, 40);
+//		word2 = CreateText('press any key to start', 30, 20);
+//		word3 = CreateText('(p to pause)', 0, 20);
+//		start_scene.add(word);
+//		start_scene.add(word2);
+//		start_scene.add(word3);
+//		start_scene.add(light);
+//		renderer.render(start_scene, camera);
 
 		for (i = 0; i < nx; i++) {
 			board[i] = new Array()
@@ -116,38 +116,42 @@
 			scene.add(cube[i]);
 			board[snake[i].x][snake[i].y] = 1;
 		}
+		status = 0;
+		food();
+		run();
+		pause_flag = false;
 	}
-	function CreateText(_text, _z, _size) {
-		var material = new THREE.MeshFaceMaterial([
-			new THREE.MeshPhongMaterial({color: 'yellow', shading: THREE.FlatShading}), // front
-			new THREE.MeshPhongMaterial({color: 'gray', shading: THREE.SmoothShading}) // side
-		]);
-		var text = _text,
-			height = 20,
-			size = _size,
-			curveSegments = 4,
-			font = "optimer", // helvetiker, optimer, gentilis, droid sans, droid serif
-			weight = "bold", // normal bold
-			style = "normal"; // normal italic
-		textGeo = new THREE.TextGeometry(text, {
-			size: size,
-			height: height,
-			curveSegments: curveSegments,
-			font: font,
-			weight: weight,
-			style: style,
-		});
-		textGeo.computeBoundingBox();
-		textGeo.computeVertexNormals();
-		var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
-		textMesh1 = new THREE.Mesh(textGeo, material);
-		textMesh1.position.x = centerOffset;
-		textMesh1.position.y = 0;
-		textMesh1.position.z = _z;
-		textMesh1.rotation.x = Math.PI / 2.5;
-		textMesh1.rotation.y = Math.PI * 2;
-		return textMesh1;
-	}
+//	function CreateText(_text, _z, _size) {
+//		var material = new THREE.MeshFaceMaterial([
+//			new THREE.MeshPhongMaterial({color: 'yellow', shading: THREE.FlatShading}), // front
+//			new THREE.MeshPhongMaterial({color: 'gray', shading: THREE.SmoothShading}) // side
+//		]);
+//		var text = _text,
+//			height = 20,
+//			size = _size,
+//			curveSegments = 4,
+//			font = "optimer", // helvetiker, optimer, gentilis, droid sans, droid serif
+//			weight = "bold", // normal bold
+//			style = "normal"; // normal italic
+//		textGeo = new THREE.TextGeometry(text, {
+//			size: size,
+//			height: height,
+//			curveSegments: curveSegments,
+//			font: font,
+//			weight: weight,
+//			style: style,
+//		});
+//		textGeo.computeBoundingBox();
+//		textGeo.computeVertexNormals();
+//		var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
+//		textMesh1 = new THREE.Mesh(textGeo, material);
+//		textMesh1.position.x = centerOffset;
+//		textMesh1.position.y = 0;
+//		textMesh1.position.z = _z;
+//		textMesh1.rotation.x = Math.PI / 2.5;
+//		textMesh1.rotation.y = Math.PI * 2;
+//		return textMesh1;
+//	}
 	function CreateCube(_s1, _s2, _s3) {
 		var geometry = new THREE.BoxGeometry(_s1, _s2, _s3);
 		for (var i = 0; i < geometry.faces.length; i += 2) {
@@ -163,10 +167,7 @@
 		var material = new THREE.MeshLambertMaterial({color: 0x00ff00});
 		return new THREE.Mesh(geometry, material);
 	}
-	function animate() {
-		requestAnimationFrame(animate);
-		render();
-	}
+
 	function render() {
 		for (var i = 0; i < len; ++i) {
 			cube[i].position.x = snake[i].x * 10 - 200;
@@ -240,19 +241,23 @@
 		fo.position.y = -ty * 10 + 190;
 		fo.position.z = 20;
 	}
+
+//	function animate() {
+//		requestAnimationFrame(animate);
+//		render();
+//	}
 	function run() {
 		if (!pause_flag)
 			move();
-
 		render();
-		setTimeout("run()", 240 - controls.speed);//you can change speed here
+		setTimeout("run()", 240 - 180);//you can change speed here
 	}
 
 	function onKeyDown(event) {
 		if (status == -1) {
 			status = 0;
-			food();  //replace food
-			run();  //start the game
+			food();
+			run();
 		}
 		if (window.event){
 			keynum = event.keyCode;
