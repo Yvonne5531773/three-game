@@ -49,16 +49,16 @@ export default class game3d {
 		});
 		// renderer.setSize(width, height);
 		renderer.shadowMapEnabled = true;
-		renderer.setClearColor('#feffdd', 1.0);
+		renderer.setClearColor('#feffdd', 1);
 
-		camera = new THREE.PerspectiveCamera(45, 1, 1, 2000);
-		camera.position.x = 0;
-		camera.position.y = -800;
-		camera.position.z = 600; //俯视的高度
+		camera = new THREE.PerspectiveCamera(45, 1, 1, 10000);
+		camera.position.x = -180;
+		camera.position.y = -480;
+		camera.position.z = 550; //俯视的高度
 		camera.up.x = 0;
 		camera.up.y = 0;
 		camera.up.z = 1;
-		camera.lookAt({x: 0, y: 100, z: -900});
+		camera.lookAt({x: 0, y: 0, z: 0});
 
 		scene = new THREE.Scene();
 
@@ -115,14 +115,14 @@ export default class game3d {
 		status = 0;
 		this.getFood();
 		this.run();
-		pauseFlag = false;
+		pauseFlag = true;
 		document.addEventListener('touchstart', this.onTouchStart, false);
 		document.addEventListener('resize', this.onWindowResize, false);
 		this.onWindowResize()
 	}
 
 	createCube(_s1, _s2, _s3) {
-		let geometry = new THREE.CubeGeometry(_s1, _s2, _s3 , 1, 1, 1);
+		let geometry = new THREE.BoxGeometry(_s1, _s2, _s3 , 1, 1, 1);
 		for (let i = 0; i < geometry.faces.length; i += 2) {
 			let hex = '#ffe3ae';
 			geometry.faces[i].color.setHex(hex);
@@ -148,8 +148,8 @@ export default class game3d {
 			cube[i].position.y = -snake[i].y * 10 + start_point_y;
 		}
 		// camera.position = cameraHelper.geometry.vertices[1].clone().applyProjection(cameraHelper.matrixWorld);
-		camera.position.x = snake[0].x * 3 - 100; //随着线的运动，镜头跟着走
-		camera.position.y = -snake[0].y * 3 - 300;
+		camera.position.x = snake[0].x * 4 - 340; //随着线的运动，镜头跟着走
+		camera.position.y = -snake[0].y * 4 - 480;
 		renderer.render(scene, camera);
 	}
 
@@ -248,7 +248,9 @@ export default class game3d {
 	// }
 
 	onTouchStart(event) {
-		// pauseFlag && (pauseFlag = false)
+		console.log('onTouchStart pauseFlag', pauseFlag)
+		console.log('onTouchStart clickCount', clickCount)
+		pauseFlag && (pauseFlag = false)
 		clickCount%2===0 && (head_for = 2)
 		clickCount%2===1 && (head_for = 3)
 		clickCount++
