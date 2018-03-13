@@ -16,7 +16,7 @@
 		this.renderer = {};
 		this.player = {};
 		this.end = {};
-		this.side = 21;
+		this.side = 31;
 		this.thickness = 20;
 
 		// Inits
@@ -40,79 +40,78 @@
 	 */
 	ThreeMaze.prototype.onGenerateMaze = function () {
 		var new_map = this.generateMaze(this.side);
-		console.log('onGenerateMaze new_map', new_map)
 		var new_player_path = [];
 		var latency = 50;
 		var self = this;
 		var tween = null;
-		// for (var x = this.side; x > 0; x -= 1) {
-		// 	new_player_path[x] = [];
-		// 	for (var y = 1; y < this.side + 1; y += 1) {
-		// 		var delay = ((this.side - x) * latency) + ((this.side - y) * latency);
-		// 		// Inits player path
-		// 		new_player_path[x][y] = false;
-		//
-		// 		// Removes old mesh if needed
-		// 		if (typeof this.map[x] != 'undefined' && typeof this.map[x][y] != 'undefined' && typeof this.map[x][y] === 'object') {
-		// 			tween = new TWEEN.Tween({scale: 1, y: this.thickness / 2, mesh: this.map[x][y]}).to({
-		// 				scale: 0,
-		// 				y: 0
-		// 			}, 200).delay(delay);
-		// 			tween.onUpdate(this.onUpdateTweeningMesh);
-		// 			tween.onComplete(function () {
-		// 				this.mesh.visible = false;
-		// 				self.scene.remove(this.mesh);
-		// 			});
-		// 			tween.start();
-		// 		}
-		//
-		// 		// Removes player path if needed
-		// 		if (typeof this.player.path != 'undefined' && typeof this.player.path[x] != 'undefined' && typeof this.player.path[x][y] != 'undefined' && typeof this.player.path[x][y] === 'object') {
-		// 			this.removePlayerPath(x, y, delay);
-		// 		}
-		//
-		// 		// Adds a new mesh if needed
-		// 		if (new_map[x][y] === 0) {
-		// 			// Generates the mesh
-		// 			var wall_geometry = new THREE.CubeGeometry(this.thickness, this.thickness, this.thickness, 1, 1, 1);
-		// 			new_map[x][y] = new THREE.Mesh(wall_geometry, this.materials.grey);
-		// 			new_map[x][y].visible = false;
-		// 			new_map[x][y].position.set(x * this.thickness - ((this.side * this.thickness) / 2), 0, y * 20 - ((this.side * this.thickness) / 2));
-		// 			this.scene.add(new_map[x][y]);
-		//
-		// 			// Builds the related tween
-		// 			tween = new TWEEN.Tween({scale: 0, y: 0, mesh: new_map[x][y]}).to({
-		// 				scale: 1,
-		// 				y: this.thickness / 2
-		// 			}, 300).delay(delay);
-		// 			tween.onUpdate(this.onUpdateTweeningMesh);
-		// 			tween.onStart(function () {
-		// 				this.mesh.visible = true;
-		// 			});
-		// 			tween.start();
-		// 		}
-		// 		else {
-		// 			new_map[x][y] = false;
-		// 		}
-		// 	}
-		// }
+		for (var x = this.side; x > 0; x -= 1) {
+			new_player_path[x] = [];
+			for (var y = 1; y < this.side + 1; y += 1) {
+				var delay = ((this.side - x) * latency) + ((this.side - y) * latency);
+				// Inits player path
+				new_player_path[x][y] = false;
+
+				// Removes old mesh if needed
+				if (typeof this.map[x] != 'undefined' && typeof this.map[x][y] != 'undefined' && typeof this.map[x][y] === 'object') {
+					tween = new TWEEN.Tween({scale: 1, y: this.thickness / 2, mesh: this.map[x][y]}).to({
+						scale: 0,
+						y: 0
+					}, 200).delay(delay);
+					tween.onUpdate(this.onUpdateTweeningMesh);
+					tween.onComplete(function () {
+						this.mesh.visible = false;
+						self.scene.remove(this.mesh);
+					});
+					tween.start();
+				}
+
+				// Removes player path if needed
+				if (typeof this.player.path != 'undefined' && typeof this.player.path[x] != 'undefined' && typeof this.player.path[x][y] != 'undefined' && typeof this.player.path[x][y] === 'object') {
+					this.removePlayerPath(x, y, delay);
+				}
+
+				// Adds a new mesh if needed
+				if (new_map[x][y] === 0) {
+					// Generates the mesh
+					var wall_geometry = new THREE.CubeGeometry(this.thickness, this.thickness, this.thickness, 1, 1, 1);
+					new_map[x][y] = new THREE.Mesh(wall_geometry, this.materials.grey);
+					new_map[x][y].visible = false;
+					new_map[x][y].position.set(x * this.thickness - ((this.side * this.thickness) / 2), 0, y * 20 - ((this.side * this.thickness) / 2));
+					this.scene.add(new_map[x][y]);
+
+					// Builds the related tween
+					tween = new TWEEN.Tween({scale: 0, y: 0, mesh: new_map[x][y]}).to({
+						scale: 1,
+						y: this.thickness / 2
+					}, 300).delay(delay);
+					tween.onUpdate(this.onUpdateTweeningMesh);
+					tween.onStart(function () {
+						this.mesh.visible = true;
+					});
+					tween.start();
+				}
+				else {
+					new_map[x][y] = false;
+				}
+			}
+		}
 
 		// Animates the end block
-		// var end_hide_tween = new TWEEN.Tween({scale: 1, y: this.thickness / 2, mesh: this.end}).to({scale: 0, y: 0}, 300);
+		var end_hide_tween = new TWEEN.Tween({scale: 1, y: this.thickness / 2, mesh: this.end}).to({scale: 0, y: 0}, 300);
 		var end_show_tween = new TWEEN.Tween({scale: 0, y: 0, mesh: this.end}).to({
 			scale: 1,
 			y: this.thickness / 2
 		}, 300).delay((this.side * 2) * latency);
-		// end_hide_tween.onUpdate(this.onUpdateTweeningMesh);
+		end_hide_tween.onUpdate(this.onUpdateTweeningMesh);
 		end_show_tween.onUpdate(this.onUpdateTweeningMesh);
 		end_show_tween.onStart(function () {
 			this.mesh.visible = true;
 		});
-		// end_hide_tween.onComplete(function () {
-		// 	this.mesh.visible = false;
-		// });
+		end_hide_tween.onComplete(function () {
+			this.mesh.visible = false;
+		});
 		if (this.end.scale != 0) {
-			// end_hide_tween.start();
+			end_hide_tween.start();
 		}
 		end_show_tween.start();
 
@@ -169,8 +168,7 @@
 		this.materials =
 			{
 				grey: new THREE.MeshLambertMaterial({color: 0xffffff, wireframe: false}),
-				red: new THREE.MeshLambertMaterial({color: 0xf18260, ambient: 0xf18260, lineWidth: 1}),
-				blue: new THREE.MeshLambertMaterial({color: 0xf18260, ambient: 0xf18260, lineWidth: 1}),
+				red: new THREE.MeshLambertMaterial({color: 0xf18260, ambient: 0xf18260, lineWidth: 1})
 			};
 
 		// Camera
@@ -219,9 +217,11 @@
 	 * @param evt
 	 */
 	ThreeMaze.prototype.onKeyDown = function (evt) {
+		// Gets the direction depending on the pressed key
 		var code = evt.keyCode;
 		var direction = {x: 0, z: 0};
-		var directions = {
+		var directions =
+			{
 				37: {x: 1, z: 0},
 				39: {x: -1, z: 0},
 				38: {x: 0, z: 1},
@@ -229,9 +229,11 @@
 			};
 		if (typeof directions[code] != 'undefined') {
 			direction = directions[code];
-		} else {
+		}
+		else {
 			return;
 		}
+
 		var x = this.player.mazePosition.x;
 		var z = this.player.mazePosition.z;
 		var target_block = this.map[x + direction.x][z + direction.z];
@@ -264,7 +266,7 @@
 			this.player.mazePosition.x += direction.x;
 			this.player.mazePosition.z += direction.z;
 
-			// this.movePlayer(true);
+			this.movePlayer(true);
 		}
 	};
 
@@ -302,8 +304,8 @@
 	ThreeMaze.prototype.onMouseMove = function (evt) {
 		if (this.camera.clicked !== false) {
 			var target_rotation = {
-				z: this.cameraHelper.rotation.z + ((evt.pageY - this.camera.clicked.y) / 400),
-				y: this.cameraHelper.rotation.y + ((this.camera.clicked.x - evt.pageX) / 400)
+				z: this.cameraHelper.rotation.z + ((evt.pageY - this.camera.clicked.y) / 800),
+				y: this.cameraHelper.rotation.y + ((this.camera.clicked.x - evt.pageX) / 800)
 			};
 			if (target_rotation.z < 0) {
 				target_rotation.z = 0;
@@ -312,7 +314,6 @@
 				target_rotation.z = Math.PI / 2 - 0.1;
 			}
 			this.cameraHelper.targetRotation = target_rotation;
-			console.log('onMouseMove this.cameraHelper', this.cameraHelper)
 		}
 	};
 
@@ -339,7 +340,7 @@
 	 * Sets the camera position and renders the scene
 	 */
 	ThreeMaze.prototype.render = function () {
-		// requestAnimationFrame(this.render.bind(this));
+		requestAnimationFrame(this.render.bind(this));
 		TWEEN.update();
 		if (this.cameraHelper.targetRotation !== false) {
 			this.cameraHelper.rotation.z += (this.cameraHelper.targetRotation.z - this.cameraHelper.rotation.z) / 10;
