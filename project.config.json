@@ -10,7 +10,7 @@
 	"compileType": "game",
 	"libVersion": "game",
 	"appid": "touristappid",
-	"projectname": "three",
+	"projectname": "three-game",
 	"isGameTourist": true,
 	"condition": {
 		"search": {

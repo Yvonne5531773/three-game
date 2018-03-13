@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>3D Snake</title>
 	<script src="../three.min.js"></script>
+	<script type="text/javascript" src="../three-maze-gh-pages/assets/js/libs/tween.min.js"></script>
 	<!--<script src="optimer_bold.typeface.js"></script>-->
 	<!--<script src="dat.gui.js"></script>-->
 	<style>
@@ -28,7 +29,7 @@
 	var start_scene;
 	//The initial state of snake
 	var nx = 40, ny = 40, size = 20, start_point_x = 100, start_point_y = 50;
-	var len = 3;
+	var len = 1;
 	var head_pos_x = 10, head_pos_y = 10, head_for = 2;
 	//Variables used to quickly calculate directions
 	var dir_x = new Array(0, -1, 1, 0);
@@ -44,23 +45,25 @@
 //
 //	var gui = new dat.GUI();
 //	gui.add(controls, 'speed', 40, 200);
+	var aRequest, gameover = false, cameraHelper
 	function Init() {
 		width = document.getElementById('canvas3d').clientWidth;
 		height = document.getElementById('canvas3d').clientHeight;
 		renderer = new THREE.WebGLRenderer({antialias: true});
-		renderer.setSize(960, 600);
+		renderer.setSize(1080, 820);
 		renderer.shadowMapEnabled = true;
 		document.getElementById('canvas3d').appendChild(renderer.domElement);
 		renderer.setClearColor('pink', 1.0);
 
-		camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
-		camera.position.x = 0;
-		camera.position.y = -280;
-		camera.position.z = 200;
+//		camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
+		camera = new THREE.PerspectiveCamera(45, width / height, 1, 8000);
+		camera.position.x = -120;
+		camera.position.y = -300;
+		camera.position.z = 450; //俯视的高度
 		camera.up.x = 0;
 		camera.up.y = 0;
 		camera.up.z = 1;
-		camera.lookAt({x: 0, y: 0, z: 0});
+		camera.lookAt({x: -60, y: 10, z: -100});
 
 		scene = new THREE.Scene();
 
@@ -75,7 +78,8 @@
 
 		var pointColor = "#ffffff";
 		var directionalLight = new THREE.DirectionalLight(pointColor);
-		directionalLight.position.set(100, 180, 300);
+//		directionalLight.position.set(0, 0.5, 1);
+		directionalLight.position.set(100, 180, 300); //控制阴影
 		directionalLight.castShadow = true;
 
 		directionalLight.distance = 0;
@@ -83,17 +87,6 @@
 		directionalLight.shadowMapHeight = 2048;
 		directionalLight.shadowMapWidth = 2048;
 		scene.add(directionalLight);
-
-		//start_scene
-//		start_scene = new THREE.Scene();
-//		word = CreateText('3D Snake', 80, 40);
-//		word2 = CreateText('press any key to start', 30, 20);
-//		word3 = CreateText('(p to pause)', 0, 20);
-//		start_scene.add(word);
-//		start_scene.add(word2);
-//		start_scene.add(word3);
-//		start_scene.add(light);
-//		renderer.render(start_scene, camera);
 
 		for (i = 0; i < nx; i++) {
 			board[i] = new Array()
@@ -106,7 +99,7 @@
 		scene.add(fo);
 		document.addEventListener('keydown', onKeyDown, false);
 		for (i = 0; i < len; i++) {
-			snake[i] = new Object();
+			snake[i] = {}
 			snake[i].x = head_pos_x + i * dir_x[3 - head_for];
 			snake[i].y = head_pos_y + i * dir_y[3 - head_for];
 			cube[i] = CreateCube(10, 10, 10);
@@ -116,50 +109,29 @@
 			scene.add(cube[i]);
 			board[snake[i].x][snake[i].y] = 1;
 		}
+
+		// Camera helper
+		var geometry = new THREE.Geometry();
+		geometry.vertices.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(Math.sqrt(3) * (this.side * this.thickness)), 0, 0);
+		this.cameraHelper = new THREE.Line(geometry);
+		this.scene.add(cameraHelper);
+		cameraHelper.visible = false;
+		cameraHelper.targetRotation = false;
+		cameraHelper.rotation.set(0, 1.362275, 0.694716);
+
 		status = 0;
 		food();
 		run();
 		pause_flag = false;
 	}
-//	function CreateText(_text, _z, _size) {
-//		var material = new THREE.MeshFaceMaterial([
-//			new THREE.MeshPhongMaterial({color: 'yellow', shading: THREE.FlatShading}), // front
-//			new THREE.MeshPhongMaterial({color: 'gray', shading: THREE.SmoothShading}) // side
-//		]);
-//		var text = _text,
-//			height = 20,
-//			size = _size,
-//			curveSegments = 4,
-//			font = "optimer", // helvetiker, optimer, gentilis, droid sans, droid serif
-//			weight = "bold", // normal bold
-//			style = "normal"; // normal italic
-//		textGeo = new THREE.TextGeometry(text, {
-//			size: size,
-//			height: height,
-//			curveSegments: curveSegments,
-//			font: font,
-//			weight: weight,
-//			style: style,
-//		});
-//		textGeo.computeBoundingBox();
-//		textGeo.computeVertexNormals();
-//		var centerOffset = -0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
-//		textMesh1 = new THREE.Mesh(textGeo, material);
-//		textMesh1.position.x = centerOffset;
-//		textMesh1.position.y = 0;
-//		textMesh1.position.z = _z;
-//		textMesh1.rotation.x = Math.PI / 2.5;
-//		textMesh1.rotation.y = Math.PI * 2;
-//		return textMesh1;
-//	}
 	function CreateCube(_s1, _s2, _s3) {
 		var geometry = new THREE.BoxGeometry(_s1, _s2, _s3);
 		for (var i = 0; i < geometry.faces.length; i += 2) {
-			var hex = Math.random() * 0xffffff;
+			var hex = 0xffffff;
 			geometry.faces[i].color.setHex(hex);
 			geometry.faces[i + 1].color.setHex(hex);
 		}
-		var material = new THREE.MeshLambertMaterial({color: 0xffffff * Math.random()});
+		var material = new THREE.MeshLambertMaterial({color: 0xffffff });
 		return new THREE.Mesh(geometry, material);
 	}
 	function CreatePlane(_size) {
@@ -169,22 +141,35 @@
 	}
 
 	function render() {
+		if (cameraHelper.targetRotation !== false) {
+			cameraHelper.rotation.z += (cameraHelper.targetRotation.z - cameraHelper.rotation.z) / 10;
+			cameraHelper.rotation.y += (cameraHelper.targetRotation.y - cameraHelper.rotation.y) / 10;
+		}
 		for (var i = 0; i < len; ++i) {
 			cube[i].position.x = snake[i].x * 10 - 200;
 			cube[i].position.y = -snake[i].y * 10 + 190;
 		}
-		camera.position.y = -snake[0].y * 3 - 300;
+		camera.position = cameraHelper.geometry.vertices[1].clone().applyProjection(cameraHelper.matrixWorld);
+		camera.position.y = -snake[0].y * 3 - 300; //随着线的运动，镜头跟着走
 		camera.position.x = snake[0].x * 3 - 100;
 		renderer.render(scene, camera);
 	}
 	function move() {
 		var tx = snake[0].x + dir_x[head_for];
 		var ty = snake[0].y + dir_y[head_for];
-		//tx = (tx + nx) % nx;
-		//ty = (ty + ny) % ny;
 		if (tx >= 0 && tx < nx && ty >= 0 && ty < ny) {
 			if (board[tx][ty] != 1) {
 				the_last_head = head_for;
+				snake[len] = new Object();
+				snake[len].x = snake[len - 1].x;
+				snake[len].y = snake[len - 1].y;
+				cube[len] = CreateCube(10, 10, 10);
+				cube[len].position.x = snake[len].x * 10 - 200;
+				cube[len].position.y = -snake[len].y * 10 + 190;
+				cube[len].castShadow = true;
+				scene.add(cube[len]);
+				board[tx][ty] = 1;
+				len++;
 				if (board[tx][ty] == 2) {
 					snake[len] = new Object();
 					snake[len].x = snake[len - 1].x;
@@ -207,17 +192,31 @@
 			}
 			else {
 				if (the_last_head + head_for != 3) {
-					alert("game over!\ryour score is " + len);
-					location.reload();
+					over()
+//					location.reload();
 				}
 				else {
 					head_for = the_last_head;
 				}
 			}
+			// Builds the mesh
+//			var player = new THREE.Mesh(new THREE.CubeGeometry(20, 20 / 4, 20, 1, 1, 1), new THREE.MeshLambertMaterial({color: 0xf18260, ambient: 0xf18260, lineWidth: 1}));
+//			player.position.set(-((31 * 20) / 2) + 20, 20 * 5, -((31 * 20) / 2) + 20);
+//			player.scale.set(0, 0, 0);
+//			this.scene.add(player);
+//			var tween = new TWEEN.Tween({scale: 0, y: 20 * 5, mesh: player}).to({
+//				scale: 1,
+//				y: 20 / 8
+//			}, 300).delay(150);
+//			tween.onUpdate(function () {
+//				this.mesh.scale.set(this.scale, this.scale, this.scale);
+//				this.mesh.position.y = this.y;
+//			});
+//			tween.start()
 		}
 		else {
-			alert("game over!\ryour score is " + len);
-			location.reload();
+			over()
+//			location.reload();
 		}
 		for (i = 0; i < nx; i++) {
 			for (k = 0; k < ny; k++) {
@@ -242,15 +241,33 @@
 		fo.position.z = 20;
 	}
 
+	function over() {
+		console.log("game over!\ryour score is " + len);
+//		console.log('aRequest', aRequest)
+//		window.cancelAnimationFrame(aRequest)
+		gameover = true
+	}
 //	function animate() {
 //		requestAnimationFrame(animate);
 //		render();
 //	}
+	var fps = 20;
+	var now;
+	var then = Date.now();
+	var interval = 1000 / fps;
+	var delta;
 	function run() {
-		if (!pause_flag)
-			move();
-		render();
-		setTimeout("run()", 240 - 180);//you can change speed here
+		aRequest = window.requestAnimationFrame(run)
+		now = Date.now();
+		delta = now - then;
+		if (delta > interval) {
+			then = now - (delta % interval);
+			if (!pause_flag)
+				move();
+			render();
+			if(gameover)
+				window.cancelAnimationFrame(aRequest)
+		}
 	}
 
 	function onKeyDown(event) {
