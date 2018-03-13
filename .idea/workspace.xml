@@ -2,8 +2,88 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e608ced5-09b6-4f97-a52b-a4c6c0df62fc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/._asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/asset.fbx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/._asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/preview.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/asset.obj" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/marmelab.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/pathname" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/asset.meta" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/pathname" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3dgame.js" afterPath="$PROJECT_DIR$/3dgame.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,48 +110,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DHTML.js" pinned="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22382">
-              <caret line="1178" column="0" lean-forward="false" selection-start-line="1178" selection-start-column="0" selection-end-line="1178" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="3dgame.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="3dgame.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/3dgame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
+            <state relative-caret-position="188">
               <caret line="150" column="38" lean-forward="false" selection-start-line="150" selection-start-column="38" selection-end-line="150" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="1.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/1.html">
+      <file leaf-file-name="asset" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="38" column="68" lean-forward="false" selection-start-line="38" selection-start-column="63" selection-end-line="38" selection-end-column="68" />
+            <state relative-caret-position="38">
+              <caret line="2" column="15" lean-forward="true" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="three.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/three.js">
+      <file leaf-file-name="pathname" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/pathname">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="29733" column="4" lean-forward="false" selection-start-line="29733" selection-start-column="4" selection-end-line="29733" selection-end-column="4" />
+            <state relative-caret-position="0">
+              <caret line="0" column="49" lean-forward="true" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dat.gui.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dat.gui.js">
+      <file leaf-file-name="marmelab.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/marmelab.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -80,18 +160,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/game.js">
+      <file leaf-file-name="three.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/three.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+            <state relative-caret-position="-15466">
+              <caret line="29733" column="4" lean-forward="false" selection-start-line="29733" selection-start-column="4" selection-end-line="29733" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="weapp-adapter.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/weapp-adapter.js">
+      <file leaf-file-name="dat.gui.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dat.gui.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -133,7 +213,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>appendChild</find>
       <find>onMouseMove</find>
       <find>canvas3d</find>
       <find>materials</find>
@@ -163,6 +242,7 @@
       <find>run</find>
       <find>render</find>
       <find>pauseFlag</find>
+      <find>glDrawElements</find>
     </findStrings>
     <replaceStrings>
       <replace>createPlane</replace>
@@ -254,6 +334,70 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="three-game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="three-game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blender" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="three-game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="three-game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blender" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="19e047d72eeca4308a7ce926784bc5d6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="three-game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="three-game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="01-rotating-mesh" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="three-game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="three-game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="01-rotating-mesh" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -262,7 +406,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../webgl_particle-master/webgl_particle-master" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="JavaScriptPreferStrict" value="false" />
@@ -271,17 +415,17 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\develop\three-game" />
+      <recent name="D:\develop\three-game\blender\19e047d72eeca4308a7ce926784bc5d6" />
+      <recent name="D:\develop\three-game\blender" />
+      <recent name="F:\development\code\three-game\html" />
+      <recent name="F:\development\code\three-game" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\development\code\three-game" />
       <recent name="F:\development\code\three-game\demo" />
       <recent name="D:\develop\three-game\html" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\development\code\three-game\html" />
-      <recent name="F:\development\code\three-game" />
-      <recent name="F:\development\code\three-game\demo\fonts\richard" />
-      <recent name="F:\development\code\three-game\demo\fonts\icons" />
-      <recent name="F:\development\code\three-game\demo\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -377,18 +521,17 @@
       <workItem from="1520868849963" duration="5751000" />
       <workItem from="1520905362111" duration="9136000" />
       <workItem from="1520917422848" duration="28273000" />
-      <workItem from="1520955320832" duration="3086000" />
+      <workItem from="1520955320832" duration="7084000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46246000" />
+    <option name="totallyTimeSpent" value="50244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="654" y="0" width="1248" height="1057" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18425325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18425325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -419,48 +562,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/html/dat.gui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="80" selection-end-column="489" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/weapp-adapter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="12" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="1178" column="0" lean-forward="false" selection-start-line="1178" selection-start-column="0" selection-end-line="1178" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/3D_Snake.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-          <folding>
-            <marker date="1520955213085" expanded="true" signature="8095:8098" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/3dgame.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-508">
@@ -754,7 +855,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/three.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
+        <state relative-caret-position="-15466">
           <caret line="29733" column="4" lean-forward="false" selection-start-line="29733" selection-start-column="4" selection-end-line="29733" selection-end-column="4" />
           <folding />
         </state>
@@ -770,8 +871,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/3dgame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
+        <state relative-caret-position="188">
           <caret line="150" column="38" lean-forward="false" selection-start-line="150" selection-start-column="38" selection-end-line="150" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/asset.obj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="15" lean-forward="true" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/pathname">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="49" lean-forward="true" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/marmelab.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
