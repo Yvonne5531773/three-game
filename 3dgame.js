@@ -12,21 +12,28 @@ let plane,
 	nx = 40, //范围宽
 	ny = 40, //范围高
 	size = 20,
-	start_point_x = 100,
-	start_point_y = 50,
-	len = 3,
-	head_pos_x = 10,
-	head_pos_y = 10,
-	head_for = 2,
+	start_point_x = 200,
+	start_point_y = 190,
+	len = 1,
+	head_pos_x = 6,   //开始X
+	head_pos_y = 32,  //开始Y
+	head_for = 2,     //方向
 	dir_x = [0, -1, 1, 0],
 	dir_y = [1, 0, 0, -1],
 	status = -1;  //the status of the game, -1 represents not start
-let pauseFlag = true;  //in order to support pause function
+let pauseFlag = false;  //in order to support pause function
 let board = []  //The state of game
 let the_last_head = head_for;  //The direction of snake
 let snake = [] //store snake
 let clickCount = 0,
-	gameover = false
+	gameover = false,
+	cameraHelper
+
+let fps = 25,
+	now,
+	then = Date.now(),
+	interval = 1000 / fps,
+	delta
 
 export default class game3d {
 	aRequest = {}
@@ -34,25 +41,24 @@ export default class game3d {
 	constructor() {
 		this.init()
 	}
+
 	init() {
-		let width = 960,
-			height = 600
 		renderer = new THREE.WebGLRenderer({
 			canvas: canvas,
 			antialias: true
 		});
-		renderer.setSize(width, height);
+		// renderer.setSize(width, height);
 		renderer.shadowMapEnabled = true;
-		renderer.setClearColor('pink', 1.0);
+		renderer.setClearColor('#feffdd', 1.0);
 
-		camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
+		camera = new THREE.PerspectiveCamera(45, 1, 1, 2000);
 		camera.position.x = 0;
-		camera.position.y = -280;
-		camera.position.z = 200;
+		camera.position.y = -800;
+		camera.position.z = 600; //俯视的高度
 		camera.up.x = 0;
 		camera.up.y = 0;
 		camera.up.z = 1;
-		camera.lookAt({x: 0, y: 0, z: 0});
+		camera.lookAt({x: 0, y: 100, z: -900});
 
 		scene = new THREE.Scene();
 
@@ -67,11 +73,11 @@ export default class game3d {
 
 		let pointColor = "#ffffff";
 		let directionalLight = new THREE.DirectionalLight(pointColor);
-		directionalLight.position.set(100, 180, 300);
+		// directionalLight.position.set(100, 180, 300);
+		directionalLight.position.set(0, 0.5, 1);
 		directionalLight.castShadow = true;
-
 		directionalLight.distance = 0;
-		directionalLight.intensity = 0.6;
+		directionalLight.intensity = 0.8;
 		directionalLight.shadowMapHeight = 2048;
 		directionalLight.shadowMapWidth = 2048;
 		scene.add(directionalLight);
@@ -90,42 +96,59 @@ export default class game3d {
 			snake[i].x = head_pos_x + i * dir_x[3 - head_for];
 			snake[i].y = head_pos_y + i * dir_y[3 - head_for];
 			cube[i] = this.createCube(10, 10, 10);
-			cube[i].position.x = snake[i].x * 10 - 200;
-			cube[i].position.y = -snake[i].y * 10 + 190;
+			cube[i].position.x = snake[i].x * 10 - start_point_x;
+			cube[i].position.y = -snake[i].y * 10 + start_point_y;
 			cube[i].castShadow = true;
 			scene.add(cube[i]);
 			board[snake[i].x][snake[i].y] = 1;
 		}
 
+		// Camera helper
+		var geometry = new THREE.Geometry();
+		geometry.vertices.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(Math.sqrt(3) * (this.side * this.thickness)), 0, 0);
+		cameraHelper = new THREE.Line(geometry);
+		scene.add(cameraHelper);
+		cameraHelper.visible = false;
+		cameraHelper.targetRotation = false;
+		cameraHelper.rotation.set(0, 1.362275, 0.694716);
+
 		status = 0;
 		this.getFood();
 		this.run();
+		pauseFlag = false;
 		document.addEventListener('touchstart', this.onTouchStart, false);
+		document.addEventListener('resize', this.onWindowResize, false);
+		this.onWindowResize()
 	}
 
 	createCube(_s1, _s2, _s3) {
-		let geometry = new THREE.BoxGeometry(_s1, _s2, _s3);
+		let geometry = new THREE.CubeGeometry(_s1, _s2, _s3 , 1, 1, 1);
 		for (let i = 0; i < geometry.faces.length; i += 2) {
-			let hex = Math.random() * 0xffffff;
+			let hex = '#ffe3ae';
 			geometry.faces[i].color.setHex(hex);
 			geometry.faces[i + 1].color.setHex(hex);
 		}
-		let material = new THREE.MeshLambertMaterial({color: 0xffffff * Math.random()});
+		let material = new THREE.MeshLambertMaterial({color: '#ffe3ae'});
 		return new THREE.Mesh(geometry, material);
 	}
 
-	createPlane(_size) {
+	createPlane(_size) {  //地板
 		let geometry = new THREE.PlaneGeometry(_size, _size, 40, 40);
-		let material = new THREE.MeshLambertMaterial({color: 0x00ff00});
+		let material = new THREE.MeshLambertMaterial({color: '#feffdd'});
 		return new THREE.Mesh(geometry, material);
 	}
 
 	render() {
-		for (let i = 0; i < len; ++i) {
-			cube[i].position.x = snake[i].x * 10 - 200;
-			cube[i].position.y = -snake[i].y * 10 + 190;
+		if (cameraHelper.targetRotation !== false) {
+			cameraHelper.rotation.z += (cameraHelper.targetRotation.z - cameraHelper.rotation.z) / 10;
+			cameraHelper.rotation.y += (cameraHelper.targetRotation.y - cameraHelper.rotation.y) / 10;
 		}
-		camera.position.x = snake[0].x * 3 - 100;
+		for (let i = 0; i < len; ++i) {
+			cube[i].position.x = snake[i].x * 10 - start_point_x;
+			cube[i].position.y = -snake[i].y * 10 + start_point_y;
+		}
+		// camera.position = cameraHelper.geometry.vertices[1].clone().applyProjection(cameraHelper.matrixWorld);
+		camera.position.x = snake[0].x * 3 - 100; //随着线的运动，镜头跟着走
 		camera.position.y = -snake[0].y * 3 - 300;
 		renderer.render(scene, camera);
 	}
@@ -133,20 +156,26 @@ export default class game3d {
 	getMove() {
 		let tx = snake[0].x + dir_x[head_for];
 		let ty = snake[0].y + dir_y[head_for];
-		//tx = (tx + nx) % nx;
-		//ty = (ty + ny) % ny;
-		console.log('in move tx', tx)
-		console.log('in move ty', ty)
 		if (tx >= 0 && tx < nx && ty >= 0 && ty < ny) {
 			if (board[tx][ty] !== 1) {
 				the_last_head = head_for;
+				snake[len] = {}
+				snake[len].x = snake[len - 1].x;
+				snake[len].y = snake[len - 1].y;
+				cube[len] = this.createCube(10, 10, 10);
+				cube[len].position.x = snake[len].x * 10 - start_point_x;
+				cube[len].position.y = -snake[len].y * 10 + start_point_y;
+				cube[len].castShadow = true;
+				scene.add(cube[len]);
+				board[tx][ty] = 1;
+				len++;
 				if (board[tx][ty] === 2) {
 					snake[len] = {}
 					snake[len].x = snake[len - 1].x;
 					snake[len].y = snake[len - 1].y;
 					cube[len] = this.createCube(10, 10, 10);
-					cube[len].position.x = snake[len].x * 10 - 200;
-					cube[len].position.y = -snake[len].y * 10 + 190;
+					cube[len].position.x = snake[len].x * 10 - start_point_x;
+					cube[len].position.y = -snake[len].y * 10 + start_point_y;
 					cube[len].castShadow = true;
 					scene.add(cube[len]);
 					board[tx][ty] = 1;
@@ -191,80 +220,53 @@ export default class game3d {
 			ty = Math.ceil(Math.random() * 1000) % ny;
 		} while (board[tx][ty]);
 		board[tx][ty] = 2;
-		fo.position.x = tx * 10 - 200;
-		fo.position.y = -ty * 10 + 190;
+		fo.position.x = tx * 10 - start_point_x;
+		fo.position.y = -ty * 10 + start_point_y;
 		fo.position.z = 20;
 	}
 
 	run() {
-		if (!pauseFlag){
-			this.getMove()
+		this.aRequest = window.requestAnimationFrame(this.run.bind(this), canvas)
+		now = Date.now();
+		delta = now - then;
+		if (delta > interval) {
+			then = now - (delta % interval);
+			if (!pauseFlag){
+				this.getMove()
+			}
+			this.render();
+			gameover && window.cancelAnimationFrame(this.aRequest);
 		}
-		this.render();
-		this.aRequest = window.requestAnimationFrame(this.run.bind(this), canvas);
-		gameover && window.cancelAnimationFrame(this.aRequest);
 	}
+	// run() {
+	// 	if (!pauseFlag){
+	// 		this.getMove()
+	// 	}
+	// 	this.render();
+	// 	this.aRequest = window.requestAnimationFrame(this.run.bind(this), canvas);
+	// 	gameover && window.cancelAnimationFrame(this.aRequest);
+	// }
 
 	onTouchStart(event) {
-		console.log('on key down pauseFlag', pauseFlag)
-		pauseFlag && (pauseFlag = false)
+		// pauseFlag && (pauseFlag = false)
 		clickCount%2===0 && (head_for = 2)
 		clickCount%2===1 && (head_for = 3)
 		clickCount++
-		// if (keynum == 38 && head_for != 0)
-		// 	head_for = 3;
-		// if (keynum == 40 && head_for != 3)
-		// 	head_for = 0;
-		// if (keynum == 37 && head_for != 2)
-		// 	head_for = 1;
-		// if (keynum == 39 && head_for != 1)
-		// 	head_for = 2;
-		// if (keynum == 80)
-		// 	pauseFlag = !pauseFlag;
 	}
 
+	onWindowResize() {
+		let width = window.innerWidth || window.document.body.clientWidth;
+		let height = window.innerHeight || window.document.body.clientHeight;
+		renderer.setSize(width, height);
+		camera.aspect = width / height;
+		camera.updateProjectionMatrix();
+	};
+
 	gameover() {
-		console.log('gameover request', this.aRequest)
 		gameover = true
-		wx.showToast({title: "game over!\ryour score is " + len})
+		wx.showToast({title: "game over!"})
 		// location.reload();
 	}
-	
-	// start() {
-	// 	// 在场景中添加雾的效果；样式上使用和背景一样的颜色
-	// 	this.renderer.setSize(window.innerWidth, window.innerHeight);
-	// 	let geometry = new THREE.CubeGeometry(1, 1, 1);
-	// 	// 加载纹理贴图
-	// 	let texture = new THREE.TextureLoader().load("images/metal.jpg");
-	// 	let material = new THREE.MeshBasicMaterial({ map: texture });
-	// 	this.cube = new THREE.Mesh(geometry, material);
-	// 	this.scene.add(this.cube);
-	// 	this.scene.add(this.createGround());
-	// 	// 设置camera的高度，若是低于当前场景的高度则屁也看不到
-	// 	this.camera.position.z = 10;
-	// 	this.cube.castShadow = true
-	//
-	// 	console.log(this.cube)
-	// 	window.requestAnimationFrame(this.loop.bind(this), canvas);
-	// }
-	// createGround(){
-	// 	let geometry = new THREE.CubeGeometry(3, 3, 3);
-	// 	let texture = new THREE.TextureLoader().load("images/metal.jpg");
-	// 	let material = new THREE.MeshBasicMaterial({ map: texture });
-	// 	let cube = new THREE.Mesh(geometry, material);
-	// 	cube.position.y = -5
-	// 	cube.rotation.x = 0.5
-	// 	return cube
-	// }
-	// update() {
-	// 	this.cube.rotation.x += 0.01;
-	// 	this.cube.rotation.y += 0.04;
-	// 	this.cube.rotation.z += 0.06;
-	// }
-	// loop() {
-	// 	this.update()
-	// 	this.renderer.render(this.scene, this.camera);
-	// 	window.requestAnimationFrame(this.loop.bind(this), canvas);
-	// }
+
 }
 

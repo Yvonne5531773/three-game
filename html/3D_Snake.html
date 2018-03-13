@@ -10,8 +10,8 @@
 	<style>
 		#canvas3d{
 			margin:auto;
-			width: 960px;
-			height: 600px;
+			/*width: 960px;*/
+			/*height: 600px;*/
 		}
 	</style>
 </head>
@@ -26,95 +26,107 @@
 	var cube = [];  //snake body object
 	var plane;
 	var fo; //food object
-	var start_scene;
-	//The initial state of snake
-	var nx = 40, ny = 40, size = 20, start_point_x = 100, start_point_y = 50;
-	var len = 1;
-	var head_pos_x = 10, head_pos_y = 10, head_for = 2;
-	//Variables used to quickly calculate directions
-	var dir_x = new Array(0, -1, 1, 0);
-	var dir_y = new Array(1, 0, 0, -1);
-	var status = -1;//the status of the game, -1 represents not start
-	var pause_flag = false;  //in order to support pause function
-	var board = new Array();  //The state of game
-	var the_last_head = head_for;  //The direction of snake
-	var snake = new Array();  //store snake
-//	var controls = new function () {
-//		this.speed=180;
-//	}
-//
-//	var gui = new dat.GUI();
-//	gui.add(controls, 'speed', 40, 200);
+
+	var nx = 40,
+		ny = 40,
+		size = 20,
+		start_point_x = 200,
+		start_point_y = 190;
+	var len = 1,
+		head_pos_x = 6,  //开始X
+		head_pos_y = 32, //开始Y
+		head_for = 2;    //方向
+	var dir_x = [0, -1, 1, 0]
+	var dir_y = [1, 0, 0, -1]
+	var status = -1;                //the status of the game, -1 represents not start
+	var pause_flag = false;         //in order to support pause function
+	var board = []                  //The state of game
+	var the_last_head = head_for;   //The direction of snake
+	var snake = []                  //store snake
 	var aRequest, gameover = false, cameraHelper
+
 	function Init() {
 		width = document.getElementById('canvas3d').clientWidth;
 		height = document.getElementById('canvas3d').clientHeight;
 		renderer = new THREE.WebGLRenderer({antialias: true});
-		renderer.setSize(1080, 820);
-		renderer.shadowMapEnabled = true;
+//		renderer.setSize(1080, 820);
+//		renderer.shadowMapEnabled = true;
 		document.getElementById('canvas3d').appendChild(renderer.domElement);
-		renderer.setClearColor('pink', 1.0);
-
-//		camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
-		camera = new THREE.PerspectiveCamera(45, width / height, 1, 8000);
-		camera.position.x = -120;
-		camera.position.y = -300;
-		camera.position.z = 450; //俯视的高度
-		camera.up.x = 0;
-		camera.up.y = 0;
-		camera.up.z = 1;
-		camera.lookAt({x: -60, y: 10, z: -100});
+		renderer.setClearColor('#feffdd', 1);
 
 		scene = new THREE.Scene();
 
-		light = new THREE.DirectionalLight('white', 1.0, 0);
-		light.position.set(-600, -600, -600);
-		scene.add(light);
+//		camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
+		camera = new THREE.PerspectiveCamera(45, 1, 1, 2000);
+		camera.position.x = -100;
+		camera.position.y = -100;
+		camera.position.z = 800; //俯视的高度
+		camera.up.x = 0;
+		camera.up.y = 0;
+		camera.up.z = 1;
+		camera.lookAt({x: -10, y: 400, z: -800});
 
+		//地板
 		plane = CreatePlane(400);
 		plane.position.set(-5, -5, -5);
 		plane.receiveShadow = true;
 		scene.add(plane);
 
-		var pointColor = "#ffffff";
-		var directionalLight = new THREE.DirectionalLight(pointColor);
-//		directionalLight.position.set(0, 0.5, 1);
-		directionalLight.position.set(100, 180, 300); //控制阴影
+		light = new THREE.DirectionalLight('white', 1.0, 0);
+		light.position.set(-600, -600, -600);
+		scene.add(light);
+		var pointColor = "#fff";
+		var directionalLight = new THREE.DirectionalLight(pointColor, 0.5);
+		directionalLight.position.set(0, 0.5, 1);
+//		directionalLight.position.set(100, 180, 300); //控制阴影
 		directionalLight.castShadow = true;
 
 		directionalLight.distance = 0;
-		directionalLight.intensity = 0.6;
+		directionalLight.intensity = 0.8;
 		directionalLight.shadowMapHeight = 2048;
 		directionalLight.shadowMapWidth = 2048;
 		scene.add(directionalLight);
 
-		for (i = 0; i < nx; i++) {
-			board[i] = new Array()
+		for (i = 0; i < nx; i++) { //0 = none, 1 = snake body, 2 = food
+			board[i] = []
 			for (k = 0; k < ny; k++) {
 				board[i][k] = 0;
 			}
-		}//0 = none, 1 = snake body, 2 = food
+		}
 		fo = CreateCube(10, 10, 50);
 		fo.castShadow = true;
 		scene.add(fo);
 		document.addEventListener('keydown', onKeyDown, false);
+
 		for (i = 0; i < len; i++) {
 			snake[i] = {}
 			snake[i].x = head_pos_x + i * dir_x[3 - head_for];
 			snake[i].y = head_pos_y + i * dir_y[3 - head_for];
-			cube[i] = CreateCube(10, 10, 10);
-			cube[i].position.x = snake[i].x * 10 - 200;
-			cube[i].position.y = -snake[i].y * 10 + 190;
+			cube[i] = CreateCube(12, 12, 12);
+			cube[i].position.x = snake[i].x * 10 - start_point_x;
+			cube[i].position.y = -snake[i].y * 10 + start_point_y;
 			cube[i].castShadow = true;
 			scene.add(cube[i]);
+//			var tween = new TWEEN.Tween({scale: 0, y: 0, mesh: cube[i]}).to({
+//				scale: 1,
+//				y: 12 / 2
+//			}, 300).delay(150);
+//			tween.onUpdate(function () {
+//				this.mesh.scale.y = this.scale;
+//				this.mesh.position.y = this.y;
+//			});
+//			tween.onStart(function () {
+//				this.mesh.visible = true;
+//			});
+//			tween.start()
 			board[snake[i].x][snake[i].y] = 1;
 		}
 
 		// Camera helper
 		var geometry = new THREE.Geometry();
 		geometry.vertices.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(Math.sqrt(3) * (this.side * this.thickness)), 0, 0);
-		this.cameraHelper = new THREE.Line(geometry);
-		this.scene.add(cameraHelper);
+		cameraHelper = new THREE.Line(geometry);
+		scene.add(cameraHelper);
 		cameraHelper.visible = false;
 		cameraHelper.targetRotation = false;
 		cameraHelper.rotation.set(0, 1.362275, 0.694716);
@@ -123,33 +135,38 @@
 		food();
 		run();
 		pause_flag = false;
+
+		onWindowResize()
 	}
+
+	function onWindowResize() {
+		var width = window.innerWidth || window.document.body.clientWidth;
+		var height = window.innerHeight || window.document.body.clientHeight;
+		renderer.setSize(width, height);
+		camera.aspect = width / height;
+		camera.updateProjectionMatrix();
+	};
+
 	function CreateCube(_s1, _s2, _s3) {
-		var geometry = new THREE.BoxGeometry(_s1, _s2, _s3);
-		for (var i = 0; i < geometry.faces.length; i += 2) {
-			var hex = 0xffffff;
-			geometry.faces[i].color.setHex(hex);
-			geometry.faces[i + 1].color.setHex(hex);
-		}
-		var material = new THREE.MeshLambertMaterial({color: 0xffffff });
-		return new THREE.Mesh(geometry, material);
+		var geometry = new THREE.CubeGeometry(_s1, _s2, _s3, 1, 1, 1);
+		var material = new THREE.MeshLambertMaterial({color: '#ffe3ae' });
+		var ret = new THREE.Mesh(geometry, material);
+		ret.scale.y = 1;
+		ret.visible = true
+		return ret
 	}
-	function CreatePlane(_size) {
+
+	function CreatePlane(_size) { //地板
 		var geometry = new THREE.PlaneGeometry(_size, _size, 40, 40);
-		var material = new THREE.MeshLambertMaterial({color: 0x00ff00});
+		var material = new THREE.MeshLambertMaterial({color: '#feffdd'});
 		return new THREE.Mesh(geometry, material);
 	}
 
 	function render() {
-		if (cameraHelper.targetRotation !== false) {
-			cameraHelper.rotation.z += (cameraHelper.targetRotation.z - cameraHelper.rotation.z) / 10;
-			cameraHelper.rotation.y += (cameraHelper.targetRotation.y - cameraHelper.rotation.y) / 10;
-		}
 		for (var i = 0; i < len; ++i) {
-			cube[i].position.x = snake[i].x * 10 - 200;
-			cube[i].position.y = -snake[i].y * 10 + 190;
+			cube[i].position.x = snake[i].x * 10 - start_point_x;
+			cube[i].position.y = -snake[i].y * 10 + start_point_y;
 		}
-		camera.position = cameraHelper.geometry.vertices[1].clone().applyProjection(cameraHelper.matrixWorld);
 		camera.position.y = -snake[0].y * 3 - 300; //随着线的运动，镜头跟着走
 		camera.position.x = snake[0].x * 3 - 100;
 		renderer.render(scene, camera);
@@ -158,25 +175,25 @@
 		var tx = snake[0].x + dir_x[head_for];
 		var ty = snake[0].y + dir_y[head_for];
 		if (tx >= 0 && tx < nx && ty >= 0 && ty < ny) {
-			if (board[tx][ty] != 1) {
+			if (board[tx][ty] !== 1) {
 				the_last_head = head_for;
-				snake[len] = new Object();
+				snake[len] = {}
 				snake[len].x = snake[len - 1].x;
 				snake[len].y = snake[len - 1].y;
-				cube[len] = CreateCube(10, 10, 10);
-				cube[len].position.x = snake[len].x * 10 - 200;
-				cube[len].position.y = -snake[len].y * 10 + 190;
+				cube[len] = CreateCube(12, 12, 12);
+				cube[len].position.x = snake[len].x * 10 - start_point_x;
+				cube[len].position.y = -snake[len].y * 10 + start_point_y;
 				cube[len].castShadow = true;
 				scene.add(cube[len]);
 				board[tx][ty] = 1;
 				len++;
-				if (board[tx][ty] == 2) {
-					snake[len] = new Object();
+				if (board[tx][ty] === 2) {
+					snake[len] = {}
 					snake[len].x = snake[len - 1].x;
 					snake[len].y = snake[len - 1].y;
-					cube[len] = CreateCube(10, 10, 10);
-					cube[len].position.x = snake[len].x * 10 - 200;
-					cube[len].position.y = -snake[len].y * 10 + 190;
+					cube[len] = CreateCube(12, 12, 12);
+					cube[len].position.x = snake[len].x * 10 - start_point_x;
+					cube[len].position.y = -snake[len].y * 10 + start_point_y;
 					cube[len].castShadow = true;
 					scene.add(cube[len]);
 					board[tx][ty] = 1;
@@ -191,7 +208,8 @@
 				snake[0].y = ty;
 			}
 			else {
-				if (the_last_head + head_for != 3) {
+				if (the_last_head + head_for !== 3) {
+					console.log('over 1')
 					over()
 //					location.reload();
 				}
@@ -199,22 +217,8 @@
 					head_for = the_last_head;
 				}
 			}
-			// Builds the mesh
-//			var player = new THREE.Mesh(new THREE.CubeGeometry(20, 20 / 4, 20, 1, 1, 1), new THREE.MeshLambertMaterial({color: 0xf18260, ambient: 0xf18260, lineWidth: 1}));
-//			player.position.set(-((31 * 20) / 2) + 20, 20 * 5, -((31 * 20) / 2) + 20);
-//			player.scale.set(0, 0, 0);
-//			this.scene.add(player);
-//			var tween = new TWEEN.Tween({scale: 0, y: 20 * 5, mesh: player}).to({
-//				scale: 1,
-//				y: 20 / 8
-//			}, 300).delay(150);
-//			tween.onUpdate(function () {
-//				this.mesh.scale.set(this.scale, this.scale, this.scale);
-//				this.mesh.position.y = this.y;
-//			});
-//			tween.start()
-		}
-		else {
+		} else {
+			console.log('over 2')
 			over()
 //			location.reload();
 		}
@@ -228,7 +232,20 @@
 			board[snake[i].x][snake[i].y] = 1;
 		}
 	}
-
+	// Builds the mesh
+	//			var player = new THREE.Mesh(new THREE.CubeGeometry(20, 20 / 4, 20, 1, 1, 1), new THREE.MeshLambertMaterial({color: 0xf18260, ambient: 0xf18260, lineWidth: 1}));
+	//			player.position.set(-((31 * 20) / 2) + 20, 20 * 5, -((31 * 20) / 2) + 20);
+	//			player.scale.set(0, 0, 0);
+	//			this.scene.add(player);
+	//			var tween = new TWEEN.Tween({scale: 0, y: 20 * 5, mesh: player}).to({
+	//				scale: 1,
+	//				y: 20 / 8
+	//			}, 300).delay(150);
+	//			tween.onUpdate(function () {
+	//				this.mesh.scale.set(this.scale, this.scale, this.scale);
+	//				this.mesh.position.y = this.y;
+	//			});
+	//			tween.start()
 	function food() {
 		var tx, ty;
 		do {
@@ -236,28 +253,24 @@
 			ty = Math.ceil(Math.random() * 1000) % ny;
 		} while (board[tx][ty]);
 		board[tx][ty] = 2;
-		fo.position.x = tx * 10 - 200;
-		fo.position.y = -ty * 10 + 190;
+		fo.position.x = tx * 10 - start_point_x;
+		fo.position.y = -ty * 10 + start_point_y;
 		fo.position.z = 20;
 	}
 
 	function over() {
 		console.log("game over!\ryour score is " + len);
-//		console.log('aRequest', aRequest)
-//		window.cancelAnimationFrame(aRequest)
 		gameover = true
 	}
-//	function animate() {
-//		requestAnimationFrame(animate);
-//		render();
-//	}
-	var fps = 20;
+
+	var fps = 25;
 	var now;
 	var then = Date.now();
 	var interval = 1000 / fps;
 	var delta;
 	function run() {
 		aRequest = window.requestAnimationFrame(run)
+		TWEEN.update();
 		now = Date.now();
 		delta = now - then;
 		if (delta > interval) {
