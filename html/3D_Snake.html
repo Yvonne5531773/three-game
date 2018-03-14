@@ -58,13 +58,16 @@
 
 //		camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
 		camera = new THREE.PerspectiveCamera(45, 1, 1, 2000);
-		camera.position.x = -100;
-		camera.position.y = -100;
-		camera.position.z = 800; //俯视的高度
+//		camera.position.x = -100;
+//		camera.position.y = -100;
+//		camera.position.z = 800; //俯视的高度
+		camera.position.set(-180, -480, 550);
+//		camera.position.set(0, 3.5, 5);
 		camera.up.x = 0;
 		camera.up.y = 0;
-		camera.up.z = 1;
-		camera.lookAt({x: -10, y: 400, z: -800});
+		camera.up.z = 0;
+//		camera.lookAt({x: -10, y: 400, z: -800});
+		camera.lookAt({x: 0, y: 0, z: 0});
 
 		//地板
 		plane = CreatePlane(400);
@@ -133,6 +136,7 @@
 
 		status = 0;
 		food();
+		createBarricade()
 		run();
 		pause_flag = false;
 
@@ -148,12 +152,32 @@
 	};
 
 	function CreateCube(_s1, _s2, _s3) {
-		var geometry = new THREE.CubeGeometry(_s1, _s2, _s3, 1, 1, 1);
+		var geometry = new THREE.BoxGeometry(_s1, _s2, _s3, 1, 1, 1);
 		var material = new THREE.MeshLambertMaterial({color: '#ffe3ae' });
 		var ret = new THREE.Mesh(geometry, material);
 		ret.scale.y = 1;
 		ret.visible = true
 		return ret
+	}
+
+	function createBarricade() {
+		let mesh
+		let loader = new THREE.JSONLoader();
+//		let materials = new THREE.MeshLambertMaterial({color: '#fff87f'})
+		loader.load('1.json', function(geometry, materials) {  //路障
+			mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+			mesh.scale.x = mesh.scale.y = mesh.scale.z = 1;
+			mesh.translation = THREE.GeometryUtils.center(geometry);
+			scene.add(mesh);
+			let tx = 6,
+				ty = 32
+			board[tx][ty] = 2;
+			mesh.position.x = tx * 10 - start_point_x;
+			mesh.position.y = -ty * 10 + start_point_y;
+			mesh.position.z = 20;
+			mesh.rotation.x = 15;
+			mesh.rotation.y = -10;
+		});
 	}
 
 	function CreatePlane(_size) { //地板
@@ -167,8 +191,8 @@
 			cube[i].position.x = snake[i].x * 10 - start_point_x;
 			cube[i].position.y = -snake[i].y * 10 + start_point_y;
 		}
-		camera.position.y = -snake[0].y * 3 - 300; //随着线的运动，镜头跟着走
-		camera.position.x = snake[0].x * 3 - 100;
+		camera.position.y = -snake[0].y * 4 - 340; //随着线的运动，镜头跟着走
+		camera.position.x = snake[0].x * 4 - 480;
 		renderer.render(scene, camera);
 	}
 	function move() {
@@ -232,20 +256,7 @@
 			board[snake[i].x][snake[i].y] = 1;
 		}
 	}
-	// Builds the mesh
-	//			var player = new THREE.Mesh(new THREE.CubeGeometry(20, 20 / 4, 20, 1, 1, 1), new THREE.MeshLambertMaterial({color: 0xf18260, ambient: 0xf18260, lineWidth: 1}));
-	//			player.position.set(-((31 * 20) / 2) + 20, 20 * 5, -((31 * 20) / 2) + 20);
-	//			player.scale.set(0, 0, 0);
-	//			this.scene.add(player);
-	//			var tween = new TWEEN.Tween({scale: 0, y: 20 * 5, mesh: player}).to({
-	//				scale: 1,
-	//				y: 20 / 8
-	//			}, 300).delay(150);
-	//			tween.onUpdate(function () {
-	//				this.mesh.scale.set(this.scale, this.scale, this.scale);
-	//				this.mesh.position.y = this.y;
-	//			});
-	//			tween.start()
+
 	function food() {
 		var tx, ty;
 		do {
