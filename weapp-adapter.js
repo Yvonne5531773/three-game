@@ -1236,7 +1236,6 @@
 	  }, {
 	    key: 'open',
 	    value: function open(method, url /* async, user, password 这几个参数在小程序内不支持*/) {
-	    	console.log('adapter open')
 	      _method.set(this, method)
 	      _url.set(this, url)
 	      _changeReadyState.call(this, XMLHttpRequest.OPENED)

@@ -1,7 +1,6 @@
-// let THREE = require('./three/three')
-let THREE = require('three.min')
 import 'weapp-adapter.js'
-import {threeParse} from './parse'
+import { threeParse } from './parse'
+let THREE = require('three.min')
 
 let renderer,
 	camera,
@@ -12,7 +11,6 @@ let plane,
 	fo,
 	nx = 40, //范围宽
 	ny = 40, //范围高
-	size = 20,
 	start_point_x = 200,
 	start_point_y = 190,
 	len = 1,
@@ -36,6 +34,24 @@ let fps = 25,
 	interval = 1000 / fps,
 	delta
 
+//x越大，物体就越上; y越大，物体就越里面
+const whiteLeftblocks = [
+	{
+		x: -115, y: 420, z: 0
+	},
+	{
+		x: -28, y: 418, z: 0
+	},
+]
+const whiteLeftFineblocks = [
+	{
+		x: 33, y: 550, z: 0
+	},
+	{
+		x: 68, y: 630, z: 0
+	},
+]
+
 export default class game3d {
 	aRequest = {}
 
@@ -52,11 +68,16 @@ export default class game3d {
 		renderer.shadowMapEnabled = true;
 		renderer.setClearColor('#feffdd', 1);
 
+		//初始化开始的路障
+		this.initBarricade()
+		//初始化钢琴块
+		this.initWhiteBlock()
+		//初始化细钢琴块
+		this.initWhiteFineBlock()
+
+		//相机
 		camera = new THREE.PerspectiveCamera(55, 0.5, 1, 10000);
-		// camera.position.x = -180;
-		// camera.position.y = -480;
-		// camera.position.z = 350; //俯视的高度
-		camera.position.set(-250, -480, 450);  //3参数越小，离表面越近
+		camera.position.set(-250, -480, 450);  //3参数越小，离表面越近 //俯视的高度
 		camera.up.x = 0;
 		camera.up.y = 0;
 		camera.up.z = 1;
@@ -73,11 +94,15 @@ export default class game3d {
 		plane.receiveShadow = true;
 		scene.add(plane);
 
-		let pointColor = "#ffffff";
-		let directionalLight = new THREE.DirectionalLight(pointColor);
+		//灯源
+		let directionalLight = new THREE.DirectionalLight("#fff");
 		directionalLight.position.set(0, 0, 1);
-		directionalLight.intensity = 0.8;
 		scene.add(directionalLight);
+
+		// scene.add(new THREE.AmbientLight(0xc9c9c9));
+		// var directional = new THREE.DirectionalLight(0xc9c9c9, 0.5);
+		// directional.position.set(0, 0.5, 1);
+		// scene.add(directional);
 
 		for (let i = 0; i < nx; i++) { //0 = none, 1 = snake body, 2 = food
 			board[i] = []
@@ -112,8 +137,6 @@ export default class game3d {
 		this.getFood();
 		this.run();
 
-		this.initMesh()
-
 		// pauseFlag = true;
 		document.addEventListener('touchstart', this.onTouchStart, false);
 		document.addEventListener('resize', this.onWindowResize, false);
@@ -132,8 +155,8 @@ export default class game3d {
 	}
 
 	createPlane(_size) {  //地板
-		let geometry = new THREE.PlaneGeometry(_size, _size, 40, 40);
-		let material = new THREE.MeshLambertMaterial({color: '#feffdd'});
+		let geometry = new THREE.PlaneBufferGeometry(_size, _size, 40, 40);
+		let material = new THREE.MeshLambertMaterial({color: '#ffecb4'});
 		return new THREE.Mesh(geometry, material);
 	}
 
@@ -216,27 +239,85 @@ export default class game3d {
 		fo.position.z = 20;
 	}
 
-	initMesh() {
-		const request = new XMLHttpRequest();
+	initBarricade() {
+		const request = new XMLHttpRequest(),
+			url = "http://act.cmcmcdn.com/liebao/wechatGame/1.json"
 		request.onreadystatechange = function () {
 			if (request.readyState === 4) {
 				let json = JSON.parse(request.responseText)
-				let texturePath = "http://act.cmcmcdn.com/liebao/wechatGame/1.json"
-				let object = threeParse(json, texturePath);
+				let object = threeParse(json, url);
 				let geometry = object.geometry,
 					materials = object.materials
 				let mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
 				mesh.scale.x = mesh.scale.y = mesh.scale.z = 10;
-				mesh.translation = THREE.GeometryUtils.center(geometry);
+				mesh.translation = geometry.center();
 				scene.add(mesh);
 				mesh.position.x = 550;
 				mesh.position.y = 630;
-				mesh.position.z = 1;  //距离平面高度
+				mesh.position.z = 18;  //距离平面高度
 				mesh.rotation.x = -1.6;
 				mesh.rotation.y = 0.8;
 			}
 		};
-		request.open('get', "http://act.cmcmcdn.com/liebao/wechatGame/1.json");
+		request.open('get', url);
+		request.send();
+	}
+
+	initWhiteBlock() {
+		const request = new XMLHttpRequest(),
+			url = "http://act.cmcmcdn.com/liebao/wechatGame/6.json"
+		request.onreadystatechange = function () {
+			if (request.readyState === 4) {
+				let json = JSON.parse(request.responseText)
+				let object = threeParse(json, url);
+				let geometry = object.geometry
+				for(let i = 0; i < whiteLeftblocks.length; i++) {
+					const whiteLeftblock = whiteLeftblocks[i]
+					let mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: '#fff'}));
+					mesh.scale.x = mesh.scale.y = mesh.scale.z = 11;
+					mesh.translation = geometry.center();
+					scene.add(mesh);
+					mesh.position.set(whiteLeftblock.x, whiteLeftblock.y, whiteLeftblock.z)
+					// mesh.position.x = -80
+					// mesh.position.y = 350;
+					// mesh.position.z = 0;  //距离平面高度
+					mesh.rotation.x = -1.6;
+					// mesh.rotation.x = 0.8;
+					mesh.rotation.y = 1.6;
+					// mesh.rotation.z = 0.8;
+				}
+			}
+		};
+		request.open('get', url);
+		request.send();
+	}
+
+	initWhiteFineBlock() {
+		const request = new XMLHttpRequest(),
+			url = "http://act.cmcmcdn.com/liebao/wechatGame/7.json"
+		request.onreadystatechange = function () {
+			if (request.readyState === 4) {
+				let json = JSON.parse(request.responseText)
+				let object = threeParse(json, url);
+				let geometry = object.geometry
+				for(let i = 0; i < whiteLeftFineblocks.length; i++) {
+					const whiteLeftFineblock = whiteLeftFineblocks[i]
+					let mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: '#fff'}));
+					mesh.scale.x = mesh.scale.y = mesh.scale.z = 11;
+					mesh.translation = geometry.center();
+					scene.add(mesh);
+					mesh.position.set(whiteLeftFineblock.x, whiteLeftFineblock.y, whiteLeftFineblock.z)
+					// mesh.position.x = -80
+					// mesh.position.y = 350;
+					// mesh.position.z = 0;  //距离平面高度
+					mesh.rotation.x = -1.6;
+					// mesh.rotation.x = 0.8;
+					mesh.rotation.y = 1.6;
+					// mesh.rotation.z = 0.8;
+				}
+			}
+		};
+		request.open('get', url);
 		request.send();
 	}
 
