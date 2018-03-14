@@ -1,3 +1,5 @@
+'use strict'
+
 import 'weapp-adapter.js'
 import { threeParse } from './parse'
 let THREE = require('three.min')
@@ -11,6 +13,7 @@ let plane,
 	fo,
 	nx = 40, //范围宽
 	ny = 40, //范围高
+	planeSize = 400, //地板范围
 	start_point_x = 200,
 	start_point_y = 190,
 	len = 1,
@@ -89,7 +92,7 @@ export default class game3d {
 		light.position.set(-600, -600, -600);
 		scene.add(light);
 
-		plane = this.createPlane(400);
+		plane = this.initPlane(planeSize);
 		plane.position.set(-5, -5, -5);
 		plane.receiveShadow = true;
 		scene.add(plane);
@@ -110,14 +113,14 @@ export default class game3d {
 				board[i][k] = 0;
 			}
 		}
-		fo = this.createCube(10, 10, 50);
+		fo = this.initCube(10, 10, 50);
 		fo.castShadow = true;
 		scene.add(fo);
 		for (let i = 0; i < len; i++) {
 			snake[i] = {}
 			snake[i].x = head_pos_x + i * dir_x[3 - head_for];
 			snake[i].y = head_pos_y + i * dir_y[3 - head_for];
-			cube[i] = this.createCube(12, 12, 12);
+			cube[i] = this.initCube(12, 12, 12);
 			cube[i].position.x = snake[i].x * 10 - start_point_x;
 			cube[i].position.y = -snake[i].y * 10 + start_point_y;
 			cube[i].castShadow = true;
@@ -134,30 +137,13 @@ export default class game3d {
 		cameraHelper.rotation.set(0, 1.362275, 0.694716);
 
 		status = 0;
-		this.getFood();
+		this.initFood();
 		this.run();
 
 		// pauseFlag = true;
 		document.addEventListener('touchstart', this.onTouchStart, false);
 		document.addEventListener('resize', this.onWindowResize, false);
 		this.onWindowResize()
-	}
-
-	createCube(_s1, _s2, _s3) {
-		let geometry = new THREE.BoxGeometry(_s1, _s2, _s3 , 1, 1, 1);
-		for (let i = 0; i < geometry.faces.length; i += 2) {
-			let hex = '#ffe3ae', hex1 = '#ff9632'
-			geometry.faces[i].color.setHex(hex);
-			geometry.faces[i + 1].color.setHex(hex1);
-		}
-		let material = new THREE.MeshLambertMaterial({color: '#ffb463'});
-		return new THREE.Mesh(geometry, material);
-	}
-
-	createPlane(_size) {  //地板
-		let geometry = new THREE.PlaneBufferGeometry(_size, _size, 40, 40);
-		let material = new THREE.MeshLambertMaterial({color: '#ffecb4'});
-		return new THREE.Mesh(geometry, material);
 	}
 
 	render() {
@@ -187,7 +173,7 @@ export default class game3d {
 					snake[len] = {}
 					snake[len].x = snake[len - 1].x;
 					snake[len].y = snake[len - 1].y;
-					cube[len] = this.createCube(12, 12, 12);
+					cube[len] = this.initCube(12, 12, 12);
 					cube[len].position.x = snake[len].x * 10 - start_point_x;
 					cube[len].position.y = -snake[len].y * 10 + start_point_y;
 					cube[len].castShadow = true;
@@ -196,7 +182,7 @@ export default class game3d {
 					len++;
 				}
 				if (board[tx][ty] === 2) {
-					this.getFood();
+					this.initFood();
 				}
 				for (let i = len - 1; i > 0; i--) {
 					snake[i].x = snake[i - 1].x;
@@ -227,7 +213,7 @@ export default class game3d {
 		}
 	}
 
-	getFood() {
+	initFood() {
 		let tx, ty;
 		do {
 			tx = Math.ceil(Math.random() * 1000) % nx;
@@ -238,7 +224,24 @@ export default class game3d {
 		fo.position.y = -ty * 10 + start_point_y;
 		fo.position.z = 20;
 	}
+	
+	initCube(_s1, _s2, _s3) {
+		let geometry = new THREE.BoxGeometry(_s1, _s2, _s3 , 1, 1, 1);
+		for (let i = 0; i < geometry.faces.length; i += 2) {
+			let hex = '#ffe3ae', hex1 = '#ff9632'
+			geometry.faces[i].color.setHex(hex);
+			geometry.faces[i + 1].color.setHex(hex1);
+		}
+		let material = new THREE.MeshLambertMaterial({color: '#ffb463'});
+		return new THREE.Mesh(geometry, material);
+	}
 
+	initPlane(_size) {  //地板
+		let geometry = new THREE.PlaneBufferGeometry(_size, _size, nx, ny);
+		let material = new THREE.MeshLambertMaterial({color: '#ffecb4'});
+		return new THREE.Mesh(geometry, material);
+	}
+	
 	initBarricade() {
 		const request = new XMLHttpRequest(),
 			url = "http://act.cmcmcdn.com/liebao/wechatGame/1.json"
