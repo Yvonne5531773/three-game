@@ -2,150 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e608ced5-09b6-4f97-a52b-a4c6c0df62fc" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/10.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/11.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/12.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/13.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/14.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/15.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/2.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/3.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/5.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/6.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/7.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/8.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/9.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/js/main.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/js/three.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/marmelab.blend" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/5.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/9.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/asset.fbx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/7.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/8.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/._asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/2.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/asset.fbx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/10.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/12.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/3.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/asset.fbx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/11.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/asset.fbx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/6.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/asset.fbx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/13.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/14.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/._asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/15.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/asset.fbx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/asset.meta" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/pathname" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/3D_Snake.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/css/styles.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/js/libs/three.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/js/libs/tween.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/js/threemaze.generate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/10.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/11.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/12.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/13.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/14.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/15.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/2.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/3.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/5.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/6.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/7.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/8.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/9.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/dat.gui.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/new/1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/new/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/new/main.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/new/three.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/optimer_bold.typeface.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/html/threedance.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/dat.gui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/demo.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/metal.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/marmelab.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/metal.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/optimer_bold.typeface.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/three-maze-gh-pages/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/three-maze-gh-pages/assets/css/styles.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/three-maze-gh-pages/assets/js/libs/three.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/three-maze-gh-pages/assets/js/libs/tween.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.generate.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/three-maze-gh-pages/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/three-maze-gh-pages/readme.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/three-maze-gh-pages/screenshot.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3dgame.js" afterPath="$PROJECT_DIR$/3dgame.js" />
     </list>
@@ -164,8 +36,8 @@
       <file leaf-file-name="3dgame.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/3dgame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="237" column="28" lean-forward="false" selection-start-line="237" selection-start-column="28" selection-end-line="237" selection-end-column="28" />
+            <state relative-caret-position="141">
+              <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
               <folding>
                 <element signature="e#73#98#0" expanded="true" />
               </folding>
@@ -173,11 +45,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="game.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/game.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="parse.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="397" column="56" lean-forward="false" selection-start-line="397" selection-start-column="56" selection-end-line="397" selection-end-column="56" />
+            <state relative-caret-position="525">
+              <caret line="417" column="29" lean-forward="true" selection-start-line="417" selection-start-column="29" selection-end-line="417" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -203,7 +85,6 @@
       <find>wx.request</find>
       <find>JSON.lo</find>
       <find>JSONLoader</find>
-      <find>initMesh</find>
       <find>load</find>
       <find>parse</find>
       <find>texturePath</find>
@@ -223,9 +104,10 @@
       <find>console</find>
       <find>pauseFlag</find>
       <find>getMove</find>
-      <find>createCube</find>
       <find>console.log</find>
       <find>rotation</find>
+      <find>initMesh</find>
+      <find>createCube</find>
     </findStrings>
     <replaceStrings>
       <replace>createPlane</replace>
@@ -453,7 +335,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86659000" />
+    <option name="totallyTimeSpent" value="88247000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="567" y="0" width="1343" height="1057" extended-state="0" />
@@ -496,30 +378,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/dat.gui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="80" selection-end-column="489" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dat.gui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/1.html" />
     <entry file="file://$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/asset.obj">
       <provider selected="true" editor-type-id="text-editor">
@@ -690,14 +548,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -718,14 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="172" column="173" lean-forward="false" selection-start-line="172" selection-start-column="173" selection-end-line="172" selection-end-column="173" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -836,18 +678,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parse.js">
+    <entry file="file://$PROJECT_DIR$/1.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="397" column="56" lean-forward="false" selection-start-line="397" selection-start-column="56" selection-end-line="397" selection-end-column="56" />
+        <state relative-caret-position="190">
+          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/demo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1631">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="417" column="29" lean-forward="true" selection-start-line="417" selection-start-column="29" selection-end-line="417" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metal.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/metal.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/3dgame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="237" column="28" lean-forward="false" selection-start-line="237" selection-start-column="28" selection-end-line="237" selection-end-column="28" />
+        <state relative-caret-position="141">
+          <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
           <folding>
             <element signature="e#73#98#0" expanded="true" />
           </folding>

@@ -75,13 +75,8 @@ export default class game3d {
 
 		let pointColor = "#ffffff";
 		let directionalLight = new THREE.DirectionalLight(pointColor);
-		// directionalLight.position.set(100, 180, 300);
 		directionalLight.position.set(0, 0, 1);
-		directionalLight.castShadow = true;
-		directionalLight.distance = 0;
 		directionalLight.intensity = 0.8;
-		directionalLight.shadowMapHeight = 2048;
-		directionalLight.shadowMapWidth = 2048;
 		scene.add(directionalLight);
 
 		for (let i = 0; i < nx; i++) { //0 = none, 1 = snake body, 2 = food
@@ -128,11 +123,11 @@ export default class game3d {
 	createCube(_s1, _s2, _s3) {
 		let geometry = new THREE.BoxGeometry(_s1, _s2, _s3 , 1, 1, 1);
 		for (let i = 0; i < geometry.faces.length; i += 2) {
-			let hex = '#ffe3ae';
+			let hex = '#ffe3ae', hex1 = '#ff9632'
 			geometry.faces[i].color.setHex(hex);
-			geometry.faces[i + 1].color.setHex(hex);
+			geometry.faces[i + 1].color.setHex(hex1);
 		}
-		let material = new THREE.MeshLambertMaterial({color: '#ffe3ae'});
+		let material = new THREE.MeshLambertMaterial({color: '#ffb463'});
 		return new THREE.Mesh(geometry, material);
 	}
 
@@ -239,7 +234,6 @@ export default class game3d {
 				mesh.position.z = 1;  //距离平面高度
 				mesh.rotation.x = -1.6;
 				mesh.rotation.y = 0.8;
-				mesh.rotation.z = 0;
 			}
 		};
 		request.open('get', "http://act.cmcmcdn.com/liebao/wechatGame/1.json");
