@@ -2,18 +2,152 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e608ced5-09b6-4f97-a52b-a4c6c0df62fc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/new/1.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/new/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/new/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/new/three.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parse.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/10.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/13.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/14.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/15.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/4.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/7.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/js/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/js/three.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/marmelab.blend" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/asset.fbx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/7.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/._asset" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/asset.fbx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/10.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/asset.fbx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/asset.fbx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/asset.fbx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9917ebcefcb89be4a9cd72898adab911/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/4.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/13.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/14.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/._asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/15.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/asset.fbx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/asset.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/pathname" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/preview.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/3D_Snake.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/css/styles.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/js/libs/three.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/js/libs/tween.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/js/threemaze.generate.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/10.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/11.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/12.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/13.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/14.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/15.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/2.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/3.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/4.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/5.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/6.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/7.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/8.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/assets/json/9.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/dat.gui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/new/1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/new/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/new/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/new/three.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/optimer_bold.typeface.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/html/threedance.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/01-rotating-mesh/index.html" afterPath="$PROJECT_DIR$/01-rotating-mesh/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/01-rotating-mesh/js/main.js" afterPath="$PROJECT_DIR$/01-rotating-mesh/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3dgame.js" afterPath="$PROJECT_DIR$/3dgame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/3D_Snake.html" afterPath="$PROJECT_DIR$/html/3D_Snake.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js" afterPath="$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/html/1.json" afterPath="$PROJECT_DIR$/1.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,74 +161,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="3D_Snake.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/3D_Snake.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2524">
-              <caret line="175" column="7" lean-forward="true" selection-start-line="175" selection-start-column="7" selection-end-line="175" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="3dgame.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="3dgame.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/3dgame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="229" column="37" lean-forward="true" selection-start-line="229" selection-start-column="37" selection-end-line="229" selection-end-column="37" />
+            <state relative-caret-position="510">
+              <caret line="237" column="28" lean-forward="false" selection-start-line="237" selection-start-column="28" selection-end-line="237" selection-end-column="28" />
               <folding>
                 <element signature="e#73#98#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2135">
-              <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/01-rotating-mesh/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/new/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="116" column="0" lean-forward="true" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="threedance.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/threedance.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="95" column="19" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/new/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -104,26 +178,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="145">
               <caret line="397" column="56" lean-forward="false" selection-start-line="397" selection-start-column="56" selection-end-line="397" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="threemaze.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3358">
-              <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="three.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/three.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="31262" column="27" lean-forward="false" selection-start-line="31262" selection-start-column="16" selection-end-line="31262" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -142,8 +196,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ny</find>
-      <find>onKeyDown</find>
       <find>mazePosition</find>
       <find>y</find>
       <find>createBarricade</find>
@@ -172,6 +224,8 @@
       <find>pauseFlag</find>
       <find>getMove</find>
       <find>createCube</find>
+      <find>console.log</find>
+      <find>rotation</find>
     </findStrings>
     <replaceStrings>
       <replace>createPlane</replace>
@@ -213,13 +267,13 @@
         <option value="$PROJECT_DIR$/01-rotating-mesh/13.json" />
         <option value="$PROJECT_DIR$/01-rotating-mesh/14.json" />
         <option value="$PROJECT_DIR$/01-rotating-mesh/15.json" />
-        <option value="$PROJECT_DIR$/01-rotating-mesh/js/main.js" />
         <option value="$PROJECT_DIR$/01-rotating-mesh/index.html" />
         <option value="$PROJECT_DIR$/html/new/index.html" />
         <option value="$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js" />
         <option value="$PROJECT_DIR$/html/3D_Snake.html" />
         <option value="$PROJECT_DIR$/parse.js" />
         <option value="$PROJECT_DIR$/html/new/main.js" />
+        <option value="$PROJECT_DIR$/01-rotating-mesh/js/main.js" />
         <option value="$PROJECT_DIR$/3dgame.js" />
       </list>
     </option>
@@ -237,8 +291,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="621" />
-    <option name="width" value="1288" />
+    <option name="x" value="567" />
+    <option name="width" value="1343" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectView">
@@ -262,75 +316,6 @@
             <path>
               <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
               <item name="three-game" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="01-rotating-mesh" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="01-rotating-mesh" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-              <item name="new" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="three-maze-gh-pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="three-maze-gh-pages" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="three-maze-gh-pages" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
-              <item name="three-game" type="462c0819:PsiDirectoryNode" />
-              <item name="three-maze-gh-pages" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
@@ -468,13 +453,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82719000" />
+    <option name="totallyTimeSpent" value="86659000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="621" y="0" width="1288" height="1057" extended-state="0" />
+    <frame x="567" y="0" width="1343" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1941824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18613413" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -555,14 +540,6 @@
     <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/main1.js" />
     <entry file="file://$PROJECT_DIR$/01-rotating-mesh/test1.json" />
     <entry file="file://$PROJECT_DIR$/01-rotating-mesh/untitled.json" />
-    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="23" column="2043" lean-forward="false" selection-start-line="23" selection-start-column="2043" selection-end-line="23" selection-end-column="2043" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/01-rotating-mesh/2.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -758,7 +735,7 @@
         <state relative-caret-position="498">
           <caret line="1272" column="22" lean-forward="true" selection-start-line="1272" selection-start-column="22" selection-end-line="1272" selection-end-column="22" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -795,25 +772,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parse.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="397" column="56" lean-forward="false" selection-start-line="397" selection-start-column="56" selection-end-line="397" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3358">
-          <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <caret line="37" column="25" lean-forward="false" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/threedance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
+        <state relative-caret-position="459">
           <caret line="95" column="19" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
           <folding />
         </state>
@@ -822,50 +791,66 @@
     <entry file="file://$PROJECT_DIR$/html/new/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
-          <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/3D_Snake.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2524">
-          <caret line="175" column="7" lean-forward="true" selection-start-line="175" selection-start-column="7" selection-end-line="175" selection-end-column="7" />
+        <state relative-caret-position="2505">
+          <caret line="175" column="7" lean-forward="false" selection-start-line="175" selection-start-column="7" selection-end-line="175" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/new/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="116" column="0" lean-forward="true" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+        <state relative-caret-position="175">
+          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/3dgame.js">
+    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/1.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="229" column="37" lean-forward="true" selection-start-line="229" selection-start-column="37" selection-end-line="229" selection-end-column="37" />
-          <folding>
-            <element signature="e#73#98#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-206">
+          <caret line="23" column="2043" lean-forward="false" selection-start-line="23" selection-start-column="2043" selection-end-line="23" selection-end-column="2043" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/01-rotating-mesh/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        <state relative-caret-position="152">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2135">
-          <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
+        <state relative-caret-position="98">
+          <caret line="36" column="1" lean-forward="false" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="397" column="56" lean-forward="false" selection-start-line="397" selection-start-column="56" selection-end-line="397" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3dgame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="237" column="28" lean-forward="false" selection-start-line="237" selection-start-column="28" selection-end-line="237" selection-end-column="28" />
+          <folding>
+            <element signature="e#73#98#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

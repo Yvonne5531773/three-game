@@ -52,15 +52,15 @@ export default class game3d {
 		renderer.shadowMapEnabled = true;
 		renderer.setClearColor('#feffdd', 1);
 
-		camera = new THREE.PerspectiveCamera(55, 1, 1, 10000);
+		camera = new THREE.PerspectiveCamera(55, 0.5, 1, 10000);
 		// camera.position.x = -180;
 		// camera.position.y = -480;
 		// camera.position.z = 350; //俯视的高度
-		camera.position.set(-50, -480, 350);
+		camera.position.set(-250, -480, 450);  //3参数越小，离表面越近
 		camera.up.x = 0;
 		camera.up.y = 0;
 		camera.up.z = 1;
-		camera.lookAt({x: 200, y: 0, z: -200});
+		camera.lookAt({x: 250, y: 0, z: -200});
 
 		scene = new THREE.Scene();
 
@@ -76,7 +76,7 @@ export default class game3d {
 		let pointColor = "#ffffff";
 		let directionalLight = new THREE.DirectionalLight(pointColor);
 		// directionalLight.position.set(100, 180, 300);
-		directionalLight.position.set(0, 0.5, 1);
+		directionalLight.position.set(0, 0, 1);
 		directionalLight.castShadow = true;
 		directionalLight.distance = 0;
 		directionalLight.intensity = 0.8;
@@ -104,7 +104,6 @@ export default class game3d {
 			scene.add(cube[i]);
 			board[snake[i].x][snake[i].y] = 1;
 		}
-		console.log('cube[i]', cube)
 		// Camera helper
 		var geometry = new THREE.Geometry();
 		geometry.vertices.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(Math.sqrt(3) * (this.side * this.thickness)), 0, 0);
@@ -127,7 +126,6 @@ export default class game3d {
 	}
 
 	createCube(_s1, _s2, _s3) {
-		console.log('createCube')
 		let geometry = new THREE.BoxGeometry(_s1, _s2, _s3 , 1, 1, 1);
 		for (let i = 0; i < geometry.faces.length; i += 2) {
 			let hex = '#ffe3ae';
@@ -152,10 +150,12 @@ export default class game3d {
 		for (let i = 0; i < len; ++i) {
 			cube[i].position.x = snake[i].x * 10 - start_point_x;
 			cube[i].position.y = -snake[i].y * 10 + start_point_y;
+			cube[i].position.z = 12;
 		}
 		// camera.position = cameraHelper.geometry.vertices[1].clone().applyProjection(cameraHelper.matrixWorld);
-		camera.position.x = snake[0].x * 4 - 350; //随着线的运动，镜头跟着走
-		camera.position.y = -snake[0].y * 4 - 350;
+		//随着线的运动，镜头跟着走
+		camera.position.x = snake[0].x * 4 - 480; //修改该值能控制物体角度
+		camera.position.y = -snake[0].y * 4 - 300;
 		renderer.render(scene, camera);
 	}
 
@@ -207,8 +207,6 @@ export default class game3d {
 		for (let i = 0; i < len; i++) {
 			board[snake[i].x][snake[i].y] = 1;
 		}
-		// console.log('in move snake', snake)
-		// console.log('in move cube', cube)
 	}
 
 	getFood() {
@@ -224,40 +222,28 @@ export default class game3d {
 	}
 
 	initMesh() {
-		var loader = new THREE.JSONLoader();
-		var request = new XMLHttpRequest();
+		const request = new XMLHttpRequest();
 		request.onreadystatechange = function () {
 			if (request.readyState === 4) {
 				let json = JSON.parse(request.responseText)
-				console.log('json', json)
 				let texturePath = "http://act.cmcmcdn.com/liebao/wechatGame/1.json"
 				let object = threeParse(json, texturePath);
 				let geometry = object.geometry,
 					materials = object.materials
 				let mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
-				mesh.scale.x = mesh.scale.y = mesh.scale.z = 7;
+				mesh.scale.x = mesh.scale.y = mesh.scale.z = 10;
 				mesh.translation = THREE.GeometryUtils.center(geometry);
 				scene.add(mesh);
-				mesh.position.x = 250;
-				mesh.position.y = 450;
-				mesh.position.z = 10;  //距离平面高度
+				mesh.position.x = 550;
+				mesh.position.y = 630;
+				mesh.position.z = 1;  //距离平面高度
 				mesh.rotation.x = -1.6;
-				mesh.rotation.y = 0.72;
+				mesh.rotation.y = 0.8;
 				mesh.rotation.z = 0;
-				console.log('mesh', mesh)
-				console.log('plane', plane)
 			}
 		};
 		request.open('get', "http://act.cmcmcdn.com/liebao/wechatGame/1.json");
 		request.send();
-		// loader.load('http://act.cmcmcdn.com/liebao/wechatGame/1.json', function(geometry, materials) {  //路障
-		// 	// console.log('initMesh geometry', geometry)
-		// 	mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
-		// 	mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.06;
-		// 	mesh.translation = THREE.GeometryUtils.center(geometry);
-		// 	mesh.rotation.y = 3.1;
-		// 	scene.add(mesh);
-		// })
 	}
 
 	run() {
@@ -283,8 +269,6 @@ export default class game3d {
 	// }
 
 	onTouchStart(event) {
-		console.log('onTouchStart pauseFlag', pauseFlag)
-		console.log('onTouchStart clickCount', clickCount)
 		pauseFlag && (pauseFlag = false)
 		clickCount%2===0 && (head_for = 2)
 		clickCount%2===1 && (head_for = 3)
