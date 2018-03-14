@@ -40,6 +40,8 @@ let fps = 23,
 let blocks = [],
 	speed = 0
 
+let innerAudioContext
+
 //x越大，物体就越上; y越大，物体就越里面
 const whiteblocks = [  //粗
 	{
@@ -54,6 +56,21 @@ const whiteblocks = [  //粗
 	{
 		x: 648, y: -75, z: 10, rotationX: 1.6, rotationY: 3.14
 	},
+	{
+		x: 684, y: 148, z: 10, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 98, y: 838, z: 0, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 778, y: 407, z: 10, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 630, y: 1310, z: -20, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 805, y: 1310, z: -20, rotationX: -1.6, rotationY: 1.6
+	},
 ]
 const whiteMiddleblocks = [ //中; x越大，越里面；y越大，越上
 	{
@@ -62,6 +79,39 @@ const whiteMiddleblocks = [ //中; x越大，越里面；y越大，越上
 	{
 		x: 664, y: 2, z: 10, rotationX: 1.6, rotationY: 3.14
 	},
+	{
+		x: 684, y: 68, z: 10, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 174, y: 998, z: -10, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 744, y: 225, z: 10, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 238, y: 1040, z: -10, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 308, y: 1120, z: -10, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 858, y: 484, z: 0, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 437, y: 1190, z: -10, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 506, y: 1250, z: -20, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 556, y: 1300, z: -20, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 705, y: 1320, z: -20, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 1194, y: 678, z: 0, rotationX: 1.6, rotationY: 3.14
+	},
 ]
 const whiteFineblocks = [ //细
 	{
@@ -69,6 +119,39 @@ const whiteFineblocks = [ //细
 	},
 	{
 		x: 68, y: 630, z: 0, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 758, y: 275, z: 10, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 758, y: 310, z: 10, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 758, y: 345, z: 10, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 356, y: 1190, z: -10, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 389, y: 1190, z: -10, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 928, y: 528, z: 0, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 928, y: 538, z: 0, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 1018, y: 578, z: 0, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 740, y: 1333, z: -20, rotationX: -1.6, rotationY: 1.6
+	},
+	{
+		x: 1088, y: 610, z: 0, rotationX: 1.6, rotationY: 3.14
+	},
+	{
+		x: 1148, y: 630, z: 0, rotationX: 1.6, rotationY: 3.14
 	},
 ]
 
@@ -104,10 +187,13 @@ export default class game3d {
 		this.initWhiteFineBlock()
 		//食物
 		this.initFood();
+		//音乐
+		this.initAudio()
 
 		//相机
 		camera = new THREE.PerspectiveCamera(55, 0.5, 1, 10000);
-		camera.position.set(-250, -480, 550);  //3参数越小，离表面越近 //俯视的高度
+		// camera.position.set(-250, -480, 1450);  //3参数越小，离表面越近 //俯视的高度
+		camera.position.set(-250, -480, 550);
 		camera.up.x = 0;
 		camera.up.y = 0;
 		camera.up.z = 1;
@@ -432,6 +518,7 @@ export default class game3d {
 		clickCount%2===0 && (head_for = 2)
 		clickCount%2===1 && (head_for = 3)
 		clickCount++
+		innerAudioContext.play();
 	}
 
 	onWindowResize() {
@@ -446,10 +533,15 @@ export default class game3d {
 		gameover = true
 		wx.showToast({title: title})
 		setTimeout(() => {
-			location.reload();
+			// location.reload();
+			innerAudioContext.destroy()
 		}, 1000)
 	}
 
+	initAudio() {
+		innerAudioContext = wx.createInnerAudioContext()
+		innerAudioContext.src = './asset/piano.mp3';
+	}
 
 }
 
