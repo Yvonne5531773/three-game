@@ -57,16 +57,11 @@
 		scene = new THREE.Scene();
 
 //		camera = new THREE.PerspectiveCamera(45, width / height, 1, 5000);
-		camera = new THREE.PerspectiveCamera(45, 1, 1, 2000);
-//		camera.position.x = -100;
-//		camera.position.y = -100;
-//		camera.position.z = 800; //俯视的高度
-		camera.position.set(-180, -480, 550);
-//		camera.position.set(0, 3.5, 5);
+		camera = new THREE.PerspectiveCamera(65, 1, 1, 2000);
+		camera.position.set(-180, -880, 350);
 		camera.up.x = 0;
 		camera.up.y = 0;
 		camera.up.z = 0;
-//		camera.lookAt({x: -10, y: 400, z: -800});
 		camera.lookAt({x: 0, y: 0, z: 0});
 
 		//地板
@@ -164,19 +159,20 @@
 		let mesh
 		let loader = new THREE.JSONLoader();
 //		let materials = new THREE.MeshLambertMaterial({color: '#fff87f'})
-		loader.load('1.json', function(geometry, materials) {  //路障
+		loader.load('./1.json', function(geometry, materials) {  //路障
 			mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
-			mesh.scale.x = mesh.scale.y = mesh.scale.z = 1;
+			mesh.scale.x = mesh.scale.y = mesh.scale.z = 6;
 			mesh.translation = THREE.GeometryUtils.center(geometry);
 			scene.add(mesh);
 			let tx = 6,
 				ty = 32
 			board[tx][ty] = 2;
-			mesh.position.x = tx * 10 - start_point_x;
-			mesh.position.y = -ty * 10 + start_point_y;
-			mesh.position.z = 20;
-			mesh.rotation.x = 15;
-			mesh.rotation.y = -10;
+//			mesh.position.x = tx * 10 - start_point_x;
+//			mesh.position.y = -ty * 10 + start_point_y;
+			mesh.position.z = 2;
+			mesh.rotation.x -= 1.6;
+//			mesh.rotation.y -= SPEED;
+//			mesh.rotation.z -= SPEED * 3;
 		});
 	}
 
@@ -191,8 +187,8 @@
 			cube[i].position.x = snake[i].x * 10 - start_point_x;
 			cube[i].position.y = -snake[i].y * 10 + start_point_y;
 		}
-		camera.position.y = -snake[0].y * 4 - 340; //随着线的运动，镜头跟着走
-		camera.position.x = snake[0].x * 4 - 480;
+		camera.position.y = -snake[0].y * 3 - 300; //随着线的运动，镜头跟着走
+		camera.position.x = snake[0].x * 3 - 100;
 		renderer.render(scene, camera);
 	}
 	function move() {

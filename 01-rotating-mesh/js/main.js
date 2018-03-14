@@ -134,17 +134,13 @@ function initMesh() {
 	// 	mesh.translation = THREE.GeometryUtils.center(geometry);
 	// 	scene.add(mesh);
 	// });
-	let cube = createCube(20, 20, 20)
-	scene.add(cube)
+	let cube = initCube(0.1, .1, .1)
+	scene.add(cube);
+	cube.rotation.y = -0.8
 }
 
-function createCube(_s1, _s2, _s3) {
-	var geometry = new THREE.CubeGeometry(_s1, _s2, _s3, 1, 1, 1);
-	var material = new THREE.MeshLambertMaterial({color: '#ffe3ae' });
-	var ret = new THREE.Mesh(geometry, material);
-	ret.scale.y = 1;
-	ret.visible = true
-	return ret
+function initCube(_s1, _s2, _s3) {
+  return new THREE.Mesh(new THREE.CubeGeometry(_s1, _s2, _s3, 1, 1, 1), new THREE.MeshNormalMaterial({color: '#ffe3ae' }));
 }
 
 function rotateMesh() {

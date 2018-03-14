@@ -1,6 +1,7 @@
 // let THREE = require('./three/three')
 let THREE = require('three.min')
 import 'weapp-adapter.js'
+import {threeParse} from './parse'
 
 let renderer,
 	camera,
@@ -21,7 +22,7 @@ let plane,
 	dir_x = [0, -1, 1, 0],
 	dir_y = [1, 0, 0, -1],
 	status = -1;  //the status of the game, -1 represents not start
-let pauseFlag = false;  //in order to support pause function
+let pauseFlag = true;  //in order to support pause function
 let board = []  //The state of game
 let the_last_head = head_for;  //The direction of snake
 let snake = [] //store snake
@@ -51,14 +52,15 @@ export default class game3d {
 		renderer.shadowMapEnabled = true;
 		renderer.setClearColor('#feffdd', 1);
 
-		camera = new THREE.PerspectiveCamera(45, 1, 1, 10000);
-		camera.position.x = -180;
-		camera.position.y = -480;
-		camera.position.z = 550; //俯视的高度
+		camera = new THREE.PerspectiveCamera(55, 1, 1, 10000);
+		// camera.position.x = -180;
+		// camera.position.y = -480;
+		// camera.position.z = 350; //俯视的高度
+		camera.position.set(-50, -480, 350);
 		camera.up.x = 0;
 		camera.up.y = 0;
 		camera.up.z = 1;
-		camera.lookAt({x: 0, y: 0, z: 0});
+		camera.lookAt({x: 200, y: 0, z: -200});
 
 		scene = new THREE.Scene();
 
@@ -95,14 +97,14 @@ export default class game3d {
 			snake[i] = {}
 			snake[i].x = head_pos_x + i * dir_x[3 - head_for];
 			snake[i].y = head_pos_y + i * dir_y[3 - head_for];
-			cube[i] = this.createCube(10, 10, 10);
+			cube[i] = this.createCube(12, 12, 12);
 			cube[i].position.x = snake[i].x * 10 - start_point_x;
 			cube[i].position.y = -snake[i].y * 10 + start_point_y;
 			cube[i].castShadow = true;
 			scene.add(cube[i]);
 			board[snake[i].x][snake[i].y] = 1;
 		}
-
+		console.log('cube[i]', cube)
 		// Camera helper
 		var geometry = new THREE.Geometry();
 		geometry.vertices.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(Math.sqrt(3) * (this.side * this.thickness)), 0, 0);
@@ -115,13 +117,17 @@ export default class game3d {
 		status = 0;
 		this.getFood();
 		this.run();
-		pauseFlag = true;
+
+		this.initMesh()
+
+		// pauseFlag = true;
 		document.addEventListener('touchstart', this.onTouchStart, false);
 		document.addEventListener('resize', this.onWindowResize, false);
 		this.onWindowResize()
 	}
 
 	createCube(_s1, _s2, _s3) {
+		console.log('createCube')
 		let geometry = new THREE.BoxGeometry(_s1, _s2, _s3 , 1, 1, 1);
 		for (let i = 0; i < geometry.faces.length; i += 2) {
 			let hex = '#ffe3ae';
@@ -148,8 +154,8 @@ export default class game3d {
 			cube[i].position.y = -snake[i].y * 10 + start_point_y;
 		}
 		// camera.position = cameraHelper.geometry.vertices[1].clone().applyProjection(cameraHelper.matrixWorld);
-		camera.position.x = snake[0].x * 4 - 340; //随着线的运动，镜头跟着走
-		camera.position.y = -snake[0].y * 4 - 480;
+		camera.position.x = snake[0].x * 4 - 350; //随着线的运动，镜头跟着走
+		camera.position.y = -snake[0].y * 4 - 350;
 		renderer.render(scene, camera);
 	}
 
@@ -158,28 +164,20 @@ export default class game3d {
 		let ty = snake[0].y + dir_y[head_for];
 		if (tx >= 0 && tx < nx && ty >= 0 && ty < ny) {
 			if (board[tx][ty] !== 1) {
-				the_last_head = head_for;
-				snake[len] = {}
-				snake[len].x = snake[len - 1].x;
-				snake[len].y = snake[len - 1].y;
-				cube[len] = this.createCube(10, 10, 10);
-				cube[len].position.x = snake[len].x * 10 - start_point_x;
-				cube[len].position.y = -snake[len].y * 10 + start_point_y;
-				cube[len].castShadow = true;
-				scene.add(cube[len]);
-				board[tx][ty] = 1;
-				len++;
-				if (board[tx][ty] === 2) {
+				if(!pauseFlag){
+					the_last_head = head_for;
 					snake[len] = {}
 					snake[len].x = snake[len - 1].x;
 					snake[len].y = snake[len - 1].y;
-					cube[len] = this.createCube(10, 10, 10);
+					cube[len] = this.createCube(12, 12, 12);
 					cube[len].position.x = snake[len].x * 10 - start_point_x;
 					cube[len].position.y = -snake[len].y * 10 + start_point_y;
 					cube[len].castShadow = true;
 					scene.add(cube[len]);
 					board[tx][ty] = 1;
 					len++;
+				}
+				if (board[tx][ty] === 2) {
 					this.getFood();
 				}
 				for (let i = len - 1; i > 0; i--) {
@@ -223,6 +221,43 @@ export default class game3d {
 		fo.position.x = tx * 10 - start_point_x;
 		fo.position.y = -ty * 10 + start_point_y;
 		fo.position.z = 20;
+	}
+
+	initMesh() {
+		var loader = new THREE.JSONLoader();
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function () {
+			if (request.readyState === 4) {
+				let json = JSON.parse(request.responseText)
+				console.log('json', json)
+				let texturePath = "http://act.cmcmcdn.com/liebao/wechatGame/1.json"
+				let object = threeParse(json, texturePath);
+				let geometry = object.geometry,
+					materials = object.materials
+				let mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+				mesh.scale.x = mesh.scale.y = mesh.scale.z = 7;
+				mesh.translation = THREE.GeometryUtils.center(geometry);
+				scene.add(mesh);
+				mesh.position.x = 250;
+				mesh.position.y = 450;
+				mesh.position.z = 10;  //距离平面高度
+				mesh.rotation.x = -1.6;
+				mesh.rotation.y = 0.72;
+				mesh.rotation.z = 0;
+				console.log('mesh', mesh)
+				console.log('plane', plane)
+			}
+		};
+		request.open('get', "http://act.cmcmcdn.com/liebao/wechatGame/1.json");
+		request.send();
+		// loader.load('http://act.cmcmcdn.com/liebao/wechatGame/1.json', function(geometry, materials) {  //路障
+		// 	// console.log('initMesh geometry', geometry)
+		// 	mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
+		// 	mesh.scale.x = mesh.scale.y = mesh.scale.z = 0.06;
+		// 	mesh.translation = THREE.GeometryUtils.center(geometry);
+		// 	mesh.rotation.y = 3.1;
+		// 	scene.add(mesh);
+		// })
 	}
 
 	run() {
@@ -269,6 +304,7 @@ export default class game3d {
 		wx.showToast({title: "game over!"})
 		// location.reload();
 	}
+
 
 }
 

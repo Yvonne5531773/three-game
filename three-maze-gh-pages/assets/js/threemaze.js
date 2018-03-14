@@ -223,9 +223,9 @@
 		var directions =
 			{
 				37: {x: 1, z: 0},
-				39: {x: -1, z: 0},
+				39: {x: -1, z: 0},  //右
 				38: {x: 0, z: 1},
-				40: {x: 0, z: -1}
+				40: {x: 0, z: -1}  //下
 			};
 		if (typeof directions[code] != 'undefined') {
 			direction = directions[code];
@@ -233,7 +233,7 @@
 		else {
 			return;
 		}
-
+		console.log('direction', direction)
 		var x = this.player.mazePosition.x;
 		var z = this.player.mazePosition.z;
 		var target_block = this.map[x + direction.x][z + direction.z];
@@ -285,7 +285,7 @@
 		var self = this;
 		tween.onUpdate(function () {
 			this.mesh.position.x = this.x;
-			this.mesh.position.y = (Math.cos(this.height) + 1) * (self.thickness / 4);
+			// this.mesh.position.y = (Math.cos(this.height) + 1) * (self.thickness / 4);
 			this.mesh.position.z = this.z;
 		});
 		// End of the maze: starts again

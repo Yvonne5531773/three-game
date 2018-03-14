@@ -2,56 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e608ced5-09b6-4f97-a52b-a4c6c0df62fc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/10.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/11.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/12.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/13.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/14.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/15.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/2.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/3.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/4.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/5.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/6.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/7.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/01-rotating-mesh/8.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/1.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/1.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/10.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/11.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/12.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/13.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/14.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/15.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/2.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/3.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/4.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/5.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/6.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/7.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/8.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/assets/json/9.json" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/js/three.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/01-rotating-mesh/test1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/041cbc46aef29470f9c8e073241cbf43/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/0670d66d8d3a9db4fb36d99301c709a1/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/marmelab.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/212e2bf41fa5b418aaa3ee095d8f37b8/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/383eff621d212da4a926110d5fcd406e/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/5c1682b1db8314917b3c631bd1643209/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/805fceeafab01462698ed89a0d1db651/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/87830f59752cc448087343fc4c253b0a/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/8fc77795d1b864a78b83a036e3553738/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/96fb40dd18b8442b5b2cbef98f3246e3/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/ca23ce6a064864b1d840c7a2f8abacaa/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/blender/f44a94e453927489eaedfee8fa3f8cad/asset" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/new/1.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/new/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/new/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/new/three.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/parse.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/01-rotating-mesh/index.html" afterPath="$PROJECT_DIR$/01-rotating-mesh/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/01-rotating-mesh/js/main.js" afterPath="$PROJECT_DIR$/01-rotating-mesh/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3dgame.js" afterPath="$PROJECT_DIR$/3dgame.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/3D_Snake.html" afterPath="$PROJECT_DIR$/html/3D_Snake.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/01-rotating-mesh/marmelab.json" afterPath="$PROJECT_DIR$/01-rotating-mesh/1.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/Default.rdp.json" afterPath="$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/1.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js" afterPath="$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/html/1.json" afterPath="$PROJECT_DIR$/1.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -68,28 +30,8 @@
       <file leaf-file-name="3D_Snake.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/3D_Snake.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/1.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1498">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/assets/json/1.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="22" column="299" lean-forward="false" selection-start-line="22" selection-start-column="299" selection-end-line="22" selection-end-column="299" />
+            <state relative-caret-position="2524">
+              <caret line="175" column="7" lean-forward="true" selection-start-line="175" selection-start-column="7" selection-end-line="175" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -98,9 +40,11 @@
       <file leaf-file-name="3dgame.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/3dgame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="116" column="15" lean-forward="true" selection-start-line="116" selection-start-column="15" selection-end-line="116" selection-end-column="15" />
-              <folding />
+            <state relative-caret-position="251">
+              <caret line="229" column="37" lean-forward="true" selection-start-line="229" selection-start-column="37" selection-end-line="229" selection-end-column="37" />
+              <folding>
+                <element signature="e#73#98#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,8 +52,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="141" column="39" lean-forward="false" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
+            <state relative-caret-position="2135">
+              <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -118,38 +62,58 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/01-rotating-mesh/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="190">
+              <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="15.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/01-rotating-mesh/15.json">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/new/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+            <state relative-caret-position="194">
+              <caret line="116" column="0" lean-forward="true" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="14.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/01-rotating-mesh/14.json">
+      <file leaf-file-name="threedance.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/threedance.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="15" column="7" lean-forward="false" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+            <state relative-caret-position="497">
+              <caret line="95" column="19" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="13.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/01-rotating-mesh/13.json">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/new/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="15" selection-end-column="7" />
+            <state relative-caret-position="152">
+              <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="parse.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/parse.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="397" column="56" lean-forward="false" selection-start-line="397" selection-start-column="56" selection-end-line="397" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="threemaze.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3358">
+              <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -158,8 +122,8 @@
       <file leaf-file-name="three.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/three.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="14530" column="11" lean-forward="false" selection-start-line="14530" selection-start-column="11" selection-end-line="14530" selection-end-column="11" />
+            <state relative-caret-position="289">
+              <caret line="31262" column="27" lean-forward="false" selection-start-line="31262" selection-start-column="16" selection-end-line="31262" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -170,51 +134,53 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>ny</find>
       <find>onKeyDown</find>
-      <find>len</find>
-      <find>this.this.len</find>
-      <find>wrapper</find>
-      <find>this.initScene();</find>
-      <find>ThreeMaze</find>
-      <find>removePlayerPath</find>
-      <find>new THREE.Mesh</find>
-      <find>move tx</find>
-      <find>end_hide_tween</find>
-      <find>onUpdateTweeningMesh</find>
-      <find>end_show_tween</find>
-      <find>TWEEN.Tween</find>
-      <find>new TWEEN.Tween</find>
-      <find>onWindowResize</find>
-      <find>head_pos_x</find>
-      <find>cameraHelper</find>
-      <find>onGenerateMaze</find>
-      <find>run</find>
-      <find>render</find>
-      <find>pauseFlag</find>
-      <find>glDrawElements</find>
-      <find>camera</find>
-      <find>CreateCube</find>
-      <find>fo</find>
-      <find>mesh</find>
-      <find>food</find>
-      <find>plane</find>
-      <find>32</find>
+      <find>mazePosition</find>
+      <find>y</find>
+      <find>createBarricade</find>
+      <find>materials</find>
+      <find>wx.request</find>
+      <find>JSON.lo</find>
+      <find>JSONLoader</find>
       <find>initMesh</find>
+      <find>load</find>
+      <find>parse</find>
+      <find>texturePath</find>
+      <find>threeParse</find>
+      <find>new</find>
+      <find>Geometry</find>
+      <find>AnimationClip</find>
+      <find>CreateClipsFromMorphTargetSequences</find>
+      <find>AnimationClip.parseAnimation</find>
+      <find>// Geometry 4.0 spec</find>
+      <find>Loader</find>
+      <find>crossOrigin</find>
+      <find>render</find>
+      <find>.z</find>
+      <find>head_for</find>
+      <find>board</find>
+      <find>console</find>
+      <find>pauseFlag</find>
+      <find>getMove</find>
+      <find>createCube</find>
     </findStrings>
     <replaceStrings>
       <replace>createPlane</replace>
       <replace>let</replace>
       <replace>pauseFlag</replace>
       <replace>this.len</replace>
+      <replace>tz</replace>
       <replace>ThreeDance</replace>
+      <replace>nz</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -233,9 +199,7 @@
         <option value="$PROJECT_DIR$/three-maze-gh-pages/assets/1.html" />
         <option value="$PROJECT_DIR$/html/index.html" />
         <option value="$PROJECT_DIR$/html/threedance.js" />
-        <option value="$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js" />
         <option value="$PROJECT_DIR$/1.html" />
-        <option value="$PROJECT_DIR$/3dgame.js" />
         <option value="$PROJECT_DIR$/01-rotating-mesh/marmelab1.json" />
         <option value="$PROJECT_DIR$/01-rotating-mesh/3.json" />
         <option value="$PROJECT_DIR$/01-rotating-mesh/4.json" />
@@ -249,9 +213,14 @@
         <option value="$PROJECT_DIR$/01-rotating-mesh/13.json" />
         <option value="$PROJECT_DIR$/01-rotating-mesh/14.json" />
         <option value="$PROJECT_DIR$/01-rotating-mesh/15.json" />
-        <option value="$PROJECT_DIR$/html/3D_Snake.html" />
-        <option value="$PROJECT_DIR$/01-rotating-mesh/index.html" />
         <option value="$PROJECT_DIR$/01-rotating-mesh/js/main.js" />
+        <option value="$PROJECT_DIR$/01-rotating-mesh/index.html" />
+        <option value="$PROJECT_DIR$/html/new/index.html" />
+        <option value="$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js" />
+        <option value="$PROJECT_DIR$/html/3D_Snake.html" />
+        <option value="$PROJECT_DIR$/parse.js" />
+        <option value="$PROJECT_DIR$/html/new/main.js" />
+        <option value="$PROJECT_DIR$/3dgame.js" />
       </list>
     </option>
   </component>
@@ -268,8 +237,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="506" />
-    <option name="width" value="1404" />
+    <option name="x" value="621" />
+    <option name="width" value="1288" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectView">
@@ -334,6 +303,12 @@
             <path>
               <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
               <item name="three-game" type="462c0819:PsiDirectoryNode" />
+              <item name="html" type="462c0819:PsiDirectoryNode" />
+              <item name="new" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="three-game" type="b2602c69:ProjectViewProjectNode" />
+              <item name="three-game" type="462c0819:PsiDirectoryNode" />
               <item name="three-maze-gh-pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -383,16 +358,17 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\development\code\three-game\html\new" />
       <recent name="F:\development\code\three-game" />
       <recent name="F:\development\code\three-game\demo" />
       <recent name="D:\develop\three-game\html" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\development\code\three-game" />
       <recent name="F:\development\code\three-game\html" />
+      <recent name="F:\development\code\three-game\html\new" />
       <recent name="F:\development\code\three-game\html\assets\json" />
       <recent name="F:\development\code\three-game\01-rotating-mesh" />
-      <recent name="F:\development\code\three-game\blender\9ed6786459d854e679dc9fd487a7dc7d" />
-      <recent name="F:\development\code\three-game\01-rotating-mesh\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -492,13 +468,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56908000" />
+    <option name="totallyTimeSpent" value="82719000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="506" y="0" width="1404" height="1057" extended-state="0" />
+    <frame x="621" y="0" width="1288" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18731989" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1941824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -535,97 +511,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/js/libs/tween.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="57" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.generate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/1.html" />
-    <entry file="file://$PROJECT_DIR$/html/assets/js/libs/three.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/assets/js/threemaze.js" />
-    <entry file="file://$PROJECT_DIR$/html/optimer_bold.typeface.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-16784">
-          <caret line="0" column="112179" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="112179" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="1103" column="0" lean-forward="false" selection-start-line="1103" selection-start-column="0" selection-end-line="1103" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="157" column="2" lean-forward="false" selection-start-line="157" selection-start-column="2" selection-end-line="157" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/threedance.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="95" column="19" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/js/libs/three.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9650">
-          <caret line="147" column="199" lean-forward="false" selection-start-line="147" selection-start-column="199" selection-end-line="147" selection-end-column="199" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="14" column="35" lean-forward="false" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="61" column="38" lean-forward="true" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -654,13 +543,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="15" lean-forward="true" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/blender/d0443759b09f442c5a241d35ed748142/asset" />
     <entry file="file://$PROJECT_DIR$/blender/950b293b3139c4958bd23c1c4b1d103e/pathname">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -668,45 +551,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/marmelab.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/main1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/test1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/untitled.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="1" column="1403" lean-forward="true" selection-start-line="1" selection-start-column="1403" selection-end-line="1" selection-end-column="1403" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/marmelab.json" />
+    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/main1.js" />
+    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/test1.json" />
+    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/untitled.json" />
     <entry file="file://$PROJECT_DIR$/01-rotating-mesh/1.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -723,14 +571,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/blender/9ed6786459d854e679dc9fd487a7dc7d/1.json" />
     <entry file="file://$PROJECT_DIR$/blender/19e047d72eeca4308a7ce926784bc5d6/1.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -840,14 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/three.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/01-rotating-mesh/15.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
@@ -864,50 +697,174 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/1.json">
+    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/three.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1498">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/3dgame.js">
+    <entry file="file://$PROJECT_DIR$/html/1.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="116" column="15" lean-forward="true" selection-start-line="116" selection-start-column="15" selection-end-line="116" selection-end-column="15" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/3D_Snake.html">
+    <entry file="file://$PROJECT_DIR$/game.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/index.html">
+    <entry file="file://$PROJECT_DIR$/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="57">
+          <caret line="3" column="12" lean-forward="false" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/new/1.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/js/libs/three.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="172" column="173" lean-forward="false" selection-start-line="172" selection-start-column="173" selection-end-line="172" selection-end-column="173" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/1.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/weapp-adapter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="1272" column="22" lean-forward="true" selection-start-line="1272" selection-start-column="22" selection-end-line="1272" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/new/three.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="599" column="191" lean-forward="false" selection-start-line="599" selection-start-column="191" selection-end-line="599" selection-end-column="191" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="191" column="0" lean-forward="false" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="981" column="0" lean-forward="false" selection-start-line="981" selection-start-column="0" selection-end-line="981" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/three.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="14530" column="11" lean-forward="false" selection-start-line="14530" selection-start-column="11" selection-end-line="14530" selection-end-column="11" />
+        <state relative-caret-position="289">
+          <caret line="31262" column="27" lean-forward="false" selection-start-line="31262" selection-start-column="16" selection-end-line="31262" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="397" column="56" lean-forward="false" selection-start-line="397" selection-start-column="56" selection-end-line="397" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three-maze-gh-pages/assets/js/threemaze.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3358">
+          <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/threedance.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="95" column="19" lean-forward="false" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/new/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="9" lean-forward="true" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/3D_Snake.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2524">
+          <caret line="175" column="7" lean-forward="true" selection-start-line="175" selection-start-column="7" selection-end-line="175" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/new/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="116" column="0" lean-forward="true" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3dgame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="229" column="37" lean-forward="true" selection-start-line="229" selection-start-column="37" selection-end-line="229" selection-end-column="37" />
+          <folding>
+            <element signature="e#73#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/01-rotating-mesh/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/01-rotating-mesh/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="141" column="39" lean-forward="false" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
+        <state relative-caret-position="2135">
+          <caret line="141" column="34" lean-forward="true" selection-start-line="141" selection-start-column="34" selection-end-line="141" selection-end-column="34" />
           <folding />
         </state>
       </provider>
