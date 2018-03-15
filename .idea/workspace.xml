@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e608ced5-09b6-4f97-a52b-a4c6c0df62fc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/3dgame.js" afterPath="$PROJECT_DIR$/3dgame.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,8 +20,8 @@
       <file leaf-file-name="3dgame.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/3dgame.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="683">
-              <caret line="279" column="4" lean-forward="false" selection-start-line="279" selection-start-column="4" selection-end-line="279" selection-end-column="4" />
+            <state relative-caret-position="360">
+              <caret line="187" column="46" lean-forward="true" selection-start-line="187" selection-start-column="46" selection-end-line="187" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -328,12 +327,12 @@
       <workItem from="1520905362111" duration="9136000" />
       <workItem from="1520917422848" duration="28273000" />
       <workItem from="1520955320832" duration="7084000" />
-      <workItem from="1521127774905" duration="6118000" />
+      <workItem from="1521127774905" duration="6426000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100042000" />
+    <option name="totallyTimeSpent" value="100350000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="579" y="0" width="1288" height="1057" extended-state="0" />
@@ -446,8 +445,8 @@
     <entry file="file://$PROJECT_DIR$/three.js" />
     <entry file="file://$PROJECT_DIR$/3dgame.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
-          <caret line="279" column="4" lean-forward="false" selection-start-line="279" selection-start-column="4" selection-end-line="279" selection-end-column="4" />
+        <state relative-caret-position="360">
+          <caret line="187" column="46" lean-forward="true" selection-start-line="187" selection-start-column="46" selection-end-line="187" selection-end-column="46" />
           <folding />
         </state>
       </provider>

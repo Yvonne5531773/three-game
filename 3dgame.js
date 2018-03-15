@@ -193,7 +193,7 @@ export default class gameDanceLine {
 			{  //钢琴横条
 				name: 'BARRICADE',
 				url: "http://act.cmcmcdn.com/liebao/wechatGame/1.json",
-				material: {color: '#818181', transparent: false, opacity: 0.1},
+				material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
 				blocks: barricades,
 				scale: 10
 			},
