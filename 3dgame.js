@@ -19,7 +19,7 @@ const vm = {
 	nx: 40,       //范围宽
 	ny: 40,       //范围高
 	snake: [],
-	snakeVolumn: 14,
+	snakeVolumn: 12,
 	startX: 200,
 	startY: 190,
 	headX: 7,   //开始X
@@ -88,7 +88,6 @@ export default class gameDanceLine {
 		document.addEventListener('touchstart', this.onTouchStart, false);
 		document.addEventListener('resize', this.onWindowResize, false);
 		this.onWindowResize()
-
 	}
 
 	render() {
@@ -98,12 +97,10 @@ export default class gameDanceLine {
 			vm.cube[i].position.z = 12;
 		}
 		//随着线的运动，镜头跟着走
-		vm.camera.position.x = vm.snake[0].x * 4 - 480  //修改该值能控制物体角度
-		vm.camera.position.y = -vm.snake[0].y * 4 - 300 + vm.speed
-		if(!vm.pauseFlag) {
-			vm.camera.position.z += 0.3;
-			vm.speed += 1.5
-		}
+		const offest = 350, zAsc = 0.01
+		vm.camera.position.x = vm.cube[0].position.x - offest
+		vm.camera.position.y = vm.cube[0].position.y - offest
+		vm.camera.position.z += zAsc
 		vm.renderer.render(vm.scene, vm.camera);
 
 		//检测碰撞
@@ -127,6 +124,9 @@ export default class gameDanceLine {
 				}
 			}
 		}
+		//
+		// console.log('window.innerWidth',window.innerWidth)
+		// console.log('window.innerHeight',window.innerHeight)
 	}
 
 	getMove() {
@@ -139,8 +139,8 @@ export default class gameDanceLine {
 			vm.cube[vm.len] = this.initCube(vm.snakeVolumn, vm.snakeVolumn, vm.snakeVolumn);
 			vm.cube[vm.len].position.x = vm.snake[vm.len].x * 10 - vm.startX;
 			vm.cube[vm.len].position.y = -vm.snake[vm.len].y * 10 + vm.startY;
-			vm.cube[vm.len].castShadow = true;
 			vm.scene.add(vm.cube[vm.len]);
+			console.log('vm.cube[vm.len].position', vm.cube[vm.len].position)
 			vm.len++;
 		}
 		for (let i = vm.len - 1; i > 0; i--) {
@@ -154,11 +154,12 @@ export default class gameDanceLine {
 	initCamera() {
 		vm.camera = new THREE.PerspectiveCamera(50, 0.5, 1, 10000);
 		// vm.camera.position.set(-250, -480, 1450);  //3参数越小，离表面越近 //俯视的高度
-		vm.camera.position.set(-250, -480, 550);
+		vm.camera.position.set(-480, -450, 550);
 		vm.camera.up.x = 0;
 		vm.camera.up.y = 0;
 		vm.camera.up.z = 1;
-		vm.camera.lookAt({x: 250, y: 0, z: -200});
+		vm.camera.lookAt({x: -30, y: 0, z: -100})  //z: 视觉高度
+		// vm.camera.lookAt({x: 250, y: 0, z: -200})
 	}
 
 	initLight() {
@@ -275,17 +276,17 @@ export default class gameDanceLine {
 			if (!vm.pauseFlag){
 				this.getMove()
 			}
-			this.render();
-			vm.end && window.cancelAnimationFrame(this.aRequest);
 		}
+		this.render();
+		vm.end && window.cancelAnimationFrame(this.aRequest);
 	}
 
 	onTouchStart(event) {
 		vm.pauseFlag && (vm.pauseFlag = false)
+		vm.clickCount===0 && vm.innerAudioContext.play();
 		vm.clickCount%2===0 && (vm.headForward = 2)
 		vm.clickCount%2===1 && (vm.headForward = 3)
 		vm.clickCount++
-		vm.innerAudioContext.play();
 	}
 
 	changeFoodPosition(food) {
