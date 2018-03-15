@@ -2,15 +2,13 @@
 
 import './libs/weapp-adapter'
 import threeDep from './parse'
-let THREE = require('libs/three.min')
+const THREE = require('libs/three.min')
 
 let renderer,
 	camera,
 	scene,
-	light,
 	cube = [];  //snake body object
-let plane, 
-	food,
+let plane,
 	nx = 40, //范围宽
 	ny = 40, //范围高
 	planeSize = 400, //地板范围
@@ -21,12 +19,11 @@ let plane,
 	head_pos_y = 32,  //开始Y
 	head_for = 2,     //方向
 	dir_x = [0, -1, 1, 0],
-	dir_y = [1, 0, 0, -1],
-	status = -1;  //the status of the game, -1 represents not start
-let pauseFlag = true;  //in order to support pause function
-let board = []  //The state of game
-let the_last_head = head_for;  //The direction of snake
-let snake = [] //store snake
+	dir_y = [1, 0, 0, -1]
+let pauseFlag = true;
+let board = []
+let the_last_head = head_for;
+let snake = []
 let clickCount = 0,
 	gameover = false
 
@@ -39,8 +36,6 @@ let fps = 23,
 let collisions = [],
 	speed = 0
 
-let innerAudioContext
-
 //路障
 const barricades = [
 	{
@@ -48,7 +43,7 @@ const barricades = [
 	}
 ]
 //x越大，物体就越上; y越大，物体就越里面
-const whiteThickblocks = [  //粗
+const whiteThickblocks = [  //粗块
 	{
 		x: -115, y: 440, z: 0, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
 	}, {
@@ -127,7 +122,6 @@ const whiteFineblocks = [ //细
 		x: 1148, y: 630, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
 	},
 ]
-
 //食物位置
 const foodOffests = [
 	{
@@ -137,6 +131,8 @@ const foodOffests = [
 
 export default class gameDanceLine {
 	aRequest = {}
+	musicSrc = './asset/piano.mp3'
+	innerAudioContext = {}
 
 	constructor() {
 		this.init()
@@ -150,37 +146,21 @@ export default class gameDanceLine {
 		renderer.shadowMapEnabled = true;
 		renderer.setClearColor('#d8d29f', 1);
 
-		//初始化开始的路障
-		this.initMaterials()
-		//食物
-		this.initFood()
-		//音乐
-		this.initAudio()
-
-		//相机
-		camera = new THREE.PerspectiveCamera(55, 0.5, 1, 10000);
-		// camera.position.set(-250, -480, 1450);  //3参数越小，离表面越近 //俯视的高度
-		camera.position.set(-250, -480, 550);
-		camera.up.x = 0;
-		camera.up.y = 0;
-		camera.up.z = 1;
-		camera.lookAt({x: 250, y: 0, z: -200});
-
 		scene = new THREE.Scene();
 
-		light = new THREE.DirectionalLight('white', 1.0, 0);
-		light.position.set(-600, -600, -600);
-		scene.add(light);
+		//初始化素材
+		this.initMaterials()
+		//音乐
+		this.initAudio()
+		//相机
+		this.initCamera()
+		//灯源
+		this.initLight()
 
 		plane = this.initPlane(planeSize);
 		plane.position.set(-5, -5, -5);
 		plane.receiveShadow = true;
 		// scene.add(plane);
-
-		//灯源
-		let directionalLight = new THREE.DirectionalLight("#fff");
-		directionalLight.position.set(0, 0, 1);
-		scene.add(directionalLight);
 
 		// scene.add(new THREE.AmbientLight(0xc9c9c9));
 		// var directional = new THREE.DirectionalLight(0xc9c9c9, 0.5);
@@ -205,10 +185,8 @@ export default class gameDanceLine {
 			// board[snake[i].x][snake[i].y] = 1;
 		}
 
-		status = 0;
 		this.run();
 
-		// pauseFlag = true;
 		document.addEventListener('touchstart', this.onTouchStart, false);
 		document.addEventListener('resize', this.onWindowResize, false);
 		this.onWindowResize()
@@ -299,29 +277,23 @@ export default class gameDanceLine {
 		// }
 	}
 
-	initFood() {
-		const request = new XMLHttpRequest(),
-			url = "http://act.cmcmcdn.com/liebao/wechatGame/15.json"
-		request.onreadystatechange = function () {
-			if (request.readyState === 4) {
-				let json = JSON.parse(request.responseText)
-				let object = threeDep.threeParse(json, url);
-				let geometry = object.geometry
-				for(let i = 0; i < foodOffests.length; i++) {
-					const foodOffest = foodOffests[i]
-					food = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: '#f0efa5'}));
-					food.scale.x = food.scale.y = food.scale.z = 1200;
-					food.translation = geometry.center();
-					scene.add(food);
-					food.position.set(foodOffest.x, foodOffest.y, foodOffest.z)
-					food.rotation.set(foodOffest.rotationX, foodOffest.rotationY, foodOffest.rotationZ)
-					// board[tx][ty] = 2;
-				}
-				console.log('food', food)
-			}
-		};
-		request.open('get', url);
-		request.send();
+	initCamera() {
+		camera = new THREE.PerspectiveCamera(55, 0.5, 1, 10000);
+		// camera.position.set(-250, -480, 1450);  //3参数越小，离表面越近 //俯视的高度
+		camera.position.set(-250, -480, 550);
+		camera.up.x = 0;
+		camera.up.y = 0;
+		camera.up.z = 1;
+		camera.lookAt({x: 250, y: 0, z: -200});
+	}
+
+	initLight() {
+		const light = new THREE.DirectionalLight('white', 1.0, 0);
+		light.position.set(-600, -600, -600);
+		scene.add(light);
+		const directionalLight = new THREE.DirectionalLight("#fff");
+		directionalLight.position.set(0, 0, 1);
+		scene.add(directionalLight);
 	}
 
 	initCube(_s1, _s2, _s3) {
@@ -356,30 +328,35 @@ export default class gameDanceLine {
 				scale: 11
 			},
 			{  //钢琴中白块
-				url: "http://act.cmcmcdn.com/liebao/wechatGame/6.json",
+				url: "http://act.cmcmcdn.com/liebao/wechatGame/10.json",
 				material: {color: '#fff'},
 				blocks: whiteMiddleblocks,
 				scale: 11
 			},
 			{  //钢琴细白块
-				url: "http://act.cmcmcdn.com/liebao/wechatGame/6.json",
+				url: "http://act.cmcmcdn.com/liebao/wechatGame/7.json",
 				material: {color: '#fff'},
 				blocks: whiteFineblocks,
 				scale: 11
 			},
-			// {  //食物
-			// 	url: "http://act.cmcmcdn.com/liebao/wechatGame/15.json",
-			// 	material: {color: '#f0efa5'},
-			// 	blocks: foodOffests,
-			// 	scale: 1200
-			// },
+			{  //食物
+				url: "http://act.cmcmcdn.com/liebao/wechatGame/15.json",
+				material: {color: '#f0efa5'},
+				blocks: foodOffests,
+				scale: 1200
+			},
 		]
 		materials.forEach((material) => {
 			this.submitRequest(material)
 		})
 	}
 
-	submitRequest({url = '', material = null, blocks = [], scale}) {
+	initAudio() {
+		this.innerAudioContext = wx.createInnerAudioContext()
+		this.innerAudioContext.src = this.musicSrc;
+	}
+
+	submitRequest({url = '', material = null, blocks = [], scale = ''}) {
 		const request = new XMLHttpRequest()
 		request.open('get', url)
 		request.send()
@@ -421,7 +398,7 @@ export default class gameDanceLine {
 		clickCount%2===0 && (head_for = 2)
 		clickCount%2===1 && (head_for = 3)
 		clickCount++
-		innerAudioContext.play();
+		this.innerAudioContext.play();
 	}
 
 	onWindowResize() {
@@ -436,14 +413,9 @@ export default class gameDanceLine {
 		gameover = true
 		wx.showToast({title: title})
 		setTimeout(() => {
-			// location.reload();
-			innerAudioContext.destroy()
+			location.reload();
+			this.innerAudioContext.destroy()
 		}, 1000)
-	}
-
-	initAudio() {
-		innerAudioContext = wx.createInnerAudioContext()
-		innerAudioContext.src = './asset/piano.mp3';
 	}
 
 }
