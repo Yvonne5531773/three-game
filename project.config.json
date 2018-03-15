@@ -10,7 +10,7 @@
 	"compileType": "game",
 	"libVersion": "game",
 	"appid": "touristappid",
-	"projectname": "three-game",
+	"projectname": "game-dance-line",
 	"isGameTourist": true,
 	"condition": {
 		"search": {

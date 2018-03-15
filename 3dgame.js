@@ -1,8 +1,8 @@
 'use strict'
 
-import 'weapp-adapter.js'
-import { threeParse } from './parse'
-let THREE = require('three.min')
+import './libs/weapp-adapter'
+import threeDep from './parse'
+let THREE = require('libs/three.min')
 
 let renderer,
 	camera,
@@ -28,8 +28,7 @@ let board = []  //The state of game
 let the_last_head = head_for;  //The direction of snake
 let snake = [] //store snake
 let clickCount = 0,
-	gameover = false,
-	cameraHelper
+	gameover = false
 
 let fps = 23,
 	now,
@@ -37,131 +36,106 @@ let fps = 23,
 	interval = 1000 / fps,
 	delta
 
-let blocks = [],
+let collisions = [],
 	speed = 0
 
 let innerAudioContext
 
+//路障
+const barricades = [
+	{
+		x: 550, y: 630, z: 18, rotationX: -1.6, rotationY: 0.8, rotationZ: 0
+	}
+]
 //x越大，物体就越上; y越大，物体就越里面
-const whiteblocks = [  //粗
+const whiteThickblocks = [  //粗
 	{
-		x: -115, y: 440, z: 0, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: -28, y: 438, z: 0, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 498, y: -220, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 648, y: -75, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 684, y: 148, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 98, y: 838, z: 0, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 778, y: 407, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 630, y: 1310, z: -20, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 805, y: 1310, z: -20, rotationX: -1.6, rotationY: 1.6
+		x: -115, y: 440, z: 0, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: -28, y: 438, z: 0, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 498, y: -220, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 648, y: -75, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 684, y: 148, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 98, y: 838, z: 0, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 778, y: 407, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 630, y: 1310, z: -20, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 805, y: 1310, z: -20, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
 	},
 ]
 const whiteMiddleblocks = [ //中; x越大，越里面；y越大，越上
 	{
-		x: 598, y: -150, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 664, y: 2, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 684, y: 68, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 174, y: 998, z: -10, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 744, y: 225, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 238, y: 1040, z: -10, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 308, y: 1120, z: -10, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 858, y: 484, z: 0, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 437, y: 1190, z: -10, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 506, y: 1250, z: -20, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 556, y: 1300, z: -20, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 705, y: 1320, z: -20, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 1194, y: 678, z: 0, rotationX: 1.6, rotationY: 3.14
+		x: 598, y: -150, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 664, y: 2, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 684, y: 68, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 174, y: 998, z: -10, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 744, y: 225, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 238, y: 1040, z: -10, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 308, y: 1120, z: -10, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 858, y: 484, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 437, y: 1190, z: -10, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 506, y: 1250, z: -20, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 556, y: 1300, z: -20, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 705, y: 1320, z: -20, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 1194, y: 678, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
 	},
 ]
 const whiteFineblocks = [ //细
 	{
-		x: 33, y: 550, z: 0, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 68, y: 630, z: 0, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 758, y: 275, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 758, y: 310, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 758, y: 345, z: 10, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 356, y: 1190, z: -10, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 389, y: 1190, z: -10, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 928, y: 528, z: 0, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 928, y: 538, z: 0, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 1018, y: 578, z: 0, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 740, y: 1333, z: -20, rotationX: -1.6, rotationY: 1.6
-	},
-	{
-		x: 1088, y: 610, z: 0, rotationX: 1.6, rotationY: 3.14
-	},
-	{
-		x: 1148, y: 630, z: 0, rotationX: 1.6, rotationY: 3.14
+		x: 33, y: 550, z: 0, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 68, y: 630, z: 0, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 758, y: 275, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 758, y: 310, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 758, y: 345, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 356, y: 1190, z: -10, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 389, y: 1190, z: -10, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 928, y: 528, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 928, y: 538, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 1018, y: 578, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 740, y: 1333, z: -20, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
+	}, {
+		x: 1088, y: 610, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
+	}, {
+		x: 1148, y: 630, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0
 	},
 ]
 
+//食物位置
 const foodOffests = [
 	{
 		x: 230, y: 180
 	}
 ]
 
-export default class game3d {
+export default class gameDanceLine {
 	aRequest = {}
 
 	constructor() {
@@ -173,20 +147,13 @@ export default class game3d {
 			canvas: canvas,
 			antialias: true
 		});
-		// renderer.setSize(width, height);
 		renderer.shadowMapEnabled = true;
 		renderer.setClearColor('#d8d29f', 1);
 
 		//初始化开始的路障
-		this.initBarricade()
-		//初始化粗钢琴块
-		this.initWhiteBlock()
-		//初始化中钢琴块
-		this.initWhiteMiddleBlock()
-		//初始化细钢琴块
-		this.initWhiteFineBlock()
+		this.initMaterials()
 		//食物
-		this.initFood();
+		this.initFood()
 		//音乐
 		this.initAudio()
 
@@ -237,14 +204,6 @@ export default class game3d {
 			scene.add(cube[i]);
 			// board[snake[i].x][snake[i].y] = 1;
 		}
-		// Camera helper
-		var geometry = new THREE.Geometry();
-		geometry.vertices.push(new THREE.Vector3(0, 0, 0), new THREE.Vector3(Math.sqrt(3) * (this.side * this.thickness)), 0, 0);
-		cameraHelper = new THREE.Line(geometry);
-		scene.add(cameraHelper);
-		cameraHelper.visible = false;
-		cameraHelper.targetRotation = false;
-		cameraHelper.rotation.set(0, 1.362275, 0.694716);
 
 		status = 0;
 		this.run();
@@ -257,10 +216,6 @@ export default class game3d {
 	}
 
 	render() {
-		if (cameraHelper.targetRotation !== false) {
-			cameraHelper.rotation.z += (cameraHelper.targetRotation.z - cameraHelper.rotation.z) / 10;
-			cameraHelper.rotation.y += (cameraHelper.targetRotation.y - cameraHelper.rotation.y) / 10;
-		}
 		for (let i = 0; i < len; ++i) {
 			cube[i].position.x = snake[i].x * 10 - start_point_x;
 			cube[i].position.y = -snake[i].y * 10 + start_point_y;
@@ -286,7 +241,7 @@ export default class game3d {
 			var directionVector = globalVertex.sub(movingCube.position);
 
 			var ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
-			var collisionResults = ray.intersectObjects(blocks);
+			var collisionResults = ray.intersectObjects(collisions);
 			if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
 				this.gameover('游戏结束！')
 				break;
@@ -350,7 +305,7 @@ export default class game3d {
 		request.onreadystatechange = function () {
 			if (request.readyState === 4) {
 				let json = JSON.parse(request.responseText)
-				let object = threeParse(json, url);
+				let object = threeDep.threeParse(json, url);
 				let geometry = object.geometry
 				for(let i = 0; i < foodOffests.length; i++) {
 					const foodOffest = foodOffests[i]
@@ -362,7 +317,6 @@ export default class game3d {
 					food.position.y = cube[0].position.y + foodOffest.y;
 					food.position.z = 15;
 					food.rotation.x -= 4.7
-					console.log('food', food)
 					// board[tx][ty] = 2;
 				}
 			}
@@ -370,7 +324,7 @@ export default class game3d {
 		request.open('get', url);
 		request.send();
 	}
-	
+
 	initCube(_s1, _s2, _s3) {
 		let geometry = new THREE.BoxGeometry(_s1, _s2, _s3 , 1, 1, 1);
 		for (let i = 0; i < geometry.faces.length; i += 2) {
@@ -387,108 +341,66 @@ export default class game3d {
 		let material = new THREE.MeshLambertMaterial({color: '#ffecb4'});
 		return new THREE.Mesh(geometry, material);
 	}
-	
-	initBarricade() {
-		const request = new XMLHttpRequest(),
-			url = "http://act.cmcmcdn.com/liebao/wechatGame/1.json"
-		request.onreadystatechange = function () {
-			if (request.readyState === 4) {
-				let json = JSON.parse(request.responseText)
-				let object = threeParse(json, url);
-				let geometry = object.geometry,
-					materials = object.materials
-				let mesh = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
-				mesh.scale.x = mesh.scale.y = mesh.scale.z = 10;
-				mesh.translation = geometry.center();
-				scene.add(mesh);
-				mesh.position.x = 550;
-				mesh.position.y = 630;
-				mesh.position.z = 18;  //距离平面高度
-				mesh.rotation.x = -1.6;
-				mesh.rotation.y = 0.8;
-				blocks.push(mesh)
-			}
-		};
-		request.open('get', url);
-		request.send();
+
+	initMaterials() {
+		const materials = [
+			{  //钢琴横条
+				url: "http://act.cmcmcdn.com/liebao/wechatGame/1.json",
+				material: null,
+				blocks: barricades,
+				scale: 10
+			},
+			{  //钢琴粗白块
+				url: "http://act.cmcmcdn.com/liebao/wechatGame/6.json",
+				material: {color: '#fff'},
+				blocks: whiteThickblocks,
+				scale: 11
+			},
+			{  //钢琴中白块
+				url: "http://act.cmcmcdn.com/liebao/wechatGame/6.json",
+				material: {color: '#fff'},
+				blocks: whiteMiddleblocks,
+				scale: 11
+			},
+			{  //钢琴细白块
+				url: "http://act.cmcmcdn.com/liebao/wechatGame/6.json",
+				material: {color: '#fff'},
+				blocks: whiteFineblocks,
+				scale: 11
+			},
+			// {  //食物
+			// 	url: "http://act.cmcmcdn.com/liebao/wechatGame/15.json",
+			// 	material: {color: '#f0efa5'},
+			// 	blocks: foodOffests,
+			// 	scale: 1200
+			// },
+		]
+		materials.forEach((material) => {
+			this.submitRequest(material)
+		})
 	}
 
-	initWhiteBlock() {
-		const request = new XMLHttpRequest(),
-			url = "http://act.cmcmcdn.com/liebao/wechatGame/6.json"
+	submitRequest({url = '', material = null, blocks = [], scale}) {
+		const request = new XMLHttpRequest()
+		request.open('get', url)
+		request.send()
 		request.onreadystatechange = function () {
 			if (request.readyState === 4) {
-				let json = JSON.parse(request.responseText)
-				let object = threeParse(json, url);
-				let geometry = object.geometry
-				for(let i = 0; i < whiteblocks.length; i++) {
-					const whiteblock = whiteblocks[i]
-					let mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: '#fff'}));
-					mesh.scale.x = mesh.scale.y = mesh.scale.z = 11;
-					mesh.translation = geometry.center();
-					scene.add(mesh);
-					mesh.position.set(whiteblock.x, whiteblock.y, whiteblock.z) //z:距离平面高度
-					mesh.rotation.x = whiteblock.rotationX;
-					mesh.rotation.y = whiteblock.rotationY;
-					// mesh.rotation.z = 0.8;
-					blocks.push(mesh)
-				}
+				const json = JSON.parse(request.responseText),
+					object = threeDep.threeParse(json, url),
+					geometry = object.geometry,
+					materials = material? material : object.materials
+				blocks.forEach((block) => {
+					const mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial(materials))
+					mesh.scale.x = mesh.scale.y = mesh.scale.z = scale
+					mesh.translation = geometry.center()
+					mesh.position.set(block.x, block.y, block.z) //z:距离平面高度
+					mesh.rotation.set(block.rotationX, block.rotationY, block.rotationZ)
+					scene.add(mesh)
+					collisions.push(mesh)
+				})
 			}
-		};
-		request.open('get', url);
-		request.send();
-	}
-
-	initWhiteMiddleBlock() {
-		const request = new XMLHttpRequest(),
-			url = "http://act.cmcmcdn.com/liebao/wechatGame/10.json"
-		request.onreadystatechange = function () {
-			if (request.readyState === 4) {
-				let json = JSON.parse(request.responseText)
-				let object = threeParse(json, url);
-				let geometry = object.geometry
-				for(let i = 0; i < whiteMiddleblocks.length; i++) {
-					const whiteMiddleblock = whiteMiddleblocks[i]
-					let mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: '#fff'}));
-					mesh.scale.x = mesh.scale.y = mesh.scale.z = 11;
-					mesh.translation = geometry.center();
-					scene.add(mesh);
-					mesh.position.set(whiteMiddleblock.x, whiteMiddleblock.y, whiteMiddleblock.z) //z:距离平面高度
-					mesh.rotation.x = whiteMiddleblock.rotationX;
-					mesh.rotation.y = whiteMiddleblock.rotationY;
-					// mesh.rotation.z = 0.8;
-					blocks.push(mesh)
-				}
-			}
-		};
-		request.open('get', url);
-		request.send();
-	}
-	
-	initWhiteFineBlock() {
-		const request = new XMLHttpRequest(),
-			url = "http://act.cmcmcdn.com/liebao/wechatGame/7.json"
-		request.onreadystatechange = function () {
-			if (request.readyState === 4) {
-				let json = JSON.parse(request.responseText)
-				let object = threeParse(json, url);
-				let geometry = object.geometry
-				for(let i = 0; i < whiteFineblocks.length; i++) {
-					const whiteFineblock = whiteFineblocks[i]
-					let mesh = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({color: '#fff'}));
-					mesh.scale.x = mesh.scale.y = mesh.scale.z = 11;
-					mesh.translation = geometry.center();
-					scene.add(mesh);
-					mesh.position.set(whiteFineblock.x, whiteFineblock.y, whiteFineblock.z)
-					mesh.rotation.x = whiteFineblock.rotationX;
-					mesh.rotation.y = whiteFineblock.rotationY;
-					// mesh.rotation.z = 0.8;
-					blocks.push(mesh)
-				}
-			}
-		};
-		request.open('get', url);
-		request.send();
+		}
 	}
 
 	run() {
@@ -504,14 +416,6 @@ export default class game3d {
 			gameover && window.cancelAnimationFrame(this.aRequest);
 		}
 	}
-	// run() {
-	// 	if (!pauseFlag){
-	// 		this.getMove()
-	// 	}
-	// 	this.render();
-	// 	this.aRequest = window.requestAnimationFrame(this.run.bind(this), canvas);
-	// 	gameover && window.cancelAnimationFrame(this.aRequest);
-	// }
 
 	onTouchStart(event) {
 		pauseFlag && (pauseFlag = false)
