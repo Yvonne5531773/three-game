@@ -1,4 +1,4 @@
-# Demo project powered by three.js for wechat game
+# Demo project powered by three.js
 
 #author liziao@cmcm.com
 #date   2018.03
