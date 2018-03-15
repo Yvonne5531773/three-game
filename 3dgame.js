@@ -131,7 +131,7 @@ const whiteFineblocks = [ //细
 //食物位置
 const foodOffests = [
 	{
-		x: 230, y: 180
+		x: 90, y: 50, z: 15, rotationX: -4.7, rotationY: 0, rotationZ: 0
 	}
 ]
 
@@ -313,12 +313,11 @@ export default class gameDanceLine {
 					food.scale.x = food.scale.y = food.scale.z = 1200;
 					food.translation = geometry.center();
 					scene.add(food);
-					food.position.x = cube[0].position.x + foodOffest.x;
-					food.position.y = cube[0].position.y + foodOffest.y;
-					food.position.z = 15;
-					food.rotation.x -= 4.7
+					food.position.set(foodOffest.x, foodOffest.y, foodOffest.z)
+					food.rotation.set(foodOffest.rotationX, foodOffest.rotationY, foodOffest.rotationZ)
 					// board[tx][ty] = 2;
 				}
+				console.log('food', food)
 			}
 		};
 		request.open('get', url);
