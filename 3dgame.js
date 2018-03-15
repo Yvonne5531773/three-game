@@ -4,6 +4,9 @@ import './libs/weapp-adapter'
 import threeDep from './parse'
 const THREE = require('libs/three.min')
 
+const vm = {
+	innerAudioContext: {}
+}
 let renderer,
 	camera,
 	scene,
@@ -20,10 +23,10 @@ let plane,
 	head_for = 2,     //方向
 	dir_x = [0, -1, 1, 0],
 	dir_y = [1, 0, 0, -1]
-let pauseFlag = true;
-let board = []
-let the_last_head = head_for;
-let snake = []
+let pauseFlag = true;  //in order to support pause function
+let board = []  //The state of game
+let the_last_head = head_for;  //The direction of snake
+let snake = [] //store snake
 let clickCount = 0,
 	gameover = false
 
@@ -132,8 +135,6 @@ const foodOffests = [
 export default class gameDanceLine {
 	aRequest = {}
 	musicSrc = './asset/piano.mp3'
-	innerAudioContext = {}
-
 	constructor() {
 		this.init()
 	}
@@ -352,8 +353,8 @@ export default class gameDanceLine {
 	}
 
 	initAudio() {
-		this.innerAudioContext = wx.createInnerAudioContext()
-		this.innerAudioContext.src = this.musicSrc;
+		vm.innerAudioContext = wx.createInnerAudioContext()
+		vm.innerAudioContext.src = this.musicSrc;
 	}
 
 	submitRequest({url = '', material = null, blocks = [], scale = ''}) {
@@ -398,7 +399,8 @@ export default class gameDanceLine {
 		clickCount%2===0 && (head_for = 2)
 		clickCount%2===1 && (head_for = 3)
 		clickCount++
-		this.innerAudioContext.play();
+		console.log('vm.innerAudioContext', vm.innerAudioContext)
+		vm.innerAudioContext.play();
 	}
 
 	onWindowResize() {
@@ -413,8 +415,8 @@ export default class gameDanceLine {
 		gameover = true
 		wx.showToast({title: title})
 		setTimeout(() => {
-			location.reload();
-			this.innerAudioContext.destroy()
+			location.reload()
+			vm.innerAudioContext.destroy()
 		}, 1000)
 	}
 
