@@ -82,7 +82,6 @@ export default class gameDanceLine {
 			vm.cube[i].castShadow = true;
 			vm.scene.add(vm.cube[i]);
 		}
-
 		this.run();
 
 		document.addEventListener('touchstart', this.onTouchStart, false);
@@ -107,22 +106,21 @@ export default class gameDanceLine {
 
 		//检测碰撞
 		const movingCube = vm.cube[0]
-		var originPoint = movingCube.position.clone();
-		for (var vertexIndex = 0; vertexIndex < movingCube.geometry.vertices.length; vertexIndex++) {
+		let originPoint = movingCube.position.clone();
+		for (let vertexIndex = 0; vertexIndex < movingCube.geometry.vertices.length; vertexIndex++) {
 			// 顶点原始坐标
-			var localVertex = movingCube.geometry.vertices[vertexIndex].clone();
+			let localVertex = movingCube.geometry.vertices[vertexIndex].clone();
 			// 顶点经过变换后的坐标
-			var globalVertex = localVertex.applyMatrix4(movingCube.matrix);
-			var directionVector = globalVertex.sub(movingCube.position);
-
-			var ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
-			var collisionResults = ray.intersectObjects(vm.collisions);
+			let globalVertex = localVertex.applyMatrix4(movingCube.matrix);
+			let directionVector = globalVertex.sub(movingCube.position);
+			let ray = new THREE.Raycaster(originPoint, directionVector.clone().normalize());
+			let collisionResults = ray.intersectObjects(vm.collisions);
 			if (collisionResults.length > 0 && collisionResults[0].distance < directionVector.length()) {
 				if(collisionResults[0].object.name === 'FOOD') {
 					this.changeFoodPosition(collisionResults[0].object)
 				} else {
 					this.gameover('游戏结束！')
-					break;
+					break
 				}
 			}
 		}
