@@ -1,2 +1,2 @@
-import gameDanceLine from './3dgame'
+import gameDanceLine from './src/3dmain'
 new gameDanceLine()

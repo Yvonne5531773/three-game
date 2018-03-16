@@ -1,4 +1,4 @@
-const THREE = require('libs/three.min')
+const THREE = require('../libs/three.min')
 
 export default {
 	threeParse: (json, texturePath) => {

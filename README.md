@@ -1,7 +1,7 @@
 # Demo project powered by three.js
 
-#author liziao@cmcm.com
-#date   2018.03
+### author liziao@cmcm.com
+### date   2018.03.12
 
 ## 目录结构
 
@@ -10,7 +10,8 @@
 ~~~
 www  WEB部署目录（或者子目录）
 
-├───asset               资源
-├───libs                库文件              
-├───3dgame              逻辑文件
-├───parse               工具文件
+├───asset               资源文件夹
+├───libs                库文件夹    
+├───models              模型文件夹      
+├───src                 游戏文件夹
+├───utils               工具文件夹
