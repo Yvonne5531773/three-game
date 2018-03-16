@@ -303,7 +303,9 @@ export default class gameDanceLine {
 
 	gameover(title) {
 		vm.end = true
-		wx.showToast({title: title})
+		wx.showToast({
+			title: title
+		})
 		setTimeout(() => {
 			// location.reload()
 			vm.innerAudioContext.destroy()
