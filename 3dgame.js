@@ -19,7 +19,7 @@ const vm = {
 	nx: 40,       //范围宽
 	ny: 40,       //范围高
 	snake: [],
-	snakeVolumn: 12,
+	snakeVolumn: 14,
 	startX: 200,
 	startY: 190,
 	headX: 7,   //开始X
@@ -31,8 +31,8 @@ const vm = {
 	clickCount: 0,
 	end: false,
 	collisions: [],
-	speed: 0,
-	fps: 23,
+	speed: 4,
+	fps: 60,
 	now: '',
 	then: Date.now(),
 	delta: '',
@@ -77,8 +77,8 @@ export default class gameDanceLine {
 			vm.snake[i].x = vm.headX + i * vm.directionX[3 - vm.headForward];
 			vm.snake[i].y = vm.headY + i * vm.directionY[3 - vm.headForward];
 			vm.cube[i] = this.initCube(vm.snakeVolumn, vm.snakeVolumn, vm.snakeVolumn);
-			vm.cube[i].position.x = vm.snake[i].x * 10 - vm.startX;
-			vm.cube[i].position.y = -vm.snake[i].y * 10 + vm.startY;
+			vm.cube[i].position.x = vm.snake[i].x * vm.speed - vm.startX;
+			vm.cube[i].position.y = -vm.snake[i].y * vm.speed + vm.startY;
 			vm.cube[i].castShadow = true;
 			vm.scene.add(vm.cube[i]);
 		}
@@ -91,9 +91,11 @@ export default class gameDanceLine {
 	}
 
 	render() {
+		//递增的位置
+		const speed = 5
 		for (let i = 0; i < vm.len; ++i) {
-			vm.cube[i].position.x = vm.snake[i].x * 10 - vm.startX;
-			vm.cube[i].position.y = -vm.snake[i].y * 10 + vm.startY;
+			vm.cube[i].position.x = vm.snake[i].x * vm.speed - vm.startX;
+			vm.cube[i].position.y = -vm.snake[i].y * vm.speed + vm.startY;
 			vm.cube[i].position.z = 12;
 		}
 		//随着线的运动，镜头跟着走
@@ -124,9 +126,6 @@ export default class gameDanceLine {
 				}
 			}
 		}
-		//
-		// console.log('window.innerWidth',window.innerWidth)
-		// console.log('window.innerHeight',window.innerHeight)
 	}
 
 	getMove() {
@@ -137,10 +136,7 @@ export default class gameDanceLine {
 			vm.snake[vm.len].x = vm.snake[vm.len - 1].x;
 			vm.snake[vm.len].y = vm.snake[vm.len - 1].y;
 			vm.cube[vm.len] = this.initCube(vm.snakeVolumn, vm.snakeVolumn, vm.snakeVolumn);
-			vm.cube[vm.len].position.x = vm.snake[vm.len].x * 10 - vm.startX;
-			vm.cube[vm.len].position.y = -vm.snake[vm.len].y * 10 + vm.startY;
 			vm.scene.add(vm.cube[vm.len]);
-			console.log('vm.cube[vm.len].position', vm.cube[vm.len].position)
 			vm.len++;
 		}
 		for (let i = vm.len - 1; i > 0; i--) {
@@ -239,7 +235,8 @@ export default class gameDanceLine {
 		// mesh.opacity = opacity
 		mesh.scale.x = mesh.scale.y = mesh.scale.z = scale
 		mesh.translation = geometry.center()
-		mesh.position.set(block.x, block.y, block.z) //z:距离平面高度
+		//物体速度变化，要调整相应的路障位置，x越大，越左；y越大，越上
+		mesh.position.set(block.x - 8*vm.speed, block.y + 42*vm.speed, block.z) //z:距离平面高度
 		mesh.rotation.set(block.rotationX, block.rotationY, block.rotationZ)
 		vm.scene.add(mesh)
 		vm.collisions.push(mesh)
@@ -269,13 +266,16 @@ export default class gameDanceLine {
 
 	run() {
 		this.aRequest = window.requestAnimationFrame(this.run.bind(this), canvas)
-		vm.now = Date.now();
-		vm.delta = vm.now - vm.then;
-		if (vm.delta > 1000 / vm.fps) {
-			vm.then = vm.now - (vm.delta % 1000 / vm.fps);
-			if (!vm.pauseFlag){
-				this.getMove()
-			}
+		// vm.now = Date.now();
+		// vm.delta = vm.now - vm.then;
+		// if (vm.delta > 1000 / vm.fps) {
+		// 	vm.then = vm.now - (vm.delta % 1000 / vm.fps);
+		// 	if (!vm.pauseFlag){
+		// 		this.getMove()
+		// 	}
+		// }
+		if (!vm.pauseFlag){
+			this.getMove()
 		}
 		this.render();
 		vm.end && window.cancelAnimationFrame(this.aRequest);
