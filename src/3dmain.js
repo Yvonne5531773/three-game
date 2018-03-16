@@ -37,7 +37,7 @@ const vm = {
 }
 
 const calval = {
-	foodMeshs: [],
+	foodMesh: {},
 	sortMeshs: []
 }
 
@@ -162,7 +162,7 @@ export default class gameDanceLine {
 		vm.scene.add(mesh)
 		vm.models.push(mesh)
 		//初始化计算的Mesh
-		calval.foodMeshs = vm.models.find(model => model.name === 'FOOD')
+		calval.foodMesh = vm.models.find(model => model.name === 'FOOD')
 		calval.sortMeshs = vm.models.filter(model => model.msort !== 0)
 		calval.sortMeshs.sort((a, b) => {
 			if(a.msort > b.msort) return 1
@@ -280,7 +280,7 @@ export default class gameDanceLine {
 	}
 
 	animates() {
-		calval.foodMeshs && calval.foodMeshs.length>0 && this.animateFood(calval.foodMeshs)
+		calval.foodMesh && this.animateFood(calval.foodMesh)
 		calval.sortMeshs && calval.sortMeshs.length>0 && this.animateBlocks(calval.sortMeshs[vm.blockAnimateIndex])
 		// const msortModels = vm.models.filter(model => model.msort !== 0)
 		// msortModels.sort((a, b) => {
@@ -291,7 +291,7 @@ export default class gameDanceLine {
 	}
 
 	animateFood(food) {
-		food && (food.rotation.y += 0.01)
+		Object.keys(food).length>0 && (food.rotation.y += 0.01)
 	}
 
 	//销毁mesh对象
