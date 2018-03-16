@@ -124,9 +124,6 @@ export default class gameDanceLine {
 				}
 			}
 		}
-		//
-		// console.log('window.innerWidth',window.innerWidth)
-		// console.log('window.innerHeight',window.innerHeight)
 	}
 
 	getMove() {
@@ -140,7 +137,6 @@ export default class gameDanceLine {
 			vm.cube[vm.len].position.x = vm.snake[vm.len].x * 10 - vm.startX;
 			vm.cube[vm.len].position.y = -vm.snake[vm.len].y * 10 + vm.startY;
 			vm.scene.add(vm.cube[vm.len]);
-			console.log('vm.cube[vm.len].position', vm.cube[vm.len].position)
 			vm.len++;
 		}
 		for (let i = vm.len - 1; i > 0; i--) {
