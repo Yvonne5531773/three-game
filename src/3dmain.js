@@ -3,6 +3,8 @@
 import '../libs/weapp-adapter'
 import threeDep from '../utils/parse'
 import model from '../models/index'
+import config from '../config/index'
+import { __TWEEN } from '../libs/tween'
 const THREE = require('../libs/three.min')
 
 const vm = {
@@ -10,6 +12,7 @@ const vm = {
 	scene: {},
 	renderer: {},
 	camera: {},
+	aRequest: {},
 	cube: [],
 	len: 1,
 	nx: 40,                     //范围宽
@@ -18,7 +21,7 @@ const vm = {
 	snakeVolumn: 14,
 	startX: 200,
 	startY: 190,
-	headX: 7,                   //开始X
+	headX: 2,                   //开始X
 	headY: 30,                  //开始Y
 	headForward: 2,             //方向
 	pauseFlag: true,
@@ -27,7 +30,7 @@ const vm = {
 	clickCount: 0,
 	end: false,
 	models: [],
-	speed: 4,
+	snakeSpeed: 4,
 	fps: 60,
 	now: '',
 	then: Date.now(),
@@ -44,9 +47,6 @@ const calval = {
 let plane, planeSize = 400 //地板范围
 
 export default class gameDanceLine {
-	aRequest = {}
-	musicSrc = './asset/piano.mp3'
-
 	constructor() {
 		this.init()
 	}
@@ -66,22 +66,16 @@ export default class gameDanceLine {
 		//事件
 		this.initEvents()
 
+		console.log('window.innerWidth',window.innerWidth)
+		console.log('window.innerHeight',window.innerHeight)
 		//板块
 		plane = this.initPlane(planeSize);
 		plane.position.set(-5, -5, -5);
 		plane.receiveShadow = true;
 		// vm.scene.add(plane);
 
-		for (let i = 0; i < vm.len; i++) {
-			vm.snake[i] = {}
-			vm.snake[i].x = vm.headX + i * vm.directionX[3 - vm.headForward];
-			vm.snake[i].y = vm.headY + i * vm.directionY[3 - vm.headForward];
-			vm.cube[i] = this.initCube(vm.snakeVolumn, vm.snakeVolumn, vm.snakeVolumn);
-			vm.cube[i].position.x = vm.snake[i].x * vm.speed - vm.startX;
-			vm.cube[i].position.y = -vm.snake[i].y * vm.speed + vm.startY;
-			vm.cube[i].castShadow = true;
-			vm.scene.add(vm.cube[i]);
-		}
+		this.initSnake()
+
 		this.run()
 
 		//调整屏幕
@@ -98,9 +92,9 @@ export default class gameDanceLine {
 	}
 
 	initCamera() {
-		vm.camera = new THREE.PerspectiveCamera(45, 0.5, 1, 10000);
-		// vm.camera.position.set(-480, -450, 1450);  //3参数越小，离表面越近 //俯视的高度
-		vm.camera.position.set(-480, -450, 550);
+		vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 10000);
+		vm.camera.position.set(-480, -450, 1750);  //3参数越小，离表面越近 //俯视的高度
+		// vm.camera.position.set(-480, -450, 680);
 		vm.camera.up.x = 0;
 		vm.camera.up.y = 0;
 		vm.camera.up.z = 1;
@@ -144,7 +138,7 @@ export default class gameDanceLine {
 
 	initAudio() {
 		vm.innerAudioContext = wx.createInnerAudioContext()
-		vm.innerAudioContext.src = this.musicSrc;
+		vm.innerAudioContext.src = config.musicSrc;
 	}
 
 	initMesh(block, geometry, material, scale, name, opacity) {
@@ -154,7 +148,7 @@ export default class gameDanceLine {
 		mesh.scale.x = mesh.scale.y = mesh.scale.z = scale
 		mesh.translation = geometry.center()
 		//物体速度变化，要调整相应的路障位置，x越大，越左；y越大，越上
-		mesh.position.set(block.x - 8 * vm.speed, block.y + 42 * vm.speed, block.z) //z:距离平面高度
+		mesh.position.set(block.x - 8 * vm.snakeSpeed, block.y + 42 * vm.snakeSpeed, block.z) //z:距离平面高度
 		mesh.rotation.set(block.rotationX, block.rotationY, block.rotationZ)
 		mesh.animated = false
 		mesh.msort = block.msort || 0
@@ -170,6 +164,37 @@ export default class gameDanceLine {
 		})
 	}
 
+	initSnake() {
+		if(!vm.len) return
+		const duration = 0.5,
+			delay = 0.5
+		for (let i = 0; i < vm.len; i++) {
+			vm.snake[i] = {}
+			vm.snake[i].x = vm.headX + i * vm.directionX[3 - vm.headForward]
+			vm.snake[i].y = vm.headY + i * vm.directionY[3 - vm.headForward]
+			vm.cube[i] = this.initCube(vm.snakeVolumn, vm.snakeVolumn, vm.snakeVolumn/1.3)
+			vm.cube[i].position.x = vm.snake[i].x * vm.snakeSpeed - vm.startX
+			vm.cube[i].position.y = -vm.snake[i].y * vm.snakeSpeed + vm.startY
+			vm.cube[i].castShadow = true
+			vm.cube[i].visible = false
+			vm.scene.add(vm.cube[i])
+			new __TWEEN.Tween({scale: 0, rotation: 0, mesh: vm.cube[0]})
+				.to({
+					scale: 1,
+					rotation: 0.5* Math.PI
+				}, duration)
+				.delay(delay)
+				.onUpdate(function() {
+					this.mesh.scale.z = this.scale
+					this.mesh.rotation.z = this.rotation
+				})
+				.onStart(function () {
+					this.mesh.visible = true;
+				})
+				.start()
+		}
+	}
+
 	initEvents() {
 		document.addEventListener('touchstart', this.onTouchStart, false);
 		document.addEventListener('resize', this.onWindowResize, false);
@@ -183,20 +208,17 @@ export default class gameDanceLine {
 	render() {
 		//运动的位置随速度变化
 		for (let i = 0; i < vm.len; ++i) {
-			vm.cube[i].position.x = vm.snake[i].x * vm.speed - vm.startX;
-			vm.cube[i].position.y = -vm.snake[i].y * vm.speed + vm.startY;
+			vm.cube[i].position.x = vm.snake[i].x * vm.snakeSpeed - vm.startX;
+			vm.cube[i].position.y = -vm.snake[i].y * vm.snakeSpeed + vm.startY;
 			vm.cube[i].position.z = 12;
 		}
 		//相机随着线的运动，镜头跟着走
-		const offest = 350,
+		const offest = 400,
 			zAsc = 0.08 //夹角增量
 		vm.camera.position.x = vm.cube[0].position.x - offest
 		vm.camera.position.y = vm.cube[0].position.y - offest
 		!vm.pauseFlag && (vm.camera.position.z += zAsc)
 		vm.renderer.render(vm.scene, vm.camera);
-
-		// //检测碰撞
-		// !vm.pauseFlag && this.checkCollision()
 	}
 
 	getMove() {
@@ -206,7 +228,7 @@ export default class gameDanceLine {
 			vm.snake[vm.len] = {}
 			vm.snake[vm.len].x = vm.snake[vm.len - 1].x;
 			vm.snake[vm.len].y = vm.snake[vm.len - 1].y;
-			vm.cube[vm.len] = this.initCube(vm.snakeVolumn, vm.snakeVolumn, vm.snakeVolumn);
+			vm.cube[vm.len] = this.initCube(vm.snakeVolumn, vm.snakeVolumn, vm.snakeVolumn/1.3);
 			vm.scene.add(vm.cube[vm.len]);
 			vm.len++;
 		}
@@ -219,7 +241,7 @@ export default class gameDanceLine {
 	}
 
 	run() {
-		this.aRequest = window.requestAnimationFrame(this.run.bind(this), canvas)
+		vm.aRequest = window.requestAnimationFrame(this.run.bind(this), canvas)
 		// vm.now = Date.now();
 		// vm.delta = vm.now - vm.then;
 		// if (vm.delta > 1000 / vm.fps) {
@@ -232,11 +254,11 @@ export default class gameDanceLine {
 		if (!vm.pauseFlag) {
 			this.getMove()
 			this.checkCollision()
-			// this.animates()
 		}
 		this.render()
 		this.animates()
-		vm.end && window.cancelAnimationFrame(this.aRequest)
+		vm.end && window.cancelAnimationFrame(vm.aRequest)
+		__TWEEN.update()
 	}
 
 	changeFoodPosition(food) {
@@ -281,13 +303,7 @@ export default class gameDanceLine {
 
 	animates() {
 		calval.foodMesh && this.animateFood(calval.foodMesh)
-		calval.sortMeshs && calval.sortMeshs.length>0 && this.animateBlocks(calval.sortMeshs[vm.blockAnimateIndex])
-		// const msortModels = vm.models.filter(model => model.msort !== 0)
-		// msortModels.sort((a, b) => {
-		// 		if(a.msort > b.msort) return 1
-		// 		else if(a.msort < b.msort) return -1
-		// 	})
-		// this.animateBlocks(msortModels[vm.blockAnimateIndex])
+		!vm.pauseFlag && calval.sortMeshs && calval.sortMeshs.length>0 && this.animateBlocks(calval.sortMeshs[vm.blockAnimateIndex])
 	}
 
 	animateFood(food) {
@@ -304,18 +320,18 @@ export default class gameDanceLine {
 		if(!block) return
 		// console.log('block1', block)
 		const rotate = 0.01,
-			speed = 3
+			animateSpeed = 3
 		if(block.direction === 0) {  //左边块
 			if(!block.animated && block.rotation.z >= rotate*Math.PI) {
 				block.animated = true
 			} else if (!block.animated) {
 				block.rotation.z += 0.002
 			} else if (block.animated && block.rotation.z >= 0) {
-				if(block.rotation.z < 0.001* speed) {  //回到原位
+				if(block.rotation.z < 0.001* animateSpeed) {  //回到原位
 					block.animated = false
 					vm.blockAnimateIndex++
 				}
-				block.rotation.z -= 0.001* speed
+				block.rotation.z -= 0.001* animateSpeed
 			}
 		} else if (block.direction === 1) {  //右边块
 			if(!block.animated && block.rotation.z <= -rotate*Math.PI) {
@@ -323,11 +339,11 @@ export default class gameDanceLine {
 			} else if (!block.animated) {
 				block.rotation.z -= 0.002
 			} else if (block.animated && block.rotation.z <= 0) {
-				if(block.rotation.z > -0.001* speed) {
+				if(block.rotation.z > -0.001* animateSpeed) {
 					block.animated = false
 					vm.blockAnimateIndex++
 				}
-				block.rotation.z += 0.001* speed
+				block.rotation.z += 0.001* animateSpeed
 			}
 		}
 	}

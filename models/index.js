@@ -1,16 +1,24 @@
-import { barricades } from "./barricades";
+import { barricades } from "./barricades"
+import { leftbarricades } from "./leftbarricades"
 import { foodOffests } from './foodoffest'
 import { whiteThickblocks } from './thickblock'
 import { whiteMiddleblocks } from './middleblock'
 import { whiteFineblocks } from './fineblock'
 
 const materials = [
+	{  //开始左横条
+		name: 'LEFT_BARRICADE',
+		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/13.json",
+		material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
+		blocks: leftbarricades,
+		scale: 11
+	},
 	{  //钢琴横条
 		name: 'BARRICADE',
 		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/barricade.json",
 		material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
 		blocks: barricades,
-		scale: 10
+		scale: 11
 	},
 	{  //钢琴粗白块
 		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/whitethickblock.json",
