@@ -6,7 +6,7 @@ const offest = 1400,
 	middleWidth = 78,
 	fineWidth = 43,
 	offestX = 8,
-	yOffest = 4,
+	yOffest = 2,
 	rotationY = 1.6
 export const whiteThickblocks = [
 	//左黑块模型
@@ -15,6 +15,18 @@ export const whiteThickblocks = [
 	},
 	{  //2
 		x: -140+width, y: 440-yOffest, z: 0, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
+	{  //12
+		x: -140+2*thickWidth+4*middleWidth+5*fineWidth-8*offestX, y: 1320, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
+	{  //15
+		x: -140+3*thickWidth+4*middleWidth+7*fineWidth-10*offestX, y: 1415, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
+	{  //16
+		x: -140+4*thickWidth+4*middleWidth+7*fineWidth-10*offestX, y: 1450, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
+	{  //17
+		x: -140+5*thickWidth+4*middleWidth+7*fineWidth-10*offestX, y: 1485, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
 	},
 
 

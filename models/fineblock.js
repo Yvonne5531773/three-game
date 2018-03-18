@@ -20,6 +20,15 @@ export const whiteFineblocks = [
 	{  //9
 		x: -140+thickWidth+2*middleWidth+5*fineWidth-4*offestX, y: 960, z: 0, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
 	},
+	{  //13
+		x: -140+2*thickWidth+4*middleWidth+6*fineWidth-6*offestX, y: 1440, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
+	{  //14
+		x: -140+2*thickWidth+4*middleWidth+7*fineWidth-7*offestX, y: 1440, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
+	{  //19
+		x: -140+5*thickWidth+5*middleWidth+8*fineWidth-9*offestX, y: 1505, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
 
 	{
 		x: 33+offest, y: 550+offest, z: 0, rotationX: -1.6, rotationY: 1.6, rotationZ: 0

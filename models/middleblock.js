@@ -15,6 +15,15 @@ export const whiteMiddleblocks = [
 	{  //10
 		x: -140+thickWidth+3*middleWidth+5*fineWidth-6*offestX, y: 1220, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
 	},
+	{  //11
+		x: -140+thickWidth+4*middleWidth+5*fineWidth-7*offestX, y: 1280, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
+	{  //18
+		x: -140+5*thickWidth+5*middleWidth+7*fineWidth-10*offestX, y: 1495, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
+	{  //20
+		x: -140+5*thickWidth+6*middleWidth+8*fineWidth-12*offestX, y: 1490, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
 
 	{  //右二
 		x: 598+offest, y: -150+offest, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 2, direction: 1

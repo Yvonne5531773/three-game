@@ -1,6 +1,7 @@
 'use strict'
 
 import '../libs/weapp-adapter'
+import { audio } from '../utils/index'
 import threeDep from '../utils/parse'
 import model from '../models/index'
 import config from '../config/index'
@@ -93,13 +94,13 @@ export default class gameDanceLine {
 
 	initCamera() {
 		vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 10000);
-		vm.camera.position.set(-480, -450, 1750);  //3参数越小，离表面越近 //俯视的高度
+		vm.camera.position.set(-480, -450, 2150);  //3参数越小，离表面越近 //俯视的高度
 		// vm.camera.position.set(-480, -450, 680);
 		vm.camera.up.x = 0;
 		vm.camera.up.y = 0;
 		vm.camera.up.z = 1;
-		vm.camera.lookAt({x: -30, y: 0, z: -100})  //z: 视觉高度
-		// vm.camera.lookAt({x: 250, y: 0, z: -200})
+		vm.camera.lookAt({x: 830, y: 800, z: -100})
+		// vm.camera.lookAt({x: -30, y: 0, z: -100})  //z: 视觉高度
 	}
 
 	initLight() {
@@ -297,7 +298,7 @@ export default class gameDanceLine {
 		this.destoryEvents()
 		setTimeout(() => {
 			// location.reload()
-			vm.innerAudioContext.destroy()
+			audio(2, vm.innerAudioContext)
 		}, 1000)
 	}
 
@@ -350,7 +351,7 @@ export default class gameDanceLine {
 
 	onTouchStart(event) {
 		vm.pauseFlag && (vm.pauseFlag = false)
-		vm.clickCount === 0 && vm.innerAudioContext.play();
+		vm.clickCount === 0 && audio(1, vm.innerAudioContext)
 		vm.clickCount % 2 === 0 && (vm.headForward = 2)
 		vm.clickCount % 2 === 1 && (vm.headForward = 3)
 		vm.clickCount++
