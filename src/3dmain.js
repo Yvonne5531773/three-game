@@ -93,13 +93,13 @@ export default class gameDanceLine {
 	}
 
 	initCamera() {
-		vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 10000);
-		vm.camera.position.set(-480, -450, 2150);  //3参数越小，离表面越近 //俯视的高度
-		// vm.camera.position.set(-480, -450, 680);
-		vm.camera.up.x = 0;
-		vm.camera.up.y = 0;
-		vm.camera.up.z = 1;
-		vm.camera.lookAt({x: 830, y: 800, z: -100})
+		vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 10000)
+		vm.camera.position.set(-480, -450, 2250);  //3参数越小，离表面越近 //俯视的高度
+		// vm.camera.position.set(-480, -450, 680)
+		vm.camera.up.x = 0
+		vm.camera.up.y = 0
+		vm.camera.up.z = 1
+		vm.camera.lookAt({x: 1830, y: 1800, z: -1900})
 		// vm.camera.lookAt({x: -30, y: 0, z: -100})  //z: 视觉高度
 	}
 
@@ -209,9 +209,9 @@ export default class gameDanceLine {
 	render() {
 		//运动的位置随速度变化
 		for (let i = 0; i < vm.len; ++i) {
-			vm.cube[i].position.x = vm.snake[i].x * vm.snakeSpeed - vm.startX;
-			vm.cube[i].position.y = -vm.snake[i].y * vm.snakeSpeed + vm.startY;
-			vm.cube[i].position.z = 12;
+			vm.cube[i].position.x = vm.snake[i].x * vm.snakeSpeed - vm.startX
+			vm.cube[i].position.y = -vm.snake[i].y * vm.snakeSpeed + vm.startY
+			vm.cube[i].position.z = 0
 		}
 		//相机随着线的运动，镜头跟着走
 		const offest = 400,

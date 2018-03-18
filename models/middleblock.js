@@ -7,22 +7,41 @@ const offest = 1400,
 	rotationY = 1.6
 export const whiteMiddleblocks = [
 	{  //3
-		x: -140+thickWidth+middleWidth, y: 540, z: 0, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+		x: -140+thickWidth+middleWidth-.3*offestX, y: 540, z: 0, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
 	},
 	{  //4
-		x: -140+thickWidth+2*middleWidth-offestX, y: 620, z: 0, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+		x: -140+thickWidth+2*middleWidth-2*offestX, y: 620, z: 0, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
 	},
 	{  //10
-		x: -140+thickWidth+3*middleWidth+5*fineWidth-6*offestX, y: 1220, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+		x: -140+thickWidth+3*middleWidth+5*fineWidth-7*offestX, y: 1220, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
 	},
 	{  //11
-		x: -140+thickWidth+4*middleWidth+5*fineWidth-7*offestX, y: 1280, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+		x: -140+thickWidth+4*middleWidth+5*fineWidth-9*offestX, y: 1280, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
 	},
 	{  //18
-		x: -140+5*thickWidth+5*middleWidth+7*fineWidth-10*offestX, y: 1495, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+		x: -140+5*thickWidth+5*middleWidth+7*fineWidth-11*offestX, y: 1495, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
 	},
 	{  //20
-		x: -140+5*thickWidth+6*middleWidth+8*fineWidth-12*offestX, y: 1490, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+		x: -140+5*thickWidth+6*middleWidth+8*fineWidth-13*offestX, y: 1490, z: -15, rotationX: -1.6, rotationY: rotationY, rotationZ: 0
+	},
+
+	{  //2
+		x: 690, y: -120+middleWidth-.5*offestX, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+	},
+	{  //3
+		x: 770, y: -120+2*middleWidth-2*offestX, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+	},
+	{  //10
+		x: 965, y: -120+3*thickWidth+3*middleWidth+3*fineWidth-7*offestX, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+	},
+	{  //12
+		x: 970, y: -120+3*thickWidth+4*middleWidth+4*fineWidth-10*offestX, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+	},
+	{  //13
+		x: 1050, y: -120+3*thickWidth+5*middleWidth+4*fineWidth-11.5*offestX, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+	},
+	{  //14
+		x: 1120, y: -120+3*thickWidth+6*middleWidth+4*fineWidth-13*offestX, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
 	},
 
 	{  //右二
