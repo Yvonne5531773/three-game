@@ -94,13 +94,13 @@ export default class gameDanceLine {
 
 	initCamera() {
 		vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 10000)
-		vm.camera.position.set(-480, -450, 2250);  //3参数越小，离表面越近 //俯视的高度
+		vm.camera.position.set(-80, -50, 2250);  //3参数越小，离表面越近 //俯视的高度
 		// vm.camera.position.set(-480, -450, 680)
 		vm.camera.up.x = 0
 		vm.camera.up.y = 0
 		vm.camera.up.z = 1
 		// vm.camera.lookAt({x: 830, y: 800, z: -900})
-		vm.camera.lookAt({x: 2830, y: 2800, z: -2900})
+		vm.camera.lookAt({x: 9830, y: 9800, z: -14000})
 		// vm.camera.lookAt({x: -30, y: 0, z: -100})  //z: 视觉高度
 	}
 

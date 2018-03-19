@@ -5,7 +5,8 @@ const offest = 1200,
 	offestX = 8,
 	offestY = 8,
 	rotationX = 1.6,
-	rotationY = 1.6
+	rotationY = 1.6,
+	z = -10
 export const whiteFineblocks = [
 	{  //L3
 		x: -244+2*middleWidth+fineWidth+offest, y: 412+offest+12*offestY, z: -10, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
@@ -17,13 +18,23 @@ export const whiteFineblocks = [
 		x: -244+2*middleWidth+3*fineWidth+offest-2.4*offestX, y: 412+offest+20*offestY, z: -10, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
 	},
 	{  //L6
-		x: -244+2*middleWidth+4*fineWidth+offest-3.6*offestX, y: 412+offest+28*offestY, z: -10, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
+		x: -244+2*middleWidth+4*fineWidth+offest-3.6*offestX, y: 412+offest+34*offestY, z: -10, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
 	},
 	{  //L7
-		x: -244+2*middleWidth+5*fineWidth+offest-4.8*offestX, y: 412+offest+36*offestY, z: -10, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
+		x: -244+2*middleWidth+5*fineWidth+offest-4.8*offestX, y: 412+offest+44*offestY, z: -10, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
 	},
+
 	{  //R4
-		x: 380+offest+18*offestX, y: -275+thickWidth+middleWidth+fineWidth+offest-1.8*offestY, z: 0, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+		x: 380+offest+19.8*offestX, y: -275+thickWidth+middleWidth+fineWidth+offest-1.8*offestY, z: z, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+	},
+	{  //R5
+		x: 380+offest+31*offestX, y: -275+thickWidth+middleWidth+2*fineWidth+offest-3.2*offestY, z: z, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+	},
+	{  //R6
+		x: 380+offest+31*offestX, y: -275+thickWidth+middleWidth+3*fineWidth+offest-4.4*offestY, z: z, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+	},
+	{  //R11
+		x: 380+offest+44*offestX, y: -275+4*thickWidth+2*middleWidth+4*fineWidth+offest-6*offestY, z: z, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
 	},
 	// {
 	// 	x: 33+offest, y: 550+offest, z: 0, rotationX: -1.6, rotationY: 1.6, rotationZ: 0
