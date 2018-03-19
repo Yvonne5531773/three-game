@@ -39,13 +39,15 @@ const materials = [
 		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/whitemiddleblocks.json",
 		material: {color: '#fff'},
 		blocks: firstleft.whiteMiddleblocks.concat(firstright.whiteMiddleblocks).concat(central.whiteMiddleblocks),
-		scale: 11
+		scale: 11,
+		name: 'WHITE_MIDDLE_BLOCKS'
 	},
 	{  //钢琴细白块
 		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/whitefineblocks.json",
 		material: {color: '#fff'},
 		blocks: firstleft.whiteFineblocks.concat(firstright.whiteFineblocks).concat(central.whiteFineblocks),
-		scale: 11
+		scale: 11,
+		name: 'WHITE_FINE_BLOCKS'
 	},
 	{  //食物
 		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/food.json",

@@ -5,6 +5,6 @@ const offest = 0,
 //z:距离平面的高度; width = 20
 export const leftbarricades = [
 	{
-		x: 375+offest, y: 1200+offest, z: 15, rotationX: rotationX, rotationY: rotationY, rotationZ: rotationZ
+		x: 365+offest, y: 1200+offest, z: 10, rotationX: rotationX, rotationY: rotationY, rotationZ: rotationZ
 	}
 ]
