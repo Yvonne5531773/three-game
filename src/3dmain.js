@@ -99,7 +99,7 @@ export default class gameDanceLine {
 		vm.camera.up.x = 0
 		vm.camera.up.y = 0
 		vm.camera.up.z = 1
-		vm.camera.lookAt({x: 1830, y: 1800, z: -1900})
+		vm.camera.lookAt({x: 2830, y: 2800, z: -2900})
 		// vm.camera.lookAt({x: -30, y: 0, z: -100})  //z: 视觉高度
 	}
 

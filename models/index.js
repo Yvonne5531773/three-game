@@ -1,10 +1,10 @@
-import { barricades } from "./barricades"
-import { leftbarricades } from "./leftbarricades"
-import { rightbarricades } from "./rightbarricades"
-import { foodOffests } from './foodoffest'
-import { whiteThickblocks } from './thickblock'
-import { whiteMiddleblocks } from './middleblock'
-import { whiteFineblocks } from './fineblock'
+import { barricades } from "./central/barricades"
+import { leftbarricades } from "./firstleft/leftbarricades"
+import { rightbarricades } from "./firstright/rightbarricades"
+import { foodOffests } from './food/foodoffest'
+import firstleft from './firstleft/index'
+import firstright from './firstright/index'
+import central from './central/index'
 
 const materials = [
 	{  //开始左横条
@@ -31,20 +31,20 @@ const materials = [
 	{  //钢琴粗白块
 		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/whitethickblock.json",
 		material: {color: '#fff'},
-		blocks: whiteThickblocks,
+		blocks: firstleft.whiteThickblocks.concat(firstright.whiteThickblocks).concat(central.whiteThickblocks),
 		scale: 11,
 		name: 'WHITE_THICK_BLOCKS'
 	},
 	{  //钢琴中白块
 		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/whitemiddleblocks.json",
 		material: {color: '#fff'},
-		blocks: whiteMiddleblocks,
+		blocks: firstleft.whiteMiddleblocks.concat(firstright.whiteMiddleblocks).concat(central.whiteMiddleblocks),
 		scale: 11
 	},
 	{  //钢琴细白块
 		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/whitefineblocks.json",
 		material: {color: '#fff'},
-		blocks: whiteFineblocks,
+		blocks: firstleft.whiteFineblocks.concat(firstright.whiteFineblocks).concat(central.whiteFineblocks),
 		scale: 11
 	},
 	{  //食物
@@ -58,9 +58,5 @@ const materials = [
 
 export default {
 	materials,
-	barricades,
 	foodOffests,
-	whiteThickblocks,
-	whiteMiddleblocks,
-	whiteFineblocks
 }
