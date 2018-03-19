@@ -22,6 +22,15 @@ export const whiteMiddleblocks = [
 	{  //L8
 		x: -244+4*middleWidth+5*fineWidth+offest-9.5*offestX, y: 412+offest+82*offestY, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
 	},
+	{  //L13
+		x: -244+2*thickWidth+5*middleWidth+7*fineWidth+offest-12*offestX, y: 412+offest+102*offestY, z: z, rotationX: -rotationX, rotationY: 1.6, rotationZ: 0
+	},
+	{  //L15
+		x: -244+3*thickWidth+6*middleWidth+8*fineWidth+offest-15*offestX, y: 412+offest+109.5*offestY, z: z, rotationX: -rotationX, rotationY: 1.6, rotationZ: 0
+	},
+	{  //L17
+		x: -244+3*thickWidth+7*middleWidth+9*fineWidth+offest-17*offestX, y: 412+offest+109*offestY, z: z, rotationX: -rotationX, rotationY: 1.6, rotationZ: 0
+	},
 
 	{  //R2
 		x: 380+offest+11*offestX, y: -275+thickWidth+offest-offestY, z: z, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
@@ -38,6 +47,10 @@ export const whiteMiddleblocks = [
 	{  //R13
 		x: 380+offest+50*offestX, y: -275+4*thickWidth+4*middleWidth+4*fineWidth+offest-11.2*offestY, z: z, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
 	},
+	{  //R13
+		x: 380+offest+60*offestX, y: -275+4*thickWidth+5*middleWidth+4*fineWidth+offest-12.8*offestY, z: z, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 1, direction: 1
+	},
+
 	// {  //右二
 	// 	x: 598+offest, y: -150+offest, z: 10, rotationX: 1.6, rotationY: 3.14, rotationZ: 0, msort: 2, direction: 1
 	// },
