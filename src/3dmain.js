@@ -53,12 +53,15 @@ let plane, planeSize = 400 //地板范围
 export default class gameDanceLine {
 	constructor() {
 		this.init()
+		this.run()
+		//调整屏幕
+		this.onWindowResize()
 	}
 
 	init() {
+		//方块常量
 		vm.geometry = new THREE.BoxGeometry(vm.snakeVolumn, vm.snakeVolumn, vm.snakeVolumn / 1.3)
 		vm.material = new THREE.MeshLambertMaterial({color: '#ffb463'})
-
 		//渲染
 		this.initRender()
 		vm.scene = new THREE.Scene()
@@ -72,21 +75,15 @@ export default class gameDanceLine {
 		this.initLight()
 		//事件
 		this.initEvents()
-
+		//运动方块块
+		this.initSnake()
+		//初始化开始位置
+		this.setInitCubePosition({x: vm.cube[0].position.x, y: vm.cube[0].position.y})
 		//板块
 		// plane = this.initPlane(planeSize);
 		// plane.position.set(-5, -5, -5);
 		// plane.receiveShadow = true;
 		// vm.scene.add(plane);
-
-		this.initSnake()
-
-		this.run()
-
-		//调整屏幕
-		this.onWindowResize()
-		//初始化开始位置
-		this.setInitCubePosition({x: vm.cube[0].position.x, y: vm.cube[0].position.y})
 	}
 
 	initRender() {
