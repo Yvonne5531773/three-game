@@ -146,29 +146,26 @@ export default class gameDanceLine {
 						url = mate.url,
 						blocks = mate.blocks,
 						object = threeDep.threeParse(json, url),
-						materials = mate.material ? mate.material : object.materials
-					if (blocks instanceof Array) {
-						blocks.forEach((block) => {
-							this.initMesh({
-								block: block,
-								geometry: object.geometry,
-								material :new THREE.MeshLambertMaterial(materials),
-								scale: mate.scale,
-								name: mate.name,
-								opacity: mate.opacity
-							})
-						})
-					} else {
-						this.initMesh({
-							block: blocks,
+						materials = mate.material ? mate.material : object.materials,
+						param = {
 							geometry: object.geometry,
 							material :new THREE.MeshLambertMaterial(materials),
 							scale: mate.scale,
 							name: mate.name,
 							opacity: mate.opacity
+						}
+					if (blocks instanceof Array) {
+						blocks.forEach((block) => {
+							param.block = block
+							this.initMesh(param)
 						})
+					} else {
+						param.block = blocks
+						this.initMesh(param)
 					}
 				}
+			}).catch((err) => {
+				console.log('error:', err)
 			})
 		})
 	}
