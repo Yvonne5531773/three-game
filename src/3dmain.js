@@ -1,7 +1,7 @@
 'use strict'
 
 import '../libs/weapp-adapter'
-import { audio } from '../utils/index'
+import { audio, submitRequest } from '../utils/index'
 import threeDep from '../utils/parse'
 import model from '../models/index'
 import config from '../config/index'
@@ -84,6 +84,7 @@ export default class gameDanceLine {
 		// plane.position.set(-5, -5, -5);
 		// plane.receiveShadow = true;
 		// vm.scene.add(plane);
+
 	}
 
 	initRender() {
@@ -138,8 +139,37 @@ export default class gameDanceLine {
 	}
 
 	initMaterials() {
-		model.materials.forEach((material) => {
-			this.submitRequest(material)
+		model.materials.forEach((mate) => {
+			submitRequest({url: mate.url}).then((res) =>{
+				if(res) {
+					const json = res,
+						url = mate.url,
+						blocks = mate.blocks,
+						object = threeDep.threeParse(json, url),
+						materials = mate.material ? mate.material : object.materials
+					if (blocks instanceof Array) {
+						blocks.forEach((block) => {
+							this.initMesh({
+								block: block,
+								geometry: object.geometry,
+								material :new THREE.MeshLambertMaterial(materials),
+								scale: mate.scale,
+								name: mate.name,
+								opacity: mate.opacity
+							})
+						})
+					} else {
+						this.initMesh({
+							block: blocks,
+							geometry: object.geometry,
+							material :new THREE.MeshLambertMaterial(materials),
+							scale: mate.scale,
+							name: mate.name,
+							opacity: mate.opacity
+						})
+					}
+				}
+			})
 		})
 	}
 
@@ -148,7 +178,7 @@ export default class gameDanceLine {
 		vm.innerAudioContext.src = config.musicSrc
 	}
 
-	initMesh(block, geometry, material, scale, name, opacity) {
+	initMesh({block, geometry, material, scale, name, opacity}) {
 		const mesh = new THREE.Mesh(geometry, material)
 		mesh.name = name
 		// mesh.opacity = opacity
@@ -162,7 +192,7 @@ export default class gameDanceLine {
 		mesh.updateMatrix()
 		vm.scene.add(mesh)
 		vm.models.push(mesh)
-		//初始化计算的Mesh
+		//初始化Mesh
 		calval.foodMesh = vm.models.find(model => model.name === 'FOOD')
 		calval.sortMeshs = vm.models.filter(model => model.msort !== 0)
 		calval.sortMeshs.sort((a, b) => {
@@ -412,28 +442,6 @@ export default class gameDanceLine {
 		vm.renderer.setSize(width, height)
 		vm.camera.aspect = width / height
 		vm.camera.updateProjectionMatrix()
-	}
-
-	submitRequest({url = '', material = null, blocks = [], scale = '', name = '', opacity = 1}) {
-		const that = this
-		const request = new XMLHttpRequest()
-		request.open('get', url)
-		request.send()
-		request.onreadystatechange = function () {
-			if (request.readyState === 4) {
-				const json = JSON.parse(request.responseText),
-					object = threeDep.threeParse(json, url),
-					geometry = object.geometry,
-					materials = material ? material : object.materials
-				if (blocks instanceof Array) {
-					blocks.forEach((block) => {
-						that.initMesh(block, geometry, new THREE.MeshLambertMaterial(materials), scale, name, opacity)
-					})
-				} else {
-					that.initMesh(blocks, geometry, new THREE.MeshLambertMaterial(materials), scale, name, opacity)
-				}
-			}
-		}
 	}
 
 	setInitCubePosition ({x, y}) {
