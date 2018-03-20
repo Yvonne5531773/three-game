@@ -1,8 +1,7 @@
 'use strict'
 
 import '../libs/weapp-adapter'
-import { audio, submitRequest } from '../utils/index'
-import threeDep from '../utils/parse'
+import { audio, submitRequest, threeParse } from '../utils/index'
 import model from '../models/index'
 import config from '../config/index'
 import { __TWEEN } from '../libs/tween'
@@ -144,7 +143,7 @@ export default class gameDanceLine {
 					const json = res,
 						url = mate.url,
 						blocks = mate.blocks,
-						object = threeDep.threeParse(json, url),
+						object = threeParse(json, url),
 						materials = mate.material ? mate.material : object.materials,
 						param = {
 							geometry: object.geometry,
