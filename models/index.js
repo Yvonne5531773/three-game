@@ -9,19 +9,19 @@ import central from './central/index'
 const materials = [
 	{  //开始左横条
 		name: 'LEFT_BARRICADE',
-		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/13.json",
+		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/leftbarricade.json",
 		material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
 		blocks: leftbarricades,
 		scale: 11
 	},
 	{  //开始右横条
 		name: 'RIGHT_BARRICADE',
-		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/4.json",
+		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/rightbarricade.json",
 		material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
 		blocks: rightbarricades,
 		scale: 11
 	},
-	{  //钢琴横条
+	{  //中部横条
 		name: 'BARRICADE',
 		url: "http://act.cmcmcdn.com/liebao/wechatGame/danceline/materials/barricade.json",
 		material: {color: '#9c9c9c', transparent: false, opacity: 0.1},

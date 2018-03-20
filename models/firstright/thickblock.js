@@ -4,20 +4,22 @@ const thickWidth = 85,
 	middleWidth = 78,
 	fineWidth = 43,
 	offest = 8,
-	rotationY = 3.14,
+	rotationX = Math.PI* 0.5,
+	rotationY = Math.PI,
 	offestX = -10,
-	offestY = 20
+	offestY = 20,
+	z = 0
 export const whiteThickblocks = [
 	{  //1
-		x: 590+offestX, y: -120+offestY, z: -10, rotationX: 1.6, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 740+offestX, y: -20+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //7
-		x: 855+offestX, y: -120+thickWidth+2*middleWidth+3*fineWidth-7*offest+offestY, z: -10, rotationX: 1.6, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 1005+offestX, y: -20+thickWidth+2*middleWidth+3*fineWidth-7*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //8
-		x: 900+offestX, y: -120+2*thickWidth+2*middleWidth+3*fineWidth-6.8*offest+offestY, z: -10, rotationX: 1.6, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 1050+offestX, y: -20+2*thickWidth+2*middleWidth+3*fineWidth-6.8*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //9
-		x: 950+offestX, y: -120+3*thickWidth+2*middleWidth+3*fineWidth-6.5*offest+offestY, z: -10, rotationX: 1.6, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 1100+offestX, y: -20+3*thickWidth+2*middleWidth+3*fineWidth-6.5*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 ]
