@@ -4,6 +4,6 @@ const offest = 1200,
 	rotationZ = 0
 export const barricades = [
 	{
-		x: 720+offest, y: 760+offest, z: 15, rotationX: rotationX, rotationY: rotationY, rotationZ: rotationZ
+		x: 710+offest, y: 760+offest, z: 15, rotationX: rotationX, rotationY: rotationY, rotationZ: rotationZ
 	}
 ]

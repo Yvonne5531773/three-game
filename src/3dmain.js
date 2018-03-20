@@ -43,14 +43,14 @@ const vm = {
 	initMaterial: {}
 }
 
-const calval = {
-	foodMesh: {},
-	sortMeshs: []
-}
-
 let plane, planeSize = 400 //地板范围
 
 export default class gameDanceLine {
+	calval = {
+		foodMesh: null,
+		sortMeshs: null
+	}
+
 	constructor() {
 		this.init()
 		this.run()
@@ -84,7 +84,6 @@ export default class gameDanceLine {
 		// plane.position.set(-5, -5, -5);
 		// plane.receiveShadow = true;
 		// vm.scene.add(plane);
-
 	}
 
 	initRender() {
@@ -189,13 +188,6 @@ export default class gameDanceLine {
 		mesh.updateMatrix()
 		vm.scene.add(mesh)
 		vm.models.push(mesh)
-		//初始化Mesh
-		calval.foodMesh = vm.models.find(model => model.name === 'FOOD')
-		calval.sortMeshs = vm.models.filter(model => model.msort !== 0)
-		calval.sortMeshs.sort((a, b) => {
-			if(a.msort > b.msort) return 1
-			else if(a.msort < b.msort) return -1
-		})
 	}
 
 	initSnake() {
@@ -225,6 +217,17 @@ export default class gameDanceLine {
 					this.mesh.visible = true;
 				})
 				.start()
+		}
+	}
+
+	initCalVals() {
+		if(vm.models.length>0 && !this.calval.foodMesh && !this.calval.sortMeshs) {
+			this.calval.foodMesh = vm.models.find(model => model.name === 'FOOD')
+			this.calval.sortMeshs = vm.models.filter(model => model.msort !== 0)
+			this.calval.sortMeshs.sort((a, b) => {
+				if(a.msort > b.msort) return 1
+				else if(a.msort < b.msort) return -1
+			})
 		}
 	}
 
@@ -258,7 +261,10 @@ export default class gameDanceLine {
 		vm.camera.position.x = vm.cube[0].position.x - offest
 		vm.camera.position.y = vm.cube[0].position.y - offest
 		!vm.pauseFlag && (vm.camera.position.z += zAsc)
-		vm.renderer.render(vm.scene, vm.camera);
+		vm.renderer.render(vm.scene, vm.camera)
+
+		//初始化Mesh分类的数组
+		this.initCalVals()
 	}
 
 	getMove() {
@@ -353,8 +359,8 @@ export default class gameDanceLine {
 	}
 
 	animates() {
-		calval.foodMesh && this.animateFood(calval.foodMesh)
-		!vm.pauseFlag && calval.sortMeshs && calval.sortMeshs.length>0 && this.animateBlocks(calval.sortMeshs[vm.blockAnimateIndex])
+		this.calval.foodMesh && this.animateFood(this.calval.foodMesh)
+		!vm.pauseFlag && this.calval.sortMeshs && this.calval.sortMeshs.length>0 && this.animateBlocks(this.calval.sortMeshs[vm.blockAnimateIndex])
 	}
 
 	animateFood(food) {
