@@ -34,7 +34,7 @@ export const whiteFineblocks = [
 		x: -100+2*thickWidth+5*middleWidth+8*fineWidth+offest-13*offestX, y: 502+offest+108*offestY, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
 	},
 	{  //L18
-		x: -100+3*thickWidth+6*middleWidth+9*fineWidth+offest-16*offestX, y: 502+offest+111*offestY, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
+		x: -100+3*thickWidth+6*middleWidth+9*fineWidth+offest-16*offestX, y: 502+offest+111.2*offestY, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
 	},
 
 	{  //R4

@@ -1,5 +1,3 @@
-const THREE = require('../libs/three.min')
-
 export const audio = (action, innerAudioContext) => {
 	if(!innerAudioContext) return
 	action === 1 && innerAudioContext.play()
