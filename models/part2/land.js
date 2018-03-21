@@ -9,7 +9,7 @@ const offest = 1200,
 	plane = 12
 export const lands = [
 	{
-		x: initX - thickWidth,
+		x: initX - thickWidth + 15,
 		y: initY,
 		z: -thickWidth* 2.5 - plane - 1,
 		width: thickWidth,
@@ -20,30 +20,30 @@ export const lands = [
 		duration: 0.3,
 		delay: 0
 	},
-	{
-		x: initX + thickWidth,
-		y: initY + thickWidth + 2*offestY,
-		z: -thickWidth* 2.5 - plane -0.8,
-		width: thickWidth,
-		height: thickWidth,
-		depth: 5 * thickWidth,
-		hex: ['#fdebbd', '#fdebbd'],
-		animate: 2,
-		duration: 0.3,
-		delay: 0.25
-	},
-	{
-		x: initX + thickWidth + offestY +5,
-		y: initY + 2*thickWidth + 2*offestY + 55,
-		z: -thickWidth* 2.5 - plane - 0.8,
-		width: thickWidth + 2*offestY,
-		height: thickWidth,
-		depth: 5 * thickWidth,
-		hex: ['#fdebbd', '#fdebbd'],
-		animate: 2,
-		duration: 0.3,
-		delay: 0.5
-	},
+	// {
+	// 	x: initX + thickWidth,
+	// 	y: initY + thickWidth + 2*offestY,
+	// 	z: -thickWidth* 2.5 - plane -0.8,
+	// 	width: thickWidth,
+	// 	height: thickWidth,
+	// 	depth: 5 * thickWidth,
+	// 	hex: ['#fdebbd', '#fdebbd'],
+	// 	animate: 2,
+	// 	duration: 0.3,
+	// 	delay: 0.25
+	// },
+	// {
+	// 	x: initX + thickWidth + offestY +5,
+	// 	y: initY + 2*thickWidth + 2*offestY + 55,
+	// 	z: -thickWidth* 2.5 - plane - 0.8,
+	// 	width: thickWidth + 2*offestY,
+	// 	height: thickWidth,
+	// 	depth: 5 * thickWidth,
+	// 	hex: ['#fdebbd', '#fdebbd'],
+	// 	animate: 2,
+	// 	duration: 0.3,
+	// 	delay: 0.5
+	// },
 	// {
 	// 	x: initX + 2*thickWidth + 2.4*offestY,
 	// 	y: initY + 2.5*thickWidth + 2*offestY - 2,

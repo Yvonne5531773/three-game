@@ -62,7 +62,13 @@ export default class gameDanceLine {
 	init() {
 		//方块常量
 		this.vm.geometry = new THREE.BoxGeometry(this.vm.snakeVolumn, this.vm.snakeVolumn, this.vm.snakeVolumn / 1.3)
-		this.vm.material = new THREE.MeshLambertMaterial({color: '#ffb463'})
+		this.vm.materials = {
+			barricade: new THREE.MeshLambertMaterial({color: '#575a52', ambient: '#575a52', lineWidth: 1}),
+			block: new THREE.MeshLambertMaterial({color: '#e9e9e9', ambient: '#e9e9e9', lineWidth: 1}),
+			cube: new THREE.MeshLambertMaterial({color: '#e7b066', ambient: '#e7b066', lineWidth: 1}),
+			diament: new THREE.MeshLambertMaterial({color: '#f9eb4c', ambient: '#f9eb4c', lineWidth: 1}),
+			plane: new THREE.MeshLambertMaterial({color: '#dfcda0', ambient: '#dfcda0', lineWidth: 1})
+		}
 		//渲染
 		this.initRender()
 		this.vm.scene = new THREE.Scene()
@@ -87,7 +93,6 @@ export default class gameDanceLine {
 			x: 1100- 580,
 			y: 1080- 400,
 			z: -12,
-			color: '#fdebbd',
 		})
 	}
 
@@ -102,10 +107,10 @@ export default class gameDanceLine {
 	}
 
 	initCamera() {
-		this.vm.camera = new THREE.PerspectiveCamera(10, 0.5, 1, 12000)
-		this.vm.camera.position.set(-2575, -2580, 4250);  //3 俯视的高度
-		// this.vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 1500)  //透视相机;far: 加载的范围，与性能有关
-		// this.vm.camera.position.set(-375, -380, 600)
+		// this.vm.camera = new THREE.PerspectiveCamera(10, 0.5, 1, 12000)
+		// this.vm.camera.position.set(-2575, -2580, 4250);  //3 俯视的高度
+		this.vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 1500)  //透视相机;far: 加载的范围，与性能有关
+		this.vm.camera.position.set(-375, -380, 600)
 		this.vm.camera.up.x = 0
 		this.vm.camera.up.y = 0
 		this.vm.camera.up.z = 1
@@ -115,14 +120,18 @@ export default class gameDanceLine {
 	}
 
 	initLight() {
-		const light = new THREE.DirectionalLight('#fff', 1)  //平行光
-		light.position.set(-10, -6, -6)  //光源方向
-		this.vm.scene.add(light)
-		const directionalLight = new THREE.DirectionalLight("#fff")
-		directionalLight.position.set(0, 0, 1)
-		directionalLight.shadowMapHeight = 2048
-		directionalLight.shadowMapWidth = 2048
-		this.vm.scene.add(directionalLight)
+		// const light = new THREE.DirectionalLight('#fff', 1)  //平行光
+		// light.position.set(-10, -6, -6)  //光源方向
+		// this.vm.scene.add(light)
+		// const directionalLight = new THREE.DirectionalLight("#fff")
+		// directionalLight.position.set(0, 0, 1)
+		// directionalLight.shadowMapHeight = 2048
+		// directionalLight.shadowMapWidth = 2048
+		// this.vm.scene.add(directionalLight)
+		this.vm.scene.add(new THREE.AmbientLight(0xc9c9c9));
+		var directional = new THREE.DirectionalLight(0xc9c9c9, 0.5);
+		directional.position.set(-2, 1, 3);
+		this.vm.scene.add(directional);
 	}
 
 	initCube() {
@@ -131,14 +140,14 @@ export default class gameDanceLine {
 			this.vm.geometry.faces[i].color.setHex(hex[0])
 			this.vm.geometry.faces[i + 1].color.setHex(hex[1])
 		}
-		const mesh = new THREE.Mesh(this.vm.geometry, this.vm.material)
+		const mesh = new THREE.Mesh(this.vm.geometry, this.vm.materials.cube)
 		mesh.updateMatrix()
 		return mesh
 	}
 
-	initPlane({sizeX, sizeY, color, x, y, z}) {  //地板
+	initPlane({sizeX, sizeY, x, y, z}) {  //地板
 		const geometry = new THREE.PlaneBufferGeometry(sizeX, sizeY, this.vm.nx, this.vm.ny),
-			material = new THREE.MeshLambertMaterial({color: color}),
+			material = this.vm.materials.plane,
 			plane = new THREE.Mesh(geometry, material)
 		plane.position.set(x, y, z);
 		plane.receiveShadow = true;
@@ -147,16 +156,30 @@ export default class gameDanceLine {
 
 	initMaterials() {
 		model.materials.forEach((mate) => {
+			let material = {}
+			switch (mate.name) {
+				case 'LEFT_BARRICADE':
+				case 'RIGHT_BARRICADE':
+				case 'BARRICADE':
+					material = this.vm.materials.barricade; break;
+				case 'WHITE_THICK_BLOCKS':
+				case 'WHITE_MIDDLE_BLOCKS':
+				case 'WHITE_FINE_BLOCKS':
+					material = this.vm.materials.block; break;
+				case 'DIAMENT':
+					material = this.vm.materials.diament; break;
+			}
 			submitRequest({url: mate.url}).then((res) =>{
 				if(res) {
 					const json = res,
 						url = mate.url,
 						positions = mate.positions,
 						object = threeParse(json, url),
-						materials = mate.material ? mate.material : object.materials,
+						// materials = mate.material ? mate.material : object.materials,
 						param = {
 							geometry: object.geometry,
-							material :new THREE.MeshLambertMaterial(materials),
+							material: material,
+							// material: new THREE.MeshLambertMaterial(materials),
 							scale: mate.scale,
 							name: mate.name,
 							opacity: mate.opacity
