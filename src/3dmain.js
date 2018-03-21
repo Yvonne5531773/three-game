@@ -103,14 +103,14 @@ export default class gameDanceLine {
 		})
 		this.vm.renderer.shadowMapEnabled = true
 		// this.vm.renderer.setClearColor('#f0edc8', 1)
-		this.vm.renderer.setClearColor('#fffded', 1)
+		this.vm.renderer.setClearColor('#f7fce3', 1)
 	}
 
 	initCamera() {
-		// this.vm.camera = new THREE.PerspectiveCamera(10, 0.5, 1, 12000)
-		// this.vm.camera.position.set(-2575, -2580, 4250);  //3 俯视的高度
-		this.vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 1500)  //透视相机;far: 加载的范围，与性能有关
-		this.vm.camera.position.set(-375, -380, 600)
+		this.vm.camera = new THREE.PerspectiveCamera(10, 0.5, 1, 12000)
+		this.vm.camera.position.set(-2575, -2580, 4250);  //3 俯视的高度
+		// this.vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 1500)  //透视相机;far: 加载的范围，与性能有关
+		// this.vm.camera.position.set(-375, -380, 600)
 		this.vm.camera.up.x = 0
 		this.vm.camera.up.y = 0
 		this.vm.camera.up.z = 1
@@ -120,18 +120,12 @@ export default class gameDanceLine {
 	}
 
 	initLight() {
-		// const light = new THREE.DirectionalLight('#fff', 1)  //平行光
-		// light.position.set(-10, -6, -6)  //光源方向
-		// this.vm.scene.add(light)
-		// const directionalLight = new THREE.DirectionalLight("#fff")
-		// directionalLight.position.set(0, 0, 1)
-		// directionalLight.shadowMapHeight = 2048
-		// directionalLight.shadowMapWidth = 2048
-		// this.vm.scene.add(directionalLight)
-		this.vm.scene.add(new THREE.AmbientLight(0xc9c9c9));
-		var directional = new THREE.DirectionalLight(0xc9c9c9, 0.5);
-		directional.position.set(-2, 1, 3);
-		this.vm.scene.add(directional);
+		this.vm.scene.add(new THREE.AmbientLight(0xc9c9c9))
+		var directional = new THREE.DirectionalLight(0xc9c9c9, 0.5)
+		directional.position.set(-2, 1, 3)
+		directional.shadowMapHeight = 2048
+		directional.shadowMapWidth = 2048
+		this.vm.scene.add(directional)
 	}
 
 	initCube() {

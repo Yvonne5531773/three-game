@@ -8,7 +8,9 @@ import { lands } from '../../models/part2/land'
 
 export default class gamePart2 {
 	// material = new THREE.MeshLambertMaterial({color: 0xffffff, wireframe: true, lineWidth: 0})
-	material = new THREE.MeshLambertMaterial({color: '#fdebbd', wireframe: true, lineWidth: 0})
+	materials = {
+		bottom: new THREE.MeshLambertMaterial({color: '#dfcda0', ambient: '#dfcda0', lineWidth: 1})
+	}
 	// material = new THREE.MeshBasicMaterial( { vertexColors: '#fdebbd'} )
 
 	cubes = []
@@ -20,9 +22,8 @@ export default class gamePart2 {
 		lands.forEach(land => {
 			const geometry = new THREE.BoxGeometry(land.width, land.height, land.depth, 1, 1, 1)
 			const cube = this.initCube({
-				hex: land.hex,
 				geometry: geometry,
-				material: this.material,
+				material: this.materials.bottom,
 				position: land,
 			})
 			cube.x = land.x
@@ -33,11 +34,7 @@ export default class gamePart2 {
 		})
 	}
 
-	initCube({hex, geometry, material, position}) {
-		// for (let i = 0; i < geometry.faces.length; i += 2) {
-		// 	geometry.faces[i].color.setHex(hex[0])
-		// 	geometry.faces[i + 1].color.setHex(hex[1])
-		// }
+	initCube({geometry, material, position}) {
 		const mesh = new THREE.Mesh(geometry, material)
 		mesh.position.x = position.x
 		mesh.position.y = position.y
