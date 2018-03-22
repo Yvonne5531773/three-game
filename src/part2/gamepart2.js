@@ -19,6 +19,7 @@ export default class gamePart2 {
 				material: this.materials.bottom,
 				position: land,
 			})
+			cube.name = land.name
 			cube.x = land.x
 			cube.z = land.z
 			cube.delay = land.delay

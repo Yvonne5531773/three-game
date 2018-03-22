@@ -15,6 +15,7 @@ export default class gameDanceLine {
 		camera: {},
 		aRequest: {},
 		cube: [],
+		part2Cube: [],
 		len: 1,
 		nx: 40,                     //范围宽
 		ny: 40,                     //范围高
@@ -53,6 +54,12 @@ export default class gameDanceLine {
 		part2: false,
 		part3: false
 	}
+	part2 = {
+		platformStart1: false,
+		platformEnd1: false,
+		platformStart1Pos: {},
+		platformEnd1Pos: {}
+	}
 	//touch的回调方法
 	eventTouchStartFun = this.onTouchStart.bind(null, this)
 
@@ -89,19 +96,21 @@ export default class gameDanceLine {
 		//事件
 		this.initEvents()
 		//运动方块块
-		this.initSnake()
+		this.initSnake(0)
+		//初始方块动画
+		this.initSnakeAnimate()
 		//初始化开始位置
 		this.setInitCubePosition({x: this.vm.cube[0].position.x, y: this.vm.cube[0].position.y})
 		//地板块
-		// this.initPlane({
-		// 	sizeX: 3* 1100,
-		// 	sizeY: 3* 1080,
-		// 	x: 1100- 580,
-		// 	y: 1080- 400,
-		// 	z: -12,
-		// })
+		this.initPlane({
+			sizeX: 3* 1100,
+			sizeY: 3* 1080,
+			x: 1100- 580,
+			y: 1080- 400,
+			z: -12,
+		})
 
-		// this.initPart2()
+		this.initPart2()
 	}
 
 	initRender() {
@@ -115,11 +124,10 @@ export default class gameDanceLine {
 
 	initCamera() {
 		// this.vm.camera = new THREE.PerspectiveCamera(10, 0.5, 1, 12000)
-		// this.vm.camera.position.set(-3000, -3000, 6550);  //3 俯视的高度
+		// this.vm.camera.position.set(-375, -380, 1600);  //3 俯视的高度
 		// this.vm.camera.position.set(-4000, -4000, 6550);  //3 俯视的高度
 		// this.vm.camera.position.set(-3000, -3000, 5550);  //3 俯视的高度
-		// this.vm.camera = new THREE.PerspectiveCamera(60, 0.5, 1, 2000)  //透视相机;far: 加载的范围，与性能有关
-		// this.vm.camera.position.set(-375, -380, 600)
+
 		this.vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 2000)  //透视相机;far: 加载的范围，与性能有关
 		this.vm.camera.position.set(-375, -380, 600)
 		this.vm.camera.up.x = 0
@@ -145,6 +153,7 @@ export default class gameDanceLine {
 		}
 		const mesh = new THREE.Mesh(this.vm.geometry, this.vm.materials.cube)
 		mesh.updateMatrix()
+		mesh.name = 'SNAKE_CUBE_'+this.vm.len
 		return mesh
 	}
 
@@ -225,10 +234,8 @@ export default class gameDanceLine {
 		this.vm.models.push(mesh)
 	}
 
-	initSnake() {
+	initSnake(segment) {
 		if(!this.vm.len) return
-		const duration = 0.5,
-			delay = 1
 		for (let i = 0; i < this.vm.len; i++) {
 			this.vm.snake[i] = {}
 			this.vm.snake[i].x = this.vm.headX + i * this.vm.directionX[3 - this.vm.headForward]
@@ -237,22 +244,8 @@ export default class gameDanceLine {
 			this.vm.cube[i].position.x = this.vm.snake[i].x * this.vm.snakeSpeed - this.vm.startX
 			this.vm.cube[i].position.y = -this.vm.snake[i].y * this.vm.snakeSpeed + this.vm.startY
 			this.vm.cube[i].visible = false
+			this.vm.cube[i].segment = segment
 			this.vm.scene.add(this.vm.cube[i])
-			//初始动画
-			new __TWEEN.Tween({scale: 0, rotation: 0, mesh: this.vm.cube[0]})
-				.to({
-					scale: 1,
-					rotation: 0.5* Math.PI
-				}, duration)
-				.delay(delay)
-				.onUpdate(function() {
-					this.mesh.scale.z = this.scale
-					this.mesh.rotation.z = this.rotation
-				})
-				.onStart(function () {
-					this.mesh.visible = true;
-				})
-				.start()
 		}
 	}
 
@@ -268,37 +261,27 @@ export default class gameDanceLine {
 		}
 	}
 
-	initEvents() {
-		document.addEventListener('touchstart', this.eventTouchStartFun, false)
+	initSnakeAnimate() {
+		const duration = 0.5,
+			delay = 1
+		new __TWEEN.Tween({scale: 0, rotation: 0, mesh: this.vm.cube[0]})
+			.to({
+				scale: 1,
+				rotation: 0.5* Math.PI
+			}, duration)
+			.delay(delay)
+			.onUpdate(function() {
+				this.mesh.scale.z = this.scale
+				this.mesh.rotation.z = this.rotation
+			})
+			.onStart(function () {
+				this.mesh.visible = true;
+			})
+			.start()
 	}
 
-	//第二部分场景开始
-	initPart2() {
-		const data = new gamepart2(),
-			that = this
-		data.cubes.forEach(cube => {
-			this.vm.scene.add(cube)
-			new __TWEEN.Tween({scale: 0, x: cube.x, z: cube.z, mesh: cube})
-				.to({
-					scale: 1,
-					x: cube.x + 85,
-					z: cube.z + 800
-				}, cube.duration)
-				.delay(cube.delay)
-				.onUpdate(function() {
-					cube.animate === 0 && (this.mesh.position.z = this.z)
-					cube.animate === 1 && (this.mesh.position.x = this.x)
-					cube.animate === 2 && (this.mesh.scale.z = this.scale)
-				})
-				.onStart(function () {
-					this.mesh.visible = true
-				})
-				.onComplete(function () {
-					cube.animate === 0 && (this.mesh.visible = false)
-					cube.animate === 0 && that.vm.scene.remove(this.mesh)
-				})
-				.start()
-		})
+	initEvents() {
+		document.addEventListener('touchstart', this.eventTouchStartFun, false)
 	}
 
 	removeEvents() {
@@ -342,9 +325,39 @@ export default class gameDanceLine {
 			this.vm.snake[this.vm.len].x = this.vm.snake[this.vm.len - 1].x
 			this.vm.snake[this.vm.len].y = this.vm.snake[this.vm.len - 1].y
 			this.vm.cube[this.vm.len] = this.initCube()
-			this.vm.cube[this.vm.len].name = 'SNAKE_CUBE_'+this.vm.len
-			this.vm.scene.add(this.vm.cube[this.vm.len])
-			this.vm.len++
+			//发射过程中，不追加
+			// if(!this.part2.platformStart1 || this.part2.platformEnd1){
+			// 	this.vm.scene.add(this.vm.cube[this.vm.len])
+			// } else {
+			// 	console.log('launching')
+			// }
+			if(this.vm.cube[0].segment === 0) {
+				if(this.vm.cube[0].position.x > 20){
+					console.log('launching cube', this.vm.cube)
+					this.vm.headX = this.vm.cube[0].position.x
+					this.vm.headY = this.vm.cube[0].position.y
+					this.vm.cube = []
+					this.vm.len = 1
+					this.initSnake(1)
+					this.setInitCubePosition({x: this.vm.cube[0].position.x, y: this.vm.cube[0].position.y})
+					this.animateSnakeHead({
+						criteria: {
+							x: this.vm.cube[0].position.x, z: 0, mesh: this.vm.cube[0]
+						},
+						delay: 0,
+						duration: .3,
+						x: 200,
+						z: -40,
+						that: this
+					})
+					//todo 发射过程不能getmove
+				} else {
+					this.vm.scene.add(this.vm.cube[this.vm.len])
+					this.vm.len++
+				}
+			}
+			// this.vm.scene.add(this.vm.cube[this.vm.len])
+			// this.vm.len++
 		}
 		for (let i = this.vm.len - 1; i > 0; i--) {
 			this.vm.snake[i].x = this.vm.snake[i - 1].x
@@ -352,9 +365,6 @@ export default class gameDanceLine {
 		}
 		this.vm.snake[0].x = tx
 		this.vm.snake[0].y = ty
-
-		//销毁超出屏幕的对象
-		this.release()
 	}
 
 	run() {
@@ -366,6 +376,10 @@ export default class gameDanceLine {
 			if (!this.vm.pauseFlag){
 				this.getMove()
 				// this.checkCollision()
+				//检测是否到发射台
+				this.launch()
+				//销毁超出屏幕的对象
+				this.release()
 			}
 			this.doRender()
 			this.animates()
@@ -422,8 +436,6 @@ export default class gameDanceLine {
 	}
 
 	gameover(title) {
-		console.log('date end time', new Date())
-		console.log('this.vm.cube', this.vm.cube[0])
 		this.vm.end = true
 		wx.showToast({
 			title: title
@@ -441,8 +453,7 @@ export default class gameDanceLine {
 	}
 
 	release() {
-		const beyonds = 200,
-			keeps = 90,
+		const keeps = 90,
 			screenWidth = window.innerWidth/2,
 			screenHeight = window.innerHeight/2,
 			cubeX = this.vm.cube[0].position.x,
@@ -453,23 +464,22 @@ export default class gameDanceLine {
 			})
 			this.vm.cube = this.vm.cube.slice(0, keeps)
 			this.vm.len = keeps
-			console.log('this.vm.cube', this.vm.cube)
 			this.setInitCubePosition({x: this.vm.cube[0].position.x, y: this.vm.cube[0].position.y})
 		}
 	}
 
 	animates() {
-		this.calval.diamentMesh && this.animateDiament(this.calval.diamentMesh)
-		this.calval.crownMesh && this.animateCrown(this.calval.crownMesh)
+		this.calval.diamentMesh && this.animateDiament(this.calval.diamentMesh, 0.05)
+		this.calval.crownMesh && this.animateCrown(this.calval.crownMesh, 0.05)
 		!this.vm.pauseFlag && this.calval.sortMeshs && this.calval.sortMeshs.length>0 && this.animateBlocks(this.calval.sortMeshs[this.vm.blockAnimateIndex])
 	}
 
-	animateDiament(diament) {
-		Object.keys(diament).length>0 && (diament.rotation.y -= 0.01)
+	animateDiament(diament, angle) {
+		Object.keys(diament).length>0 && (diament.rotation.y -= angle)
 	}
 
-	animateCrown(crown) {
-		Object.keys(crown).length>0 && (crown.rotation.y -= 0.01)
+	animateCrown(crown, angle) {
+		Object.keys(crown).length>0 && (crown.rotation.y -= angle)
 	}
 
 	animateBlocks(block) {
@@ -503,24 +513,6 @@ export default class gameDanceLine {
 		}
 	}
 
-	animateSnakeHead({delay = 1, duration = 1, x = 0, y = 0, z = 0}) {
-		new __TWEEN.Tween({x: 0, z: 0, mesh: this.vm.cube[0]})
-			.to({
-				x: x,
-				z: z
-			}, duration)
-			.delay(delay)
-			.onUpdate(function() {
-				this.mesh.position.x = this.x
-				this.mesh.position.z = this.z
-			})
-			.easing(__TWEEN.Easing.Linear.None)
-			.onStart(function () {
-
-			})
-			.start()
-	}
-
 	setInitCubePosition ({x, y}) {
 		this.vm.initCubePosition.x = x
 		this.vm.initCubePosition.y = y
@@ -540,6 +532,81 @@ export default class gameDanceLine {
 		this.vm.renderer.setSize(width, height)
 		this.vm.camera.aspect = width / height
 		this.vm.camera.updateProjectionMatrix()
+	}
+
+	//第二部分场景开始
+	initPart2() {
+		const data = new gamepart2(),
+			that = this
+		this.vm.part2Cube = data.cubes
+		this.part2.platformStart1Pos = data.cubes.find(cube => cube.name && cube.name === 'PLATFORM_START_1')
+		this.part2.platformEnd1Pos = data.cubes.find(cube => cube.name && cube.name === 'PLATFORM_END_1')
+		console.log('initPart2 this.part2', this.part2)
+		data.cubes.forEach(cube => {
+			this.vm.scene.add(cube)
+			new __TWEEN.Tween({scale: 0, x: cube.x, z: cube.z, mesh: cube})
+				.to({
+					scale: 1,
+					x: cube.x + 85,
+					z: cube.z + 800
+				}, cube.duration)
+				.delay(cube.delay)
+				.onUpdate(function() {
+					cube.animate === 0 && (this.mesh.position.z = this.z)
+					cube.animate === 1 && (this.mesh.position.x = this.x)
+					cube.animate === 2 && (this.mesh.scale.z = this.scale)
+				})
+				.onStart(function () {
+					this.mesh.visible = true
+				})
+				.onComplete(function () {
+					cube.animate === 0 && (this.mesh.visible = false)
+					cube.animate === 0 && that.vm.scene.remove(this.mesh)
+				})
+				.start()
+		})
+	}
+
+	launch() {
+		if(!this.gameStatus.part2) return
+		const position = this.vm.cube[0].position
+		if(position.x >= this.part2.platformStart1Pos.x && !this.part2.platformStart1) {
+			console.log('in launch position', position)
+			this.part2.platformStart1 = true
+			this.animateSnakeHead({
+				criteria: {
+					x: this.part2.platformStart1Pos.x, z: 0, mesh: this.vm.cube[0]
+				},
+				delay: 0,
+				duration: .3,
+				x: this.part2.platformEnd1Pos.x,
+				z: -40,
+				that: this
+			})
+		}
+	}
+
+	animateSnakeHead({criteria = {}, delay = 1, duration = 1, x = 0, y = 0, z = 0, that}) {
+		new __TWEEN.Tween(criteria)
+			.to({
+				x: x,
+				z: z
+			}, duration)
+			.delay(delay)
+			.onUpdate(function() {
+				console.log('animateSnakeHead this.mesh', this.mesh)
+				console.log('animateSnakeHead this.x', this.x)
+				this.mesh.position.x = this.x
+				this.mesh.position.z = this.z
+			})
+			.easing(__TWEEN.Easing.Linear.None)
+			.onStart(function () {
+				this.mesh.visible = true
+			})
+			.onComplete(function() {
+				that.part2.platformEnd1 = true
+			})
+			.start()
 	}
 }
 

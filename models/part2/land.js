@@ -8,11 +8,13 @@ const offest = 1200,
 	initY = offest + 102*offestY,
 	plane = 12,
 	depthOffest = 0,
-	durationVal = .2,
-	delayVal = 1,
+	// durationVal = .2,
+	// delayVal = 1,
+	durationVal = 0,
+	delayVal = 0,
 	part1FirstDelay = .8,
 	part1LastDelay = 11.5*delayVal + part1FirstDelay + 1.5,
-	part2z = 20
+	part2z = 50
 export const lands = [
 	{
 		x: initX + 3* thickWidth,
@@ -238,7 +240,7 @@ export const lands = [
 	{
 		x: initX + 12*thickWidth,
 		y: initY + 17*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 8,
 		width: 3*thickWidth,
 		height: thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -249,7 +251,7 @@ export const lands = [
 	{
 		x: initX + 14.5*thickWidth,
 		y: initY + 17.5*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 8,
 		width: 3*thickWidth,
 		height: thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -258,19 +260,21 @@ export const lands = [
 		delay: 11*delayVal + part1FirstDelay
 	},
 	{
+		name: 'PLATFORM_START_1',
 		x: initX + 16*thickWidth,
 		y: initY + 18*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 10,
 		width: thickWidth,
 		height: 0.5*thickWidth,
 		depth: 5 * thickWidth - depthOffest,
 		animate: 2,
 		duration: durationVal,
-		delay: 11.5*delayVal + part1FirstDelay
+		delay: 11.5*delayVal + part1FirstDelay,
 	},
 
 	//转接处
 	{
+		name: 'PLATFORM_END_1',
 		x: initX + 18*thickWidth,
 		y: initY + 18*thickWidth,
 		z: -thickWidth* 2.5 - plane - part2z,
