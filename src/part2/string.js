@@ -10,29 +10,15 @@ export default class Mod {
   init(option) {
     let self = this;
 
-    if (option) {
-      let {
-        gap = 20,
-        rate = 12,
-        x = 0,
-        y = 0,
-        z = 0,
-        scale = 90,
-        color = COLOR
-      } = option;
-
-      self.option = {
-        gap: gap, // 偏移最大间距差
-        rate: rate, // 移动幅度
-        x: x,
-        y: y,
-        z: z,
-        scale: scale,
-        color: color
-      };
-    } else {
-      self.option = {};
-    }
+    self.option = Object.assign({
+        gap: 20, // 偏移最大间距差
+        rate: 12, // 移动幅度
+        x: 0,
+        y: 0,
+        z: 0,
+        scale: 90,
+        color: COLOR
+    }, option);
 
 
     self.flag = true; // 正负方向偏移标记

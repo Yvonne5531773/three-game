@@ -1,7 +1,8 @@
 import { barricades } from "./central/barricades"
 import { leftbarricades } from "./firstleft/leftbarricades"
 import { rightbarricades } from "./firstright/rightbarricades"
-import { diamentOffests } from './diament/diamentoffest'
+import { diamentOffests } from './diament/diament'
+import { crownOffests } from './crown/crown'
 import firstleft from './firstleft/index'
 import firstright from './firstright/index'
 import central from './central/index'
@@ -57,13 +58,13 @@ const materials = [
 		positions: diamentOffests[0],
 		scale: 1200,
 	},
-	// {  //皇冠
-	// 	name: 'CROWN',
-	// 	url: config.modelSrc + "/crown.json",
-	// 	material: {},
-	// 	positions: [],
-	// 	scale: 1,
-	// },
+	{  //皇冠
+		name: 'CROWN',
+		url: config.modelSrc + "/crown.json",
+		material: {},
+		positions: crownOffests,
+		scale: 100,
+	},
 	// {  //宝石
 	// 	name: 'GEMSTONE',
 	// 	url: config.modelSrc + "/gemstone.json",
@@ -118,4 +119,5 @@ const materials = [
 export default {
 	materials,
 	diamentOffests,
+	crownOffests,
 }
