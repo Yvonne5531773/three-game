@@ -85,7 +85,7 @@ export default class gameDanceLine {
 		this.initRender()
 		this.vm.scene = new THREE.Scene()
 		//素材
-		this.initMaterials()
+		this.initMaterials(2)
 		//音乐
 		this.initAudio()
 		//相机
@@ -126,7 +126,7 @@ export default class gameDanceLine {
 	}
 
 	initCamera() {
-		// this.vm.camera = new THREE.PerspectiveCamera(30, 0.5, 1, 12000)
+		// this.vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 12000)
 		// this.vm.camera.position.set(-375, -380, 1600);  //3 俯视的高度
 		// this.vm.camera.position.set(-4000, -4000, 6550);
 		// this.vm.camera.position.set(-3000, -3000, 5550);
@@ -159,7 +159,31 @@ export default class gameDanceLine {
 		this.vm.scene.add(plane)
 	}
 
-	initMaterials() {
+	initMaterials(action) {
+		const constructJSON = (json, material, mate) => {
+			if(!json) return
+			const url = mate.url,
+				positions = mate.positions,
+				object = threeParse(json, url),
+				param = {
+					geometry: object.geometry,
+					material: material,
+					scale: mate.scale,
+					name: mate.name,
+					opacity: mate.opacity
+				}
+			if (positions instanceof Array) {
+				positions.forEach((position) => {
+					param.position = position
+					this.initMesh(param)
+				})
+			} else {
+				param.position = positions
+				this.initMesh(param)
+			}
+			//初始化Mesh分类的数组
+			this.initCalVals()
+		}
 		model.materials.forEach((mate) => {
 			let material = {}
 			switch (mate.name) {
@@ -178,34 +202,17 @@ export default class gameDanceLine {
 				default:
 					material = this.materials.block; break;
 			}
-			submitRequest({url: mate.url}).then((res) =>{
-				if(res) {
-					const json = res,
-						url = mate.url,
-						positions = mate.positions,
-						object = threeParse(json, url),
-						param = {
-							geometry: object.geometry,
-							material: material,
-							scale: mate.scale,
-							name: mate.name,
-							opacity: mate.opacity
-						}
-					if (positions instanceof Array) {
-						positions.forEach((position) => {
-							param.position = position
-							this.initMesh(param)
-						})
-					} else {
-						param.position = positions
-						this.initMesh(param)
+			if(action === 1) {
+				submitRequest({url: mate.url}).then((res) =>{
+					if(res) {
+						constructJSON(res, material, mate)
 					}
-					//初始化Mesh分类的数组
-					this.initCalVals()
-				}
-			}).catch((err) => {
-				console.log('error:', err)
-			})
+				}).catch((err) => {
+					console.log('error:', err)
+				})
+			} else if(action === 2) {
+				constructJSON(mate.json, material, mate)
+			}
 		})
 	}
 
@@ -222,8 +229,8 @@ export default class gameDanceLine {
 		mesh.translation = geometry.center()
 		mesh.position.set(position.x, position.y, position.z)
 		mesh.rotation.set(position.rotationX, position.rotationY, position.rotationZ)
-		mesh.animated = false
-		mesh.msort = position.msort || 0
+		mesh.animated = position.animt===1
+		// mesh.msort = position.msort || 0
 		mesh.direction = position.direction || 0
 		mesh.updateMatrix()
 		this.vm.scene.add(mesh)
@@ -255,11 +262,12 @@ export default class gameDanceLine {
 		if(this.vm.models.length === 0) return
 		this.calval.diamentMesh = this.vm.models.find(model => model.name === 'DIAMENT')
 		this.calval.crownMesh = this.vm.models.find(model => model.name === 'CROWN')
-		this.calval.sortMeshs = this.vm.models.filter(model => model.msort !== 0)
-		this.calval.sortMeshs.sort((a, b) => {
-			if(a.msort > b.msort) return 1
-			else if(a.msort < b.msort) return -1
-		})
+		this.calval.sortMeshs = this.vm.models.filter(model => model.animated)
+		console.log('this.calval.sortMeshs', this.calval.sortMeshs)
+		// this.calval.sortMeshs.sort((a, b) => {
+		// 	if(a.msort > b.msort) return 1
+		// 	else if(a.msort < b.msort) return -1
+		// })
 	}
 
 	initSnakeAnimate(mesh, duration, delay) {
@@ -329,7 +337,7 @@ export default class gameDanceLine {
 	animates() {
 		this.calval.diamentMesh && this.animateDiament(this.calval.diamentMesh, 0.05)
 		this.calval.crownMesh && this.animateCrown(this.calval.crownMesh, 0.05)
-		!this.vm.pauseFlag && this.calval.sortMeshs && this.calval.sortMeshs.length>0 && this.animateBlocks(this.calval.sortMeshs[this.vm.blockAnimateIndex])
+		// !this.vm.pauseFlag && this.calval.sortMeshs && this.calval.sortMeshs.length>0 && this.animateBlocks(this.calval.sortMeshs[this.vm.blockAnimateIndex])
 	}
 
 	animateDiament(diament, angle) {
@@ -342,33 +350,55 @@ export default class gameDanceLine {
 
 	animateBlocks(block) {
 		if(!block) return
-		const rotate = 0.01,
-			animateSpeed = 3
-		if(block.direction === 0) {  //左边块
-			if(!block.animated && block.rotation.z >= rotate*Math.PI) {
-				block.animated = true
-			} else if (!block.animated) {
-				block.rotation.z += 0.002
-			} else if (block.animated && block.rotation.z >= 0) {
-				if(block.rotation.z < 0.001* animateSpeed) {  //回到原位
-					block.animated = false
-					this.vm.blockAnimateIndex++
-				}
-				block.rotation.z -= 0.001* animateSpeed
-			}
-		} else if (block.direction === 1) {  //右边块
-			if(!block.animated && block.rotation.z <= -rotate*Math.PI) {
-				block.animated = true
-			} else if (!block.animated) {
-				block.rotation.z -= 0.002
-			} else if (block.animated && block.rotation.z <= 0) {
-				if(block.rotation.z > -0.001* animateSpeed) {
-					block.animated = false
-					this.vm.blockAnimateIndex++
-				}
-				block.rotation.z += 0.001* animateSpeed
-			}
-		}
+		const tween = new __TWEEN.Tween({rotationZ: 0, mesh: block})
+			.to({
+				rotationZ: -0.01* Math.PI
+			}, .3)
+			.easing(__TWEEN.Easing.Elastic.InOut)
+			.delay(0)
+			.onUpdate(function() {
+				console.log('this.rotationZ', this.rotationZ)
+				this.mesh.rotation.z += this.rotationZ
+			})
+		const tweenBack = new __TWEEN.Tween({rotationZ:0.01* Math.PI, mesh: block})
+			.to({
+				rotationZ: 0
+			}, block.duration)
+			.easing(__TWEEN.Easing.Elastic.InOut)
+			.onUpdate(function() {
+				this.mesh.rotation.z -= this.rotationZ
+			})
+		tween.chain(tweenBack)
+		tweenBack.chain(tween)
+		tween.start()
+
+		// const rotate = 0.01,
+		// 	animateSpeed = 3
+		// if(block.direction === 0) {  //左边块
+		// 	if(!block.animated && block.rotation.z >= rotate*Math.PI) {
+		// 		block.animated = true
+		// 	} else if (!block.animated) {
+		// 		block.rotation.z += 0.002
+		// 	} else if (block.animated && block.rotation.z >= 0) {
+		// 		if(block.rotation.z < 0.001* animateSpeed) {  //回到原位
+		// 			block.animated = false
+		// 			this.vm.blockAnimateIndex++
+		// 		}
+		// 		block.rotation.z -= 0.001* animateSpeed
+		// 	}
+		// } else if (block.direction === 1) {  //右边块
+		// 	if(!block.animated && block.rotation.z <= -rotate*Math.PI) {
+		// 		block.animated = true
+		// 	} else if (!block.animated) {
+		// 		block.rotation.z -= 0.002
+		// 	} else if (block.animated && block.rotation.z <= 0) {
+		// 		if(block.rotation.z > -0.001* animateSpeed) {
+		// 			block.animated = false
+		// 			this.vm.blockAnimateIndex++
+		// 		}
+		// 		block.rotation.z += 0.001* animateSpeed
+		// 	}
+		// }
 	}
 
 	setInitCubePosition ({x, y}) {
@@ -383,6 +413,11 @@ export default class gameDanceLine {
 			that.vm.pauseFlag = false
 			audio(1, that.vm.innerAudioContext)
 			// that.vm.threeCamera.setTargetRotation(0, that.vm.camera)
+			console.log('this.calval',that.calval)
+			that.animateBlocks(that.calval.sortMeshs[0])
+			// that.calval.sortMeshs.forEach(mesh => {
+			// 	that.animateBlocks(mesh)
+			// })
 		}
 	}
 
