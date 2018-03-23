@@ -97,8 +97,8 @@ const materials = [
 	// 	name: 'PIANOHAMMER',
 	// 	url: config.modelSrc + "/pianoHammer.json",
 	// 	material: {},
-	// 	positions: [],
-	// 	scale: 1,
+	// 	positions: hammerOffests,
+	// 	scale: 50,
 	// },
 	// {  //钢琴边境
 	// 	name: 'PIANOBORDER',
@@ -117,7 +117,5 @@ const materials = [
 ]
 
 export default {
-	materials,
-	diamentOffests,
-	crownOffests,
+	materials
 }
