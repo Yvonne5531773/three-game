@@ -10,7 +10,9 @@ import Runner from './gamelogic/runner.js'
 import Map from './gamelogic/map.js'
 import Ball from './gamelogic/ball.js'
 import { position } from './gamelogic/position.js'
+import { diamentOffests } from '../models/diament/diament'
 import threeCamera from '3dcamera'
+import GameState from './gamelogic/gamestate.js'
 
 export default class gameDanceLine {
 	vm = {
@@ -27,7 +29,8 @@ export default class gameDanceLine {
 		pauseFlag: true,
 		end: false,
 		models: [],
-		collisionExcepts: ['LEFT_BARRICADE', 'RIGHT_BARRICADE', 'BARRICADE'],
+		collisionExcepts: ['LEFT_BARRICADE', 'RIGHT_BARRICADE', 'BARRICADE', 'BARRICADE3'],
+		floorCollision: ['PLANE1', 'PLANE2', 'LAND'],
 		fps: 60,
 		now: '',
 		then: Date.now(),
@@ -37,10 +40,14 @@ export default class gameDanceLine {
 		initCubePosition: {},
 		initGeometry: {},
 		initMaterial: {},
+		strings: [], // 抖动的线对象集合
+		hammers: [],
 		threeCamera: {},
 		ball: new Ball,     //dancing line
 		map: new Map,       //地图数据
-		runner: new Runner  //游戏运行逻辑
+		runner: new Runner, //游戏运行逻辑
+		
+		gameState: new GameState
 	}
 	calval = {
 		diamentMesh: null,
@@ -71,6 +78,7 @@ export default class gameDanceLine {
 		plane: new THREE.MeshBasicMaterial( {color: '#f6e2b1', ambient: '#f6e2b1', side: THREE.DoubleSide} )
 		// plane: new THREE.MeshLambertMaterial({color: '#dfcda0', ambient: '#dfcda0'})
 	}
+
 	constructor() {
 		//初始化
 		this.init()
@@ -85,7 +93,7 @@ export default class gameDanceLine {
 		this.initRender()
 		this.vm.scene = new THREE.Scene()
 		//素材
-		this.initMaterials(2)
+		this.initMaterials(config.loadAction)
 		//音乐
 		this.initAudio()
 		//相机
@@ -105,6 +113,15 @@ export default class gameDanceLine {
 			x: 1100- 580,
 			y: 1080- 400,
 			z: -12,
+			name: 'PLANE1'
+		})
+		this.initPlane({
+			sizeX: 2* 1000,
+			sizeY: 2* 1000,
+			x: 5400 + 1100- 580,
+			y: 5500 + 1080- 400,
+			z: -32,
+			name: 'PLANE2'
 		})
 
 		//相机类
@@ -114,6 +131,8 @@ export default class gameDanceLine {
 		this.initMapData();
 		//初始化运行逻辑，必须放到最后面
 		this.initRunner();
+
+		// this.initPart2()
 	}
 
 	initRender() {
@@ -126,19 +145,24 @@ export default class gameDanceLine {
 	}
 
 	initCamera() {
-		// this.vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 12000)
+		// this.vm.camera = new THREE.PerspectiveCamera(15, 0.5, 1, 12000)
 		// this.vm.camera.position.set(-375, -380, 1600);  //3 俯视的高度
-		// this.vm.camera.position.set(-4000, -4000, 6550);
-		// this.vm.camera.position.set(-3000, -3000, 5550);
+		// this.vm.camera.position.set(-3400, -3400, 6550);
+		// this.vm.camera.position.set(-800, -800, 5550);
+		// this.vm.camera.position.set(-6400, -6400, 6550);
 
 		this.vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 2000)  //透视相机;far: 加载的范围，与性能有关
 		this.vm.camera.position.set(-375, -380, 600)
 		this.vm.camera.up.x = 0
 		this.vm.camera.up.y = 0
 		this.vm.camera.up.z = 1
-		this.vm.camera.lookAt(new THREE.Vector3(0, 0, 0))
-		// this.vm.camera.lookAt(this.vm.scene.position)
-		console.log('this.vm.scene.position', this.vm.scene.position)
+		this.vm.camera.lookAt(this.vm.scene.position)
+
+		// 测试代码
+		// this.vm.camera.lookAt(new THREE.Vector3(-375, -380, 0))
+		// this.vm.camera.position.set(1900, 1700, 1200);  //3 俯视的高度
+		// this.vm.camera.position.set(2300, 2500, 1200);  //3 俯视的高度
+		// this.vm.camera.lookAt(new THREE.Vector3(0, 0, 0))
 	}
 
 	initLight() {
@@ -150,13 +174,15 @@ export default class gameDanceLine {
 		this.vm.scene.add(directional)
 	}
 
-	initPlane({sizeX, sizeY, x, y, z}) {  //地板
+	initPlane({sizeX, sizeY, x, y, z, name}) {  //地板
 		const geometry = new THREE.PlaneBufferGeometry(sizeX, sizeY, this.vm.nx, this.vm.ny),
 			material = this.materials.plane,
 			plane = new THREE.Mesh(geometry, material)
 		plane.position.set(x, y, z)
 		plane.receiveShadow = true
+		plane.name = name
 		this.vm.scene.add(plane)
+		this.vm.models.push(plane);
 	}
 
 	initMaterials(action) {
@@ -190,6 +216,7 @@ export default class gameDanceLine {
 				case 'LEFT_BARRICADE':
 				case 'RIGHT_BARRICADE':
 				case 'BARRICADE':
+				case 'BARRICADE3':
 					material = this.materials.barricade; break;
 				case 'WHITE_THICK_BLOCKS':
 				case 'WHITE_MIDDLE_BLOCKS':
@@ -218,6 +245,7 @@ export default class gameDanceLine {
 
 	initAudio() {
 		this.vm.innerAudioContext = wx.createInnerAudioContext()
+		// this.vm.innerAudioContext.src = '../asset/piano.mp3'
 		this.vm.innerAudioContext.src = config.musicSrc
 	}
 
@@ -230,7 +258,8 @@ export default class gameDanceLine {
 		mesh.position.set(position.x, position.y, position.z)
 		mesh.rotation.set(position.rotationX, position.rotationY, position.rotationZ)
 		mesh.animated = position.animt===1
-		// mesh.msort = position.msort || 0
+		mesh.duration = position.duration
+		mesh.delay = position.delay
 		mesh.direction = position.direction || 0
 		mesh.updateMatrix()
 		this.vm.scene.add(mesh)
@@ -238,19 +267,19 @@ export default class gameDanceLine {
 	}
 
 	initSnake() {
-		const duration = 0.5,
-			delay = 1;
 		this.vm.ball.setGameScene(this);
 		this.vm.ball.createElement();
+		
+		const duration = 0.5, delay = 1;
 		//初始方块动画
-		this.initSnakeAnimate(this.vm.ball.cube,duration, delay)
+		this.initSnakeAnimate(this.vm.ball.cube,duration, delay);
 	}
 
 	initRunner() {
 		//创建球，游戏运行逻辑，地图
 		this.vm.runner.setGameScene(this);
 		this.vm.runner.setMap(this.vm.map);
-		this.createLines();
+		//this.createLines();
 	}
 
 	initMapData() {
@@ -260,17 +289,19 @@ export default class gameDanceLine {
 
 	initCalVals() {
 		if(this.vm.models.length === 0) return
-		this.calval.diamentMesh = this.vm.models.find(model => model.name === 'DIAMENT')
+		if(!this.calval.diamentMesh || this.calval.diamentMesh.length === 0) {
+			this.calval.diamentMesh = this.vm.models.filter(model => model.name === 'DIAMENT')
+			this.calval.diamentMesh.forEach((d, i) => {
+				d.name = 'DIAMENT_' + i
+			})
+		}
 		this.calval.crownMesh = this.vm.models.find(model => model.name === 'CROWN')
 		this.calval.sortMeshs = this.vm.models.filter(model => model.animated)
-		console.log('this.calval.sortMeshs', this.calval.sortMeshs)
-		// this.calval.sortMeshs.sort((a, b) => {
-		// 	if(a.msort > b.msort) return 1
-		// 	else if(a.msort < b.msort) return -1
-		// })
 	}
 
 	initSnakeAnimate(mesh, duration, delay) {
+		var game = this;
+		
 		new __TWEEN.Tween({scale: 0, rotation: 0, mesh: mesh})
 			.to({
 				scale: 1,
@@ -283,6 +314,9 @@ export default class gameDanceLine {
 			})
 			.onStart(function () {
 				this.mesh.visible = true
+			})
+			.onComplete(function () {
+				game.vm.gameState.Ready();
 			})
 			.start()
 	}
@@ -300,7 +334,10 @@ export default class gameDanceLine {
 	}
 
 	getMove() {
+		
+		//var now = Date.now()
 		this.vm.runner.run(this.vm.delta / 1000);
+		//console.log(Date.now() - now);
 	}
 
 	run() {
@@ -309,9 +346,11 @@ export default class gameDanceLine {
 		this.vm.delta = this.vm.now - this.vm.then
 		if (this.vm.delta > 1000 / this.vm.fps) {
 			this.vm.then = this.vm.now - (this.vm.delta % 1000 / this.vm.fps)
-			if (!this.vm.pauseFlag){
+			
+			if (this.vm.gameState.IsStart()){
 				this.getMove()
 			}
+			
 			this.doRender()
 			this.animates()
 			this.checkGameStatus()
@@ -320,24 +359,12 @@ export default class gameDanceLine {
 		}
 	}
 
-	changeDiamentPosition(diament) {
-		const position = model.diamentOffests[++this.vm.getDiamentCount]
-		!position && this.destory(diament)
-		position && diament.position.set(position.x, position.y, position.z)
-	}
-
 	checkGameStatus () {
 		if(this.calval.crownMesh && this.calval.crownMesh && this.vm.ball.cube.position.x >= this.calval.crownMesh.position.x && !this.gameStatus.part2) {
 			this.initPart2()
 			this.gameStatus.part1 = false
 			this.gameStatus.part2 = true
 		}
-	}
-
-	animates() {
-		this.calval.diamentMesh && this.animateDiament(this.calval.diamentMesh, 0.05)
-		this.calval.crownMesh && this.animateCrown(this.calval.crownMesh, 0.05)
-		// !this.vm.pauseFlag && this.calval.sortMeshs && this.calval.sortMeshs.length>0 && this.animateBlocks(this.calval.sortMeshs[this.vm.blockAnimateIndex])
 	}
 
 	animateDiament(diament, angle) {
@@ -349,75 +376,56 @@ export default class gameDanceLine {
 	}
 
 	animateBlocks(block) {
-		if(!block) return
+		if(!block || !block.animated) return
+		const rotationZ = block.direction===1
+			? -0.01* Math.PI : 0.01* Math.PI
 		const tween = new __TWEEN.Tween({rotationZ: 0, mesh: block})
 			.to({
-				rotationZ: -0.01* Math.PI
-			}, .3)
-			.easing(__TWEEN.Easing.Elastic.InOut)
-			.delay(0)
+				rotationZ: rotationZ
+			}, block.duration/2)
+			.easing(__TWEEN.Easing.Linear.None)
+			.delay(block.delay)
 			.onUpdate(function() {
-				console.log('this.rotationZ', this.rotationZ)
-				this.mesh.rotation.z += this.rotationZ
+				this.mesh.rotation.z = this.rotationZ
 			})
-		const tweenBack = new __TWEEN.Tween({rotationZ:0.01* Math.PI, mesh: block})
+		const tweenBack = new __TWEEN.Tween({rotationZ: rotationZ, mesh: block})
 			.to({
 				rotationZ: 0
-			}, block.duration)
-			.easing(__TWEEN.Easing.Elastic.InOut)
+			}, block.duration/2)
+			.easing(__TWEEN.Easing.Linear.None)
 			.onUpdate(function() {
-				this.mesh.rotation.z -= this.rotationZ
+				this.mesh.rotation.z = this.rotationZ
 			})
 		tween.chain(tweenBack)
-		tweenBack.chain(tween)
-		tween.start()
-
-		// const rotate = 0.01,
-		// 	animateSpeed = 3
-		// if(block.direction === 0) {  //左边块
-		// 	if(!block.animated && block.rotation.z >= rotate*Math.PI) {
-		// 		block.animated = true
-		// 	} else if (!block.animated) {
-		// 		block.rotation.z += 0.002
-		// 	} else if (block.animated && block.rotation.z >= 0) {
-		// 		if(block.rotation.z < 0.001* animateSpeed) {  //回到原位
-		// 			block.animated = false
-		// 			this.vm.blockAnimateIndex++
-		// 		}
-		// 		block.rotation.z -= 0.001* animateSpeed
-		// 	}
-		// } else if (block.direction === 1) {  //右边块
-		// 	if(!block.animated && block.rotation.z <= -rotate*Math.PI) {
-		// 		block.animated = true
-		// 	} else if (!block.animated) {
-		// 		block.rotation.z -= 0.002
-		// 	} else if (block.animated && block.rotation.z <= 0) {
-		// 		if(block.rotation.z > -0.001* animateSpeed) {
-		// 			block.animated = false
-		// 			this.vm.blockAnimateIndex++
-		// 		}
-		// 		block.rotation.z += 0.001* animateSpeed
-		// 	}
-		// }
+		tween.start().onComplete(function() {
+			block.animated = false
+		})
 	}
 
 	setInitCubePosition ({x, y}) {
 		this.vm.initCubePosition.x = x
 		this.vm.initCubePosition.y = y
 	}
+	
+	startGame() {
+		this.vm.gameState.StartGame();
+	}
 
 	onTouchStart(that, event) {
-		if (!that.vm.pauseFlag) {
-			that.vm.runner.turn();
+		if (!that.vm.gameState.IsReady()) {
+			return ;
+		}
+		
+		if (that.vm.gameState.IsStart()) {
+			that.vm.runner.turn()
 		} else {
-			that.vm.pauseFlag = false
-			audio(1, that.vm.innerAudioContext)
+			that.startGame();
+			
+			audio(1, that.vm.innerAudioContext);
 			// that.vm.threeCamera.setTargetRotation(0, that.vm.camera)
-			console.log('this.calval',that.calval)
-			that.animateBlocks(that.calval.sortMeshs[0])
-			// that.calval.sortMeshs.forEach(mesh => {
-			// 	that.animateBlocks(mesh)
-			// })
+			that.calval.sortMeshs.forEach( mesh => {
+				that.animateBlocks(mesh)
+			})
 		}
 	}
 
@@ -438,6 +446,7 @@ export default class gameDanceLine {
 		this.part2.platformEnd1Pos = data.cubes.find(cube => cube.name && cube.name === 'PLATFORM_END_1')
 		data.cubes.forEach(cube => {
 			this.vm.scene.add(cube)
+			this.vm.models.push(cube)
 			new __TWEEN.Tween({scale: 0, x: cube.x, z: cube.z, mesh: cube})
 				.to({
 					scale: 1,
@@ -458,6 +467,16 @@ export default class gameDanceLine {
 					cube.animate === 0 && that.vm.scene.remove(this.mesh)
 				})
 				.start()
+		})
+
+		this.strings = data.strings;
+		data.strings.forEach(strObj => {
+			this.vm.scene.add(strObj.mesh)
+		})
+
+		this.hammers = data.hammers;
+		data.hammers.forEach(hammerObj => {
+			this.vm.scene.add(hammerObj.mesh)
 		})
 	}
 
@@ -495,6 +514,33 @@ export default class gameDanceLine {
 		}
 	}
 
+	animates() {
+		this.calval.diamentMesh.forEach(diament => {
+			this.animateDiament(diament, 0.05)
+		})
+		// this.calval.diamentMesh && this.animateDiament(this.calval.diamentMesh, 0.05)
+		this.calval.crownMesh && this.animateCrown(this.calval.crownMesh, 0.05)
+
+		if (this.gameStatus.part2) {
+
+			let cursorNum = +this.vm.runner.cursor_.name;
+
+			// 抖动的线动画
+			this.strings.forEach(strObj => {
+				strObj.anim()
+			})
+
+			// 钢琴锤子动画
+			if (cursorNum > 41) {
+				this.hammers[0].anim();
+			}
+
+			if (cursorNum > 46) {
+				this.hammers[1].anim();
+			}
+		}
+	}
+
 	reset() {
 		new gameDanceLine()
 		audio(2, this.vm.innerAudioContext)
@@ -517,38 +563,80 @@ export default class gameDanceLine {
 	}
 
 	//interface GameScene for Runner
-	startSegment (startpos, direction) {
-		this.vm.ball.startSegment(startpos, direction);
+	startSegment (startpos, direction, corner) {
+
+		this.vm.ball.startSegment(startpos, direction, corner);
+
 		//相机随着线的运动，镜头跟着走
 		const offest = 380,
 			zAsc = 0.00 //夹角增量
 		this.vm.camera.position.x = startpos.x - offest;
 		this.vm.camera.position.y = startpos.y - offest;
-		!this.vm.pauseFlag && (this.vm.camera.position.z += zAsc);
+		//this.vm.gameState.IsRunning() && (this.vm.camera.position.z += zAsc);
 	}
 
 	doneSegment (startpos, endpos) {
 		this.vm.ball.doneSegment(startpos, endpos);
+
 	}
 
-	walkSegment (startpos, endpos) {
-		this.vm.ball.walkSegment(startpos, endpos);
+	walkSegment (startpos, endpos, droped) {
+
+		this.vm.ball.walkSegment(startpos, endpos, droped);
+
 		//相机随着线的运动，镜头跟着走
 		const offest = 380,
 			zAsc = 0.00 //夹角增量
 		this.vm.camera.position.x = endpos.x - offest;
 		this.vm.camera.position.y = endpos.y - offest;
 		// this.vm.camera.lookAt(new THREE.Vector3(0, 0, 0))
-		!this.vm.pauseFlag && (this.vm.camera.position.z += zAsc);
+		//!this.vm.pauseFlag && (this.vm.camera.position.z += zAsc);
 	}
 
 	bumpWall(pos) {
 		this.gameover("游戏结束");
 	}
 
-	getCollisions() {
-		const collisions = this.vm.models.filter(model => !~this.vm.collisionExcepts.indexOf(model.name));
-		return collisions;
+	flyOut(pos) {
+
+		this.gameover("游戏结束");
+
+	}
+
+	hitDiamond(mesh) {
+		if (mesh) {
+			this.destory(mesh)
+		}
+	}
+
+	attainCrown(mesh) {
+
+		if (mesh) {
+			mesh.visible = false;
+		}
+
+	}
+
+	passNode(pos, name) {
+
+
+		if (name === "destination") {
+			//this.gameover("恭喜过关");
+			this.vm.runner.passMission();
+		}
+
+	}
+
+	getCollisions(type) {
+		if (type === 1) {
+			const collisions = this.vm.models.filter(model => !~this.vm.collisionExcepts.indexOf(model.name));
+			return collisions;
+		} else if (type === 2) {
+			const collisions = this.vm.models.filter(model => ~this.vm.floorCollision.indexOf(model.name));
+			return collisions;
+		}
+
+		return null;
 	}
 
 	//interface gameScene for Ball

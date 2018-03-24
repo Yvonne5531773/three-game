@@ -9,12 +9,15 @@ import { barricade } from "../asset/jsons/barricade"
 import { whitethickblock } from "../asset/jsons/whitethickblock"
 import { whitemiddleblock } from "../asset/jsons/whitemiddleblock"
 import { whitefineblock } from "../asset/jsons/whitefineblock"
+import { barricade3 } from "../asset/jsons/barricade3"
 import { diament } from "../asset/jsons/diament"
 import { crown } from "../asset/jsons/crown"
 import firstleft from './firstleft/index'
 import firstright from './firstright/index'
 import central from './central/index'
 import config from '../config/index'
+import thirdleft from './thirdleft/index'
+import thirdright from './thirdright/index'
 
 const materials = [
 	{  //开始左横条
@@ -45,7 +48,7 @@ const materials = [
 		name: 'WHITE_THICK_BLOCKS',
 		url: config.modelSrc + "/whitethickblock.json",
 		material: {color: '#fff'},
-		positions: firstleft.whiteThickblocks.concat(firstright.whiteThickblocks).concat(central.whiteThickblocks),
+		positions: firstleft.whiteThickblocks.concat(firstright.whiteThickblocks).concat(central.whiteThickblocks).concat(thirdleft.whiteThickblocks).concat(thirdright.whiteThickblocks),
 		scale: 11,
 		json: whitethickblock
 	},
@@ -53,7 +56,7 @@ const materials = [
 		name: 'WHITE_MIDDLE_BLOCKS',
 		url: config.modelSrc + "/whitemiddleblocks.json",
 		material: {color: '#fff'},
-		positions: firstleft.whiteMiddleblocks.concat(firstright.whiteMiddleblocks).concat(central.whiteMiddleblocks),
+		positions: firstleft.whiteMiddleblocks.concat(firstright.whiteMiddleblocks).concat(central.whiteMiddleblocks).concat(thirdleft.whiteMiddleblocks).concat(thirdright.whiteMiddleblocks),
 		scale: 11,
 		json: whitemiddleblock
 	},
@@ -61,7 +64,7 @@ const materials = [
 		name: 'WHITE_FINE_BLOCKS',
 		url: config.modelSrc + "/whitefineblocks.json",
 		material: {color: '#fff'},
-		positions: firstleft.whiteFineblocks.concat(firstright.whiteFineblocks).concat(central.whiteFineblocks),
+		positions: firstleft.whiteFineblocks.concat(firstright.whiteFineblocks).concat(central.whiteFineblocks).concat(thirdleft.whiteFineblocks).concat(thirdright.whiteFineblocks),
 		scale: 11,
 		json: whitefineblock
 	},
@@ -69,7 +72,7 @@ const materials = [
 		name: 'DIAMENT',
 		url: config.modelSrc + "/diament.json",
 		material: {color: '#f0efa5'},
-		positions: diamentOffests[0],
+		positions: diamentOffests,
 		scale: 1200,
 		json: diament
 	},
@@ -80,6 +83,16 @@ const materials = [
 		positions: crownOffests,
 		scale: 100,
 		json: crown
+	},
+	{  //后20%钢琴黑块
+		name: 'BARRICADE3',
+		url: config.modelSrc + "/blackKeysPart3.json",
+		material: {},
+		positions: [{
+			x: 5100 + 1100, y: 4900 + 587+600, z: -5, rotationX: -Math.PI* 0.5, rotationY: Math.PI* 0.25, rotationZ: Math.PI
+		}],
+		scale: 11,
+		json: barricade3
 	},
 	// {  //宝石
 	// 	name: 'GEMSTONE',

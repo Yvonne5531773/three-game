@@ -108,5 +108,5 @@ export const position = [
 	{"x":5285, "y":5030, "z":0, "name":"107"},
 	{"x":5285, "y":5045, "z":0, "name":"108"},
 	{"x":7000, "y":7000, "z":0, "name":"destination"},
-	{"x":8000, "y":8000, "z":0, "name":"infinite"}
+	{"x":80000, "y":80000, "z":0, "name":"infinite"}
 ]

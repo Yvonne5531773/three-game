@@ -40,17 +40,20 @@ export default class Ball
 		var cube = new THREE.Mesh(cubeGeometry, material);
 		cube.updateMatrix();
 		cube.castShadow = true;
-		cube.visible = false
+		cube.visible = false;
 		this.cube = cube;
 
 		this.gameScene.getScene().add(cube);
 	};
 	
-	startSegment(startpos, direction) {
+	startSegment(startpos, direction, corner) {
 
+		var xyDirection = direction.clone();
+		xyDirection.z = 0;
+		
         var yalix = new THREE.Vector3(0, 1, 0);
-        var angle = yalix.angleTo(direction);
-        if (direction.x > 0) {
+        var angle = yalix.angleTo(xyDirection);
+        if (xyDirection.x > 0) {
             angle = -angle;
         }
 
@@ -60,15 +63,32 @@ export default class Ball
 
         //create new cube
         var cubeGeometry = new THREE.BoxGeometry(this.size, this.size, this.height);
-                var material = this.gameScene.getBallMaterial();
+        var material = this.gameScene.getBallMaterial();
 
 		var cubeCorner = new THREE.Mesh(cubeGeometry, material);
-        cubeCorner.position.copy(startpos);
-        cubeCorner.rotation.z = angle;
-        this.gameScene.getScene().add(cubeCorner);
-        this.trail.push(cubeCorner);
+		cubeCorner.position.copy(startpos);
+		cubeCorner.rotation.z = angle;
+			
+		var cubTail = null;
+		if (corner) {
+			
+			//第一个位置拐角方块先隐藏
+			if (this.trail.length == 0) {
+				cubeCorner.visible = false;
+			}
+			
+			this.gameScene.getScene().add(cubeCorner);
+			this.trail.push(cubeCorner);
 
-        var cubTail = cubeCorner.clone();
+			cubTail = cubeCorner.clone();
+			
+		} else {
+			cubTail = cubeCorner;
+		}
+		
+   
+		cubTail.visible = false;
+		
         this.gameScene.getScene().add(cubTail);
         this.trail.push(cubTail);
     };
@@ -77,6 +97,8 @@ export default class Ball
 
         var vecSeg = endpos.clone();
         vecSeg.sub(startpos);
+		vecSeg.z = 0;
+		
 
         var yalix = new THREE.Vector3(0, 1, 0);
         var angle = yalix.angleTo(vecSeg);
@@ -94,20 +116,31 @@ export default class Ball
         }
     };
 
-    walkSegment(startpos, endpos) {
+    walkSegment(startpos, endpos, droped) {
 
+		//第一处拐角方块
+		if (this.trail.length == 2) {
+			var cube = this.trail[0];
+			if (cube) cube.visible = true;
+		}
+	
         this.cube.position.copy(endpos);
 
-        var cube = this.trail[this.trail.length - 1];
-        if (cube != null) {
-            var vecSeg = endpos.clone();
-            vecSeg.sub(startpos);
+		if (!droped) {
+			
+			var cube = this.trail[this.trail.length - 1];
+			if (cube != null) {
+				var vecSeg = endpos.clone();
+				vecSeg.sub(startpos);
+				vecSeg.z = 0;
 
-            cube.position.addVectors(startpos, endpos);
-            cube.position.divideScalar(2);
+				cube.visible = true;
+				cube.position.addVectors(startpos, endpos);
+				cube.position.divideScalar(2);
 
-            cube.scale.y = vecSeg.length() / this.size;
-        }
+				cube.scale.y = vecSeg.length() / this.size;
+			}
+		}
 
     };
 	

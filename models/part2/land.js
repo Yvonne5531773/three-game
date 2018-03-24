@@ -11,6 +11,8 @@ const offest = 1200,
 	durationVal = .2,
 	delayVal = 1,
 	part1FirstDelay = .8,
+	// delayVal = 0,
+	// part1FirstDelay = 0,
 	part1LastDelay = 11.5*delayVal + part1FirstDelay + 1.5,
 	part2z = 50
 export const lands = [
@@ -73,7 +75,7 @@ export const lands = [
 	{ // 6
 		x: initX + 2*thickWidth + 2.4*offestY,
 		y: initY + 4*thickWidth + 2*offestY,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 3,
 		width: thickWidth + 20,
 		height: thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -95,7 +97,7 @@ export const lands = [
 	{ // 8
 		x: initX + 3.5*thickWidth,
 		y: initY + 5*thickWidth,
-		z: -thickWidth* 2.5 - plane - 1,
+		z: -thickWidth* 2.5 - plane - 3,
 		width: thickWidth,
 		height: 1.5*thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -106,7 +108,7 @@ export const lands = [
 	{
 		x: initX + 4*thickWidth,
 		y: initY + 6*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 4,
 		width: thickWidth,
 		height: 2*thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -117,7 +119,7 @@ export const lands = [
 	{
 		x: initX + 4.5*thickWidth,
 		y: initY + 7*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 4,
 		width: thickWidth,
 		height: 1.5*thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -128,7 +130,7 @@ export const lands = [
 	{
 		x: initX + 5*thickWidth,
 		y: initY + 7.75*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 4,
 		width: thickWidth,
 		height: 1.5*thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -139,7 +141,7 @@ export const lands = [
 	{
 		x: initX + 5.5*thickWidth,
 		y: initY + 10.25*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 4,
 		width: thickWidth,
 		height: 5*thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -150,7 +152,7 @@ export const lands = [
 	{
 		x: initX + 5.75*thickWidth,
 		y: initY + 13*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 4,
 		width: 1.5*thickWidth,
 		height: thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -161,7 +163,7 @@ export const lands = [
 	{// 14
 		x: initX + 6.75*thickWidth,
 		y: initY + 13.25*thickWidth,
-		z: -thickWidth* 2.5 - plane - 3,
+		z: -thickWidth* 2.5 - plane - 8,
 		width: thickWidth,
 		height: 1.5*thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -172,7 +174,7 @@ export const lands = [
 	{
 		x: initX + 7*thickWidth,
 		y: initY + 14*thickWidth,
-		z: -thickWidth* 2.5 - plane - 3,
+		z: -thickWidth* 2.5 - plane - 8,
 		width: 1.5*thickWidth,
 		height: thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -183,7 +185,7 @@ export const lands = [
 	{
 		x: initX + 8*thickWidth,
 		y: initY + 14.25*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 8,
 		width: thickWidth,
 		height: 1.5*thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -194,7 +196,7 @@ export const lands = [
 	{
 		x: initX + 8.25*thickWidth,
 		y: initY + 15.25*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 8,
 		width: 1.5*thickWidth,
 		height: thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -205,7 +207,7 @@ export const lands = [
 	{
 		x: initX + 9.5*thickWidth,
 		y: initY + 15.25*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 8,
 		width: thickWidth,
 		height: thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -216,7 +218,7 @@ export const lands = [
 	{
 		x: initX + 10*thickWidth,
 		y: initY + 16*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 8,
 		width: 1.5*thickWidth,
 		height: thickWidth,
 		depth: 5 * thickWidth - depthOffest,
@@ -227,7 +229,7 @@ export const lands = [
 	{
 		x: initX + 10.5*thickWidth,
 		y: initY + 16.5*thickWidth,
-		z: -thickWidth* 2.5 - plane - 2,
+		z: -thickWidth* 2.5 - plane - 8,
 		width: 1.5*thickWidth,
 		height: thickWidth,
 		depth: 5 * thickWidth - depthOffest,

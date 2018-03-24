@@ -27,7 +27,8 @@ export default class Mod {
     self.geometry = new THREE.BoxGeometry(0.5, 100, 0.5);
     // 创建材质
     self.material = new THREE.MeshLambertMaterial({
-      color: self.option.color
+      color: self.option.color,
+      ambient: self.option.color
     });
 
     // 生成模型
@@ -36,7 +37,7 @@ export default class Mod {
     // 旋转方向
     let xr = 90 / 180 * Math.PI;
     let s = self.option.scale;
-    mesh.scale.set(s, s, s);
+    mesh.scale.set(s, s * 10, s);
     mesh.rotation.set(xr, 0, 0);
 
     // 设置位移
