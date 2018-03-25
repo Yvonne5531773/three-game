@@ -159,7 +159,7 @@ export default class Runner
 		if (!this.finish) {
 			
 			//碰撞检测
-			this.detectCollision();
+			// this.detectCollision();
 			
 
 			//掉落检测

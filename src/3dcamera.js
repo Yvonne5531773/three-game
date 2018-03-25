@@ -18,17 +18,20 @@ export default class threeCamera {
 		this.cameraWorker.rotation.set(0, Math.PI* 0.25, Math.PI* 0.2)
 	}
 
-	setTargetRotation (theta, camera) {
-		new __TWEEN.Tween({theta: theta})
+	setTargetRotation (rotate, camera, duration = 3) {
+		console.log('camera.rotation.z', camera.rotation.z)
+		new __TWEEN.Tween({rotationx: camera.rotation.x, rotationy: camera.rotation.y, rotationz: camera.rotation.z})
 			.to({
-				theta: -0.25* Math.PI/100
-			}, 2)
+				rotationx: rotate,
+				rotationy: rotate,
+				rotationz: rotate
+			}, duration)
 			.delay(0)
 			.onUpdate(function() {
-				console.log(this.theta)
-				// camera.rotation.x += this.theta/10
-				// camera.rotation.y += this.theta/10
-				camera.rotation.z += this.theta
+				// console.log('camera.rotation.z', camera.rotation.z)
+				// camera.rotation.x = this.rotationx
+				// camera.rotation.y = this.rotationy
+				camera.rotation.z = this.rotationz
 			})
 			.start()
 	}

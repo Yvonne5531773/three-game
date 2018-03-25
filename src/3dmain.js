@@ -120,21 +120,22 @@ export default class gameDanceLine {
 		this.initPlane({
 			sizeX: 2* 1000,
 			sizeY: 2* 1000,
-			x: 6220,
-			y: 6330,
+			x: 6170,
+			y: 6310,
 			z: -50,
 			name: 'PLANE2'
 		})
 
 		//相机类
 		this.vm.threeCamera = new threeCamera()
+		//camera辅助线
 		// this.vm.scene.add(this.vm.threeCamera.cameraWorker)
 
 		this.initMapData();
 		//初始化运行逻辑，必须放到最后面
 		this.initRunner();
 
-		// this.initPart2()
+		this.initPart2()
 	}
 
 	initRender() {
@@ -147,10 +148,10 @@ export default class gameDanceLine {
 	}
 
 	initCamera() {
-		// this.vm.camera = new THREE.PerspectiveCamera(25, 0.5, 1, 30000)
-		// this.vm.camera.position.set(-2500, -3200, 6550);
-		// this.vm.camera.position.set(1000, 1600, 3550);
-		// this.vm.camera.position.set(-23400, -23400, 10550);
+		// this.vm.camera = new THREE.PerspectiveCamera(10, 0.5, 1, 30000)
+		// this.vm.camera.position.set(1500, 1500, 6550);
+		// this.vm.camera.position.set(5000, 5000, 5550);
+		// this.vm.camera.position.set(8875, 8875, 7850)
 
 		this.vm.camera = new THREE.PerspectiveCamera(30, 0.5, 1, 2000)  //透视相机;far: 加载的范围，与性能有关
 		this.vm.camera.position.set(-375, -375, 850)
@@ -339,10 +340,16 @@ export default class gameDanceLine {
 
 	doRender() {
 		this.vm.renderer.render(this.vm.scene, this.vm.camera)
+		//镜头旋转
+		// if(this.gameStatus.part2) {
+		// if(this.vm.runner.cursor_.name === '2') {
+			// this.vm.threeCamera.setTargetRotation(-0.3*Math.PI, this.vm.camera, 3) //逆时针
+			// this.vm.threeCamera.setTargetRotation(-0.35*Math.PI, this.vm.camera, 3)
+			// this.vm.threeCamera.setTargetRotation(0.01*Math.PI, this.vm.camera, 3)
+		// }
 	}
 
 	getMove() {
-		
 		//var now = Date.now()
 		this.vm.runner.run(this.vm.delta / 1000);
 		//console.log(Date.now() - now);
@@ -431,16 +438,13 @@ export default class gameDanceLine {
 
 	onTouchStart(that, event) {
 		if (!that.vm.gameState.IsReady()) {
-			return ;
+			return
 		}
-		
 		if (that.vm.gameState.IsStart()) {
 			that.vm.runner.turn()
 		} else {
 			that.startGame();
-			
 			audio(1, that.vm.innerAudioContext);
-			// that.vm.threeCamera.setTargetRotation(0, that.vm.camera)
 			that.calval.sortMeshs.forEach( mesh => {
 				that.animateBlocks(mesh)
 			})
@@ -506,7 +510,7 @@ export default class gameDanceLine {
 		this.removeEvents()
 		setTimeout(() => {
 			//重启游戏
-			this.reset()
+			// this.reset()
 		}, 1000)
 	}
 
@@ -565,7 +569,7 @@ export default class gameDanceLine {
 	}
 
 	createLines() {
-		var material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+		var material = new THREE.LineBasicMaterial({ color: '#000' });
 		var geometry = new THREE.Geometry();
 		function Loop(scene, node) {
 			for (var i = 0; i < node.links.length; ++i) {

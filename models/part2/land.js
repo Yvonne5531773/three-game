@@ -34,7 +34,7 @@ export const lands = [
 		z: -thickWidth* 2.5 - plane,
 		width: thickWidth,
 		height: 3 * thickWidth,
-		depth: 5 * thickWidth - 2,
+		depth: 5 * thickWidth,
 		animate: 1,
 		duration: durationVal,
 		delay: part1FirstDelay
