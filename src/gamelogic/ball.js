@@ -8,8 +8,8 @@ getBallMaterial();
 */
 export default class Ball
 {
-	size = 14;
-	height = 10.5;
+	size = 10;
+	height = 9.5 ;
 	cube = null;
 	speed = new THREE.Vector3(0, 0, 0);
 	trail = [];
@@ -128,17 +128,17 @@ export default class Ball
 
 		if (!droped) {
 			
-			var cube = this.trail[this.trail.length - 1];
-			if (cube != null) {
+			var tail = this.trail[this.trail.length - 1];
+			if (tail != null) {
 				var vecSeg = endpos.clone();
 				vecSeg.sub(startpos);
 				vecSeg.z = 0;
 
-				cube.visible = true;
-				cube.position.addVectors(startpos, endpos);
-				cube.position.divideScalar(2);
+				tail.visible = true;
+				tail.position.addVectors(startpos, endpos);
+				tail.position.divideScalar(2);
 
-				cube.scale.y = vecSeg.length() / this.size;
+				tail.scale.y = vecSeg.length() / this.size;
 			}
 		}
 

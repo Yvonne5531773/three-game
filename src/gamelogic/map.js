@@ -19,6 +19,9 @@ class Node
 		
 	links = [];
 	regions = [];
+	
+	cameraMoveVec = null; //相机移动速度
+	cameraRotateVec = null; //相机旋转速度
 
 	//calc
 	normals = [];
@@ -28,6 +31,13 @@ class Node
 		
 	}
 }
+
+class Cookie
+{
+	position = new THREE.Vector3(0, 0, 0);
+	attain = false;
+	index = 0;
+}
 	
 export default class Map
 {
@@ -36,20 +46,94 @@ export default class Map
 	checkMode = 0;
 	
 	horizon = new THREE.Vector3(0.5, -0.5, 0);
-	gravity = new THREE.Vector3(0, 0, -1);
+	axesX = new THREE.Vector3(1, 0, 0);
+	axesY = new THREE.Vector3(0, 1, 0);
+	axesZ = new THREE.Vector3(0, 0, 1);
 	
 	standBlock = null; //当前地图块节点
+	
+	diamonds = []; //钻石位置
+	crowns = [];   //皇冠位置
+	floors = [];   //地板矩形
 
 	constructor () {
 
 	}
+
+	generateFromJson(jsonStrNode, jsonStrGrocery) {
+		
+		{
+			var json = JSON.parse(jsonStrNode);
+			this.ReadPosition(json);
+		}
+
+		var jsonGrocery = JSON.parse(jsonStrGrocery);
+		if (jsonGrocery != null) {
+			this.ReadDiamond(jsonGrocery);
+			this.ReadCrown(jsonGrocery);
+			this.ReadFloors(jsonGrocery);
+		}
+	}	
 	
-	generateFromJson(jsonStr) {
+	///
+	ReadDiamond(json) {
+		var pts = json.diamonds;
+		if (pts == null) return ;
+		
+		for (var i = 0; i < pts.length; ++i) {
+			var pos = pts[i];
+			
+			var obj = new Cookie();
+			obj.position.set(pos.x, pos.y, pos.z);
+			obj.index = i;
+			this.diamonds.push(obj);
+		}
+	}
+	
+	ReadCrown(json) {
+		var pts = json.crowns;
+		if (pts == null) return ;
+		
+		for (var i = 0; i < pts.length; ++i) {
+			var pos = pts[i];
+			
+			var obj = new Cookie();
+			obj.position.set(pos.x, pos.y, pos.z);
+			obj.index = i;
+			this.crowns.push(obj);
+		}
+	}
+	
+	ReadFloors(json) {
+		var rects = json.floors;
+		if (rects == null) return ;
+		
+		for (var i = 0; i < rects.length; ++i) {
+			var obj = rects[i];
+			//中点+尺寸写法
+			if (obj.hasOwnProperty("center")) {
+				var vecX = this.axesX.clone();
+				vecX.multiplyScalar(obj.cx / 2);
+				var vecY = this.axesY.clone();
+				vecY.multiplyScalar(obj.cy / 2);
+				
+				var center = new THREE.Vector3(obj.center.x, obj.center.y, obj.center.z);
+				
+				var rect = new Rect();
+				rect.p1.copy(center).sub(vecX).sub(vecY);
+				rect.p2.copy(center).sub(vecX).add(vecY);
+				rect.p3.copy(center).add(vecX).add(vecY);
+				rect.p4.copy(center).add(vecX).sub(vecY);
+				
+				this.floors.push(rect);
+			}
+		}
+	}
+
+	ReadPosition(json) {
 
 		var nodeCursor = null;
-		
-
-		var json = JSON.parse(jsonStr);
+	
 		if (json) {
 			
 			for (var i = 0; i < json.length; ++i) {
@@ -63,10 +147,29 @@ export default class Map
 				if (obj.hasOwnProperty("boundary"))  node.boundary = (obj.boundary != 0);
 				if (obj.hasOwnProperty("process"))  node.process = obj.process;
 				
+				if (obj.hasOwnProperty("camera")) {
+					var cameraNode = obj.camera;
+					
+					if (cameraNode.hasOwnProperty("vx") || cameraNode.hasOwnProperty("vy") || cameraNode.hasOwnProperty("vz")) {
+						node.cameraMoveVec = new THREE.Vector3(0, 0, 0);
+						if (cameraNode.hasOwnProperty("vx")) node.cameraMoveVec.x = cameraNode.vx;
+						if (cameraNode.hasOwnProperty("vy")) node.cameraMoveVec.y = cameraNode.vy;
+						if (cameraNode.hasOwnProperty("vz")) node.cameraMoveVec.z = cameraNode.vz;
+					}
+					
+					if (cameraNode.hasOwnProperty("rx") || cameraNode.hasOwnProperty("ry") || cameraNode.hasOwnProperty("rz")) {
+						node.cameraRotateVec = new THREE.Vector3(0, 0, 0);
+						if (cameraNode.hasOwnProperty("rx")) node.cameraRotateVec.x = cameraNode.rx;
+						if (cameraNode.hasOwnProperty("ry")) node.cameraRotateVec.y = cameraNode.ry;
+						if (cameraNode.hasOwnProperty("rz")) node.cameraRotateVec.z = cameraNode.rz;
+					}
+				}
+				
 				if (nodeCursor) nodeCursor.links.push(node);
-				if (!this.standBlock) this.standBlock = nodeCursor;
 				
 				nodeCursor = node;
+				
+				if (!this.standBlock) this.standBlock = nodeCursor;
 			}
 		}
 

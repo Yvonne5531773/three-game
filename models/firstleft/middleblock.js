@@ -1,27 +1,36 @@
 //x越大，越里面；y越大，越上
-const thickWidth = 85,
-	middleWidth = 78,
-	fineWidth = 43,
+const thickWidth = 75,
+	middleWidth = 64,
+	fineWidth = 31,
 	offestX = 8,
 	rotationX = Math.PI* 0.5,
 	rotationY = Math.PI* 0.5,
-	z = 0,
+	z = 2,
 	delay = 1,
-	duration = .4
+	duration = .45
 export const whiteMiddleblocks = [
+	{  //1
+		x: 0, y: 545, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0
+	},
+	{  //2
+		x: middleWidth, y: 545, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, animt: 0, direction: 0
+	},
 	{  //3
-		x: thickWidth+middleWidth-.3*offestX, y: 630, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+duration, duration: duration
+		x: 2*middleWidth, y: 630, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+duration, duration: duration
 	},
 	{  //4
-		x: thickWidth+2*middleWidth-2*offestX, y: 710, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+3*(duration), duration: duration
+		x: 3*middleWidth, y: 685, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+3*(duration), duration: duration
 	},
 	{  //10
-		x: thickWidth+3*middleWidth+5*fineWidth-8.6*offestX, y: 1310, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+18*(duration), duration: duration
+		x: 4*middleWidth+5*(fineWidth+1), y: 795+3*thickWidth+3*middleWidth+2*fineWidth, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+18*(duration), duration: duration
 	},
 	{  //11
-		x: thickWidth+4*middleWidth+5*fineWidth-10.3*offestX, y: 1370, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+20*(duration), duration: duration
+		x: 5*middleWidth+5*(fineWidth+1), y: 795+3*thickWidth+4*middleWidth+2*fineWidth, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+20*(duration), duration: duration
+	},
+	{  //18
+		x: 4.5*thickWidth+5.5*middleWidth+8*(fineWidth)+2.2*offestX, y: 841+3*thickWidth+5*middleWidth+5*fineWidth, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+33*(duration), duration: duration
 	},
 	{  //20
-		x: 6*thickWidth+5*middleWidth+8*fineWidth-15.7*offestX, y: 1588, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+35*(duration), duration: duration
+		x: 4.5*thickWidth+6.5*middleWidth+9*(fineWidth)+2.6*offestX, y: 841+3*thickWidth+5*middleWidth+5*fineWidth, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+35*(duration), duration: duration
 	},
 ]

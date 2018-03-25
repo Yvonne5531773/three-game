@@ -12,6 +12,7 @@ import { whitefineblock } from "../asset/jsons/whitefineblock"
 import { barricade3 } from "../asset/jsons/barricade3"
 import { diament } from "../asset/jsons/diament"
 import { crown } from "../asset/jsons/crown"
+import { blackKeysPart3 } from "./blackKeysPart3/blackKeysPart3"
 import firstleft from './firstleft/index'
 import firstright from './firstright/index'
 import central from './central/index'
@@ -87,10 +88,8 @@ const materials = [
 	{  //后20%钢琴黑块
 		name: 'BARRICADE3',
 		url: config.modelSrc + "/blackKeysPart3.json",
-		material: {},
-		positions: [{
-			x: 5100 + 1100, y: 4900 + 587+600, z: -5, rotationX: -Math.PI* 0.5, rotationY: Math.PI* 0.25, rotationZ: Math.PI
-		}],
+		material: {color: '#9c9c9c'},
+		positions: blackKeysPart3,
 		scale: 11,
 		json: barricade3
 	},

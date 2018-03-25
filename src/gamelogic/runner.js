@@ -1,6 +1,4 @@
-import THREE from '../../libs/three.min'
-
-
+import CameraShift from './camerashift.js'
 /*
 listen.startSegment(startpos, direction)
 listen.doneSegment(startpos, endpos)
@@ -45,6 +43,7 @@ function PtInRect(p, p1, p2, p3, p4) {
 
 export default class Runner 
 {
+	height = 10.5;
 	size = 14;
     game = null;
 	
@@ -59,10 +58,19 @@ export default class Runner
 	flyDuration = 0;
     nodes_ = [];
 	
-	speed = 150;
+	speed = 130;
+	gravity = new THREE.Vector3(0, 0, -100);
+	
+	wallCollisions = null;
+	
+	//相机平移类
+	cameraShift = new CameraShift;
 
+	////Functions
 	setGameScene(gameScene) {
 		this.game = gameScene;
+		
+		this.cameraShift.SetCamera(this.game.GetCamera());
 	}
 	
     setMap(map) {
@@ -70,7 +78,9 @@ export default class Runner
         this.reset();
 
         this.map_ = map;
-		this.cursor_ = this.map_.standBlock;
+		
+		this.PassNode(this.map_.standBlock);
+		//this.cursor_ = this.map_.standBlock;
 
         var direction = this.calcNextDirection();
         if (direction != null) {
@@ -124,47 +134,61 @@ export default class Runner
 			offsetVec.multiplyScalar(duration * this.speed);
 			
             this.position_.add(offsetVec);
-
 			
+			//掉落
+			if (this.droped) {
+				var offsetZ = this.gravity.clone();
+				offsetZ.multiplyScalar(this.flyDuration);
+				offsetZ.multiplyScalar(duration / 2);
+				
+				this.position_.add(offsetZ);
+			}
+
             if (this.game) {
                 var start = this.nodes_.length - 1;
                 this.game.walkSegment(this.nodes_[start], this.position_, this.droped);
             }
 
         }
+		
+		//更新相机
+		this.cameraShift.Update(duration);
+		
+		this.detectCookies();
 
 		if (!this.finish) {
+			
 			//碰撞检测
 			this.detectCollision();
 			
 
 			//掉落检测
 			if (this.droped) {
-				
+
 				this.flyDuration += duration;
-				
+
 				if (!this.detectDrop(false)) {
-				
+
 					this.flyDuration = 0;
 					this.droped = false;
-					
+
 					this.updateCursor(true);
 					this.nodes_.push(this.position_.clone());
 					this.game.startSegment(this.position_, this.direction_, false);
-					
+
 				} else {
 					this.detectFlyout();
 				}
-				
+
 			}
 			else {
-				
+
 				this.updateCursor(false);
-				
+
 				if (this.detectDrop(false)) {
 					this.flyDuration = 0;
 					this.droped = true;
-					
+
 					//开始掉落
 					this.nodes_.push(this.position_.clone());
 
@@ -173,7 +197,6 @@ export default class Runner
 				}
 			}
 
-		
 		}
 		
 		
@@ -252,16 +275,25 @@ export default class Runner
 	
 	PassNode (node) {
 		
-		if (node == null) {
-			return ;
+		if (node == null) return ;
+		
+		console.log("通过节点:" + node.name)
+
+		this.cursor_ = node;
+		
+		//更新相机移动信息
+		if (node.cameraMoveVec != null) {
+			this.cameraShift.SetMoveSpeed(node.cameraMoveVec);
 		}
 		
-		this.cursor_ = node;
+		if (node.cameraRotateVec != null) {
+			this.cameraShift.SetRotateSpeed(node.cameraRotateVec);
+		}
+		
 		
 		//尝试过关
 		this.game.passNode(this.cursor_.position, this.cursor_.name)
-					
-		console.log("通过节点")
+
 	}
 
     calcNextDirection() {
@@ -325,64 +357,127 @@ export default class Runner
 		this.flyDuration = 0;
     }
 	
+	detectCookies() {
+		
+		if (this.map_ == null) return;
+		
+		var offsetSq = (this.size * this.size / 2);
+		
+		var position = this.position_.clone();
+		//position.z -= this.height / 2;
+		
+		//判断钻石
+		for (var i = 0; i < this.map_.diamonds.length; ++i) {
+			
+			if (this.map_.diamonds[i].attain) continue;
+			
+			var vec = this.map_.diamonds[i].position.clone();
+			vec.sub(position);
+
+			if (vec.lengthSq() < offsetSq) {
+				this.map_.diamonds[i].attain = true; 
+				
+				this.game.hitDiamond(this.map_.diamonds[i].index);
+			}
+		}
+		
+		//判断皇冠
+		for (var i = 0; i < this.map_.crowns.length; ++i) {
+			
+			if (this.map_.crowns[i].attain) continue;
+			
+			var vec = this.map_.crowns[i].position.clone();
+			vec.sub(position);
+			
+			//console.log("Crown:" + vec.lengthSq());
+			
+			if (vec.lengthSq() < offsetSq) {
+				this.map_.crowns[i].attain = true;
+				
+				this.game.attainCrown(this.map_.crowns[i].index);
+			}
+		}
+	}
+	
 	detectCollision() {
 
 		var originPoint = this.position_.clone();
-
+		
 		//计算出2个点
 		var axisZ = new THREE.Vector3(0, 0, 1);
 		var vecV = this.direction_.clone();
 		var vecH = new THREE.Vector3(0, 0, 0);
 		vecH.crossVectors(axisZ, vecV);
 		vecH.normalize();
-
+		
 		vecV.multiplyScalar(this.size / 2);
 		vecH.multiplyScalar(this.size / 2);
+		
+		var pts = [originPoint.clone()];
+		//pts[0].sub(vecV).add(vecH);
+		//pts[1].sub(vecV).sub(vecH);
+		pts[0].sub(vecV);
 
-		var pts = [originPoint.clone(), originPoint.clone(), originPoint.clone()];
-		pts[0].sub(vecV).add(vecH);
-		pts[1].sub(vecV).sub(vecH);
-		pts[2].sub(vecV);
-
-		const collisions = this.game.getCollisions(1);
-
+		if (this.wallCollisions == null) {
+			this.wallCollisions = this.game.getCollisions(1);
+		}
+		
 		for (var i = 0; i < pts.length; ++i) {
-
-			let ray = new THREE.Raycaster(pts[i], this.direction_.clone());
-			let collisionResults = ray.intersectObjects(collisions);
+			
+			let ray = new THREE.Raycaster(pts[i],this.direction_.clone(), 0, this.size);
+			let collisionResults = ray.intersectObjects(this.wallCollisions);
 			if (collisionResults.length > 0 && collisionResults[0].distance < this.size) {
-				if (!!~collisionResults[0].object.name.indexOf('DIAMENT')) {
-					this.game.hitDiamond(collisionResults[0].object);
+				if (collisionResults[0].object.name.indexOf('DIAMENT') > -1) {
+					
+					//this.game.hitDiamond(collisionResults[0].object);
 					break;
-				} else if (!!~collisionResults[0].object.name.indexOf('CROWN')) {
-					this.game.attainCrown(collisionResults[0].object)
+
+				} else if (collisionResults[0].object.name.indexOf('CROWN') > -1) {
+					
+					//this.game.attainCrown(collisionResults[0].object)
 					break;
-				} else {
+					
+				}else {
+					
 					this.game.bumpWall(originPoint.clone());
 					break;
+					
 				}
 			}
 		}
+		
 	}
 	
 	detectDrop(front) {
 		
 		var drop = true;
+		if (this.map_ == null) return drop;
 		
 		var originPoint = this.position_.clone();
 		
+		for (var i = 0; i < this.map_.floors.length; ++i) {
+			
+			var rect = this.map_.floors[i];
+			
+			//判断Z轴，先简单判断
+			var z = originPoint.z - rect.p1.z;
+			if (Math.abs(z) >= this.height / 2) {
+				continue;
+			}
+			
+			//判断区域
+			if (PtInRect(originPoint, rect.p1, rect.p2, rect.p3, rect.p4)) {
+				drop = false;
+				break;
+			}
+		}
+		
+		return drop;
+		/*
 		//计算出2个点
 		var axisZ = new THREE.Vector3(0, 0, 1);
 		var vecU = axisZ.clone();
-		/*
-		var vecV = this.direction_.clone();
-		var vecH = new THREE.Vector3(0, 0, 0);
-		vecH.crossVectors(axisZ, vecV);
-		vecH.normalize();
-		
-		vecV.multiplyScalar(this.size / 2);
-		vecH.multiplyScalar(this.size / 2);
-		*/
+
 		vecU.multiplyScalar(this.size / 2);
 		
 		var pts = [originPoint.clone()];
@@ -410,6 +505,7 @@ export default class Runner
 				break;
 			}
 		}
+		*/
 		
 		return drop;
 	}

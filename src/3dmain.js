@@ -9,8 +9,9 @@ import gamepart2 from 'part2/gamepart2'
 import Runner from './gamelogic/runner.js'
 import Map from './gamelogic/map.js'
 import Ball from './gamelogic/ball.js'
-import { position } from './gamelogic/position.js'
+import { position, groceryStr} from './gamelogic/position.js'
 import { diamentOffests } from '../models/diament/diament'
+import { crownOffests } from '../models/crown/crown'
 import threeCamera from '3dcamera'
 import GameState from './gamelogic/gamestate.js'
 
@@ -29,13 +30,14 @@ export default class gameDanceLine {
 		pauseFlag: true,
 		end: false,
 		models: [],
-		collisionExcepts: ['LEFT_BARRICADE', 'RIGHT_BARRICADE', 'BARRICADE', 'BARRICADE3'],
+		wallCollision: ['WHITE_FINE_BLOCKS', 'WHITE_MIDDLE_BLOCKS', 'WHITE_THICK_BLOCKS'],
 		floorCollision: ['PLANE1', 'PLANE2', 'LAND'],
 		fps: 60,
 		now: '',
 		then: Date.now(),
 		delta: '',
 		getDiamentCount: 0,
+		getCrownCount: 0,
 		blockAnimateIndex: 0,
 		initCubePosition: {},
 		initGeometry: {},
@@ -110,7 +112,7 @@ export default class gameDanceLine {
 		this.initPlane({
 			sizeX: 3* 1100,
 			sizeY: 3* 1080,
-			x: 1100- 580,
+			x: 1100- 650,
 			y: 1080- 400,
 			z: -12,
 			name: 'PLANE1'
@@ -118,9 +120,9 @@ export default class gameDanceLine {
 		this.initPlane({
 			sizeX: 2* 1000,
 			sizeY: 2* 1000,
-			x: 5400 + 1100- 580,
-			y: 5500 + 1080- 400,
-			z: -32,
+			x: 6220,
+			y: 6330,
+			z: -50,
 			name: 'PLANE2'
 		})
 
@@ -145,17 +147,17 @@ export default class gameDanceLine {
 	}
 
 	initCamera() {
-		// this.vm.camera = new THREE.PerspectiveCamera(15, 0.5, 1, 12000)
-		// this.vm.camera.position.set(-375, -380, 1600);  //3 俯视的高度
-		// this.vm.camera.position.set(-3400, -3400, 6550);
-		// this.vm.camera.position.set(-800, -800, 5550);
-		// this.vm.camera.position.set(-6400, -6400, 6550);
+		// this.vm.camera = new THREE.PerspectiveCamera(25, 0.5, 1, 30000)
+		// this.vm.camera.position.set(-2500, -3200, 6550);
+		// this.vm.camera.position.set(1000, 1600, 3550);
+		// this.vm.camera.position.set(-23400, -23400, 10550);
 
-		this.vm.camera = new THREE.PerspectiveCamera(40, 0.5, 1, 2000)  //透视相机;far: 加载的范围，与性能有关
-		this.vm.camera.position.set(-375, -380, 600)
+		this.vm.camera = new THREE.PerspectiveCamera(30, 0.5, 1, 2000)  //透视相机;far: 加载的范围，与性能有关
+		this.vm.camera.position.set(-375, -375, 850)
 		this.vm.camera.up.x = 0
 		this.vm.camera.up.y = 0
 		this.vm.camera.up.z = 1
+		// this.vm.camera.up.z = 0
 		this.vm.camera.lookAt(this.vm.scene.position)
 
 		// 测试代码
@@ -245,7 +247,6 @@ export default class gameDanceLine {
 
 	initAudio() {
 		this.vm.innerAudioContext = wx.createInnerAudioContext()
-		// this.vm.innerAudioContext.src = '../asset/piano.mp3'
 		this.vm.innerAudioContext.src = config.musicSrc
 	}
 
@@ -279,12 +280,12 @@ export default class gameDanceLine {
 		//创建球，游戏运行逻辑，地图
 		this.vm.runner.setGameScene(this);
 		this.vm.runner.setMap(this.vm.map);
-		//this.createLines();
+		this.createLines();
 	}
 
 	initMapData() {
 		const jsonStr = JSON.stringify(position);
-		this.vm.map.generateFromJson(jsonStr);
+		this.vm.map.generateFromJson(jsonStr, groceryStr);
 	}
 
 	initCalVals() {
@@ -295,7 +296,14 @@ export default class gameDanceLine {
 				d.name = 'DIAMENT_' + i
 			})
 		}
-		this.calval.crownMesh = this.vm.models.find(model => model.name === 'CROWN')
+		
+		if(!this.calval.crownMesh || this.calval.crownMesh.length === 0) {
+			this.calval.crownMesh = this.vm.models.filter(model => model.name === 'CROWN')
+			this.calval.crownMesh.forEach((d, i) => {
+				d.name = 'CROWN_' + i
+			})
+		}
+		//this.calval.crownMesh = this.vm.models.find(model => model.name === 'CROWN')
 		this.calval.sortMeshs = this.vm.models.filter(model => model.animated)
 	}
 
@@ -359,8 +367,18 @@ export default class gameDanceLine {
 		}
 	}
 
+	changeDiamentPosition(diament) {
+		this.vm.getDiamentCount++;
+		this.destory(diament);
+	}
+	
+	changeCrownPosition(crown) {
+		this.vm.getCrownCount++;
+		this.destory(crown);
+	}
+
 	checkGameStatus () {
-		if(this.calval.crownMesh && this.calval.crownMesh && this.vm.ball.cube.position.x >= this.calval.crownMesh.position.x && !this.gameStatus.part2) {
+		if(this.calval.crownMesh && this.calval.crownMesh.length > 0 && this.vm.ball.cube.position.x >= this.calval.crownMesh[0].position.x && !this.gameStatus.part2) {
 			this.initPart2()
 			this.gameStatus.part1 = false
 			this.gameStatus.part2 = true
@@ -518,9 +536,9 @@ export default class gameDanceLine {
 		this.calval.diamentMesh.forEach(diament => {
 			this.animateDiament(diament, 0.05)
 		})
-		// this.calval.diamentMesh && this.animateDiament(this.calval.diamentMesh, 0.05)
-		this.calval.crownMesh && this.animateCrown(this.calval.crownMesh, 0.05)
-
+		this.calval.crownMesh.forEach(mesh => {
+			this.animateCrown(mesh, 0.05)
+		})
 		if (this.gameStatus.part2) {
 
 			let cursorNum = +this.vm.runner.cursor_.name;
@@ -568,10 +586,10 @@ export default class gameDanceLine {
 		this.vm.ball.startSegment(startpos, direction, corner);
 
 		//相机随着线的运动，镜头跟着走
-		const offest = 380,
-			zAsc = 0.00 //夹角增量
-		this.vm.camera.position.x = startpos.x - offest;
-		this.vm.camera.position.y = startpos.y - offest;
+		//const offest = 380,
+			//zAsc = 0.00 //夹角增量
+		//this.vm.camera.position.x = startpos.x - offest;
+		//this.vm.camera.position.y = startpos.y - offest;
 		//this.vm.gameState.IsRunning() && (this.vm.camera.position.z += zAsc);
 	}
 
@@ -587,8 +605,10 @@ export default class gameDanceLine {
 		//相机随着线的运动，镜头跟着走
 		const offest = 380,
 			zAsc = 0.00 //夹角增量
-		this.vm.camera.position.x = endpos.x - offest;
-		this.vm.camera.position.y = endpos.y - offest;
+		//this.vm.camera.position.x = endpos.x - offest;
+		//this.vm.camera.position.y = endpos.y - offest;
+		
+		//this.vm.camera.rotation.z += 0.001;
 		// this.vm.camera.lookAt(new THREE.Vector3(0, 0, 0))
 		//!this.vm.pauseFlag && (this.vm.camera.position.z += zAsc);
 	}
@@ -603,18 +623,33 @@ export default class gameDanceLine {
 
 	}
 
-	hitDiamond(mesh) {
-		if (mesh) {
-			this.destory(mesh)
+	hitDiamond(index) {
+		
+		console.log("HitDiamond:" + index);
+		
+		if (this.calval.diamentMesh == null) {
+			return ;
+		}
+		
+		console.log("钻石个数：" + this.calval.diamentMesh.length);
+		
+		if (index < this.calval.diamentMesh.length) {
+			this.changeDiamentPosition(this.calval.diamentMesh[index]);
 		}
 	}
 
-	attainCrown(mesh) {
-
-		if (mesh) {
-			mesh.visible = false;
+	attainCrown(index) {
+		
+		console.log("AttainCrown:" + index);
+		if (this.calval.crownMesh == null) {
+			return ;
 		}
-
+		
+		console.log("皇冠个数：" + this.calval.crownMesh.length);
+		
+		if (index < this.calval.crownMesh.length) {
+			this.changeCrownPosition(this.calval.crownMesh[index]);
+		}
 	}
 
 	passNode(pos, name) {
@@ -629,7 +664,7 @@ export default class gameDanceLine {
 
 	getCollisions(type) {
 		if (type === 1) {
-			const collisions = this.vm.models.filter(model => !~this.vm.collisionExcepts.indexOf(model.name));
+			const collisions = this.vm.models.filter(model => ~this.vm.wallCollision.indexOf(model.name));
 			return collisions;
 		} else if (type === 2) {
 			const collisions = this.vm.models.filter(model => ~this.vm.floorCollision.indexOf(model.name));
@@ -647,6 +682,10 @@ export default class gameDanceLine {
 	getBallMaterial() {
 
 		return this.materials.cube;
+	}
+	
+	GetCamera() {
+		return this.vm.camera;
 	}
 }
 

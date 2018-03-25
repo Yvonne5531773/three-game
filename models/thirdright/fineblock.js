@@ -1,35 +1,35 @@
-const thickWidth = 100,
-	middleWidth = 92,
-	fineWidth = 51,
-	offest = 12,
+const thickWidth = 75,
+	middleWidth = 64,
+	fineWidth = 31,
+	offest = 8,
 	rotationX = Math.PI* 0.5,
 	rotationY = Math.PI,
 	offestX = -10 + 5100,
 	offestY = 20 + 4900,
-	z = -20
+	z = 0
 export const whiteFineblocks = [
 	{  //3
-		x: 1000+offestX, y: 460+middleWidth+thickWidth-5.3*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 700+offestX+middleWidth+4*fineWidth, y: 490+middleWidth+fineWidth+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //4
-		x: 1050+offestX, y: 460+middleWidth+thickWidth+fineWidth-6.7*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 700+offestX+middleWidth+5*fineWidth, y: 490+middleWidth+2*fineWidth+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //5
-		x: 1100+offestX, y: 460+middleWidth+thickWidth+2*fineWidth-8.1*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 700+offestX+middleWidth+6*fineWidth, y: 490+middleWidth+3*fineWidth+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //6
-		x: 1150+offestX, y: 460+middleWidth+thickWidth+3*fineWidth-9.5*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 700+offestX+thickWidth+middleWidth+6*fineWidth, y: 490+middleWidth+4*fineWidth+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //7
-		x: 1200+offestX, y: 460+middleWidth+thickWidth+4*fineWidth-10.9*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 700+offestX+2*thickWidth+middleWidth+6*fineWidth, y: 490+middleWidth+5*fineWidth+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //11
-		x: 1700+offestX, y: 460+3*middleWidth+2*thickWidth+5*fineWidth-15.5*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 700+offestX+4.5*thickWidth+3*middleWidth+10*fineWidth, y: 490+thickWidth+3*middleWidth+6.5*fineWidth+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //12
-		x: 1800+offestX, y: 460+3*middleWidth+2*thickWidth+6*fineWidth-16.6*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 700+offestX+4.5*thickWidth+3*middleWidth+11*fineWidth, y: 490+thickWidth+3*middleWidth+7.5*fineWidth+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 	{  //13
-		x: 1900+offestX, y: 460+3*middleWidth+2*thickWidth+7*fineWidth-17.7*offest+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
+		x: 700+offestX+4.5*thickWidth+3*middleWidth+13*fineWidth, y: 490+thickWidth+3*middleWidth+8.5*fineWidth+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1
 	},
 ]
