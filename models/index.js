@@ -21,78 +21,78 @@ import thirdleft from './thirdleft/index'
 import thirdright from './thirdright/index'
 
 const materials = [
-	{  //开始左横条
-		name: 'LEFT_BARRICADE',
-		url: config.modelSrc + "/leftbarricade.json",
-		material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
-		positions: leftbarricades,
-		scale: 11,
-		json: leftbarricade
-	},
-	{  //开始右横条
-		name: 'RIGHT_BARRICADE',
-		url: config.modelSrc + "/rightbarricade.json",
-		material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
-		positions: rightbarricades,
-		scale: 11,
-		json: rightbarricade
-	},
-	{  //中部横条
-		name: 'BARRICADE',
-		url: config.modelSrc + "/barricade.json",
-		material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
-		positions: barricades,
-		scale: 11,
-		json: barricade
-	},
-	{  //钢琴粗白块
-		name: 'WHITE_THICK_BLOCKS',
-		url: config.modelSrc + "/whitethickblock.json",
-		material: {color: '#fff'},
-		positions: firstleft.whiteThickblocks.concat(firstright.whiteThickblocks).concat(central.whiteThickblocks).concat(thirdleft.whiteThickblocks).concat(thirdright.whiteThickblocks),
-		scale: 11,
-		json: whitethickblock
-	},
-	{  //钢琴中白块
-		name: 'WHITE_MIDDLE_BLOCKS',
-		url: config.modelSrc + "/whitemiddleblocks.json",
-		material: {color: '#fff'},
-		positions: firstleft.whiteMiddleblocks.concat(firstright.whiteMiddleblocks).concat(central.whiteMiddleblocks).concat(thirdleft.whiteMiddleblocks).concat(thirdright.whiteMiddleblocks),
-		scale: 11,
-		json: whitemiddleblock
-	},
-	{  //钢琴细白块
-		name: 'WHITE_FINE_BLOCKS',
-		url: config.modelSrc + "/whitefineblocks.json",
-		material: {color: '#fff'},
-		positions: firstleft.whiteFineblocks.concat(firstright.whiteFineblocks).concat(central.whiteFineblocks).concat(thirdleft.whiteFineblocks).concat(thirdright.whiteFineblocks),
-		scale: 11,
-		json: whitefineblock
-	},
-	{  //钻石
-		name: 'DIAMENT',
-		url: config.modelSrc + "/diament.json",
-		material: {color: '#f0efa5'},
-		positions: diamentOffests,
-		scale: 1200,
-		json: diament
-	},
-	{  //皇冠
-		name: 'CROWN',
-		url: config.modelSrc + "/crown.json",
-		material: {},
-		positions: crownOffests,
-		scale: 100,
-		json: crown
-	},
-	{  //后20%钢琴黑块
-		name: 'BARRICADE3',
-		url: config.modelSrc + "/blackKeysPart3.json",
-		material: {color: '#9c9c9c'},
-		positions: blackKeysPart3,
-		scale: 11,
-		json: barricade3
-	},
+	// {  //开始左横条
+	// 	name: 'LEFT_BARRICADE',
+	// 	url: config.modelSrc + "/leftbarricade.json",
+	// 	material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
+	// 	positions: leftbarricades,
+	// 	scale: 11,
+	// 	json: leftbarricade
+	// },
+	// {  //开始右横条
+	// 	name: 'RIGHT_BARRICADE',
+	// 	url: config.modelSrc + "/rightbarricade.json",
+	// 	material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
+	// 	positions: rightbarricades,
+	// 	scale: 11,
+	// 	json: rightbarricade
+	// },
+	// {  //中部横条
+	// 	name: 'BARRICADE',
+	// 	url: config.modelSrc + "/barricade.json",
+	// 	material: {color: '#9c9c9c', transparent: false, opacity: 0.1},
+	// 	positions: barricades,
+	// 	scale: 11,
+	// 	json: barricade
+	// },
+	// {  //钢琴粗白块
+	// 	name: 'WHITE_THICK_BLOCKS',
+	// 	url: config.modelSrc + "/whitethickblock.json",
+	// 	material: {color: '#fff'},
+	// 	positions: firstleft.whiteThickblocks.concat(firstright.whiteThickblocks).concat(central.whiteThickblocks).concat(thirdleft.whiteThickblocks).concat(thirdright.whiteThickblocks),
+	// 	scale: 11,
+	// 	json: whitethickblock
+	// },
+	// {  //钢琴中白块
+	// 	name: 'WHITE_MIDDLE_BLOCKS',
+	// 	url: config.modelSrc + "/whitemiddleblocks.json",
+	// 	material: {color: '#fff'},
+	// 	positions: firstleft.whiteMiddleblocks.concat(firstright.whiteMiddleblocks).concat(central.whiteMiddleblocks).concat(thirdleft.whiteMiddleblocks).concat(thirdright.whiteMiddleblocks),
+	// 	scale: 11,
+	// 	json: whitemiddleblock
+	// },
+	// {  //钢琴细白块
+	// 	name: 'WHITE_FINE_BLOCKS',
+	// 	url: config.modelSrc + "/whitefineblocks.json",
+	// 	material: {color: '#fff'},
+	// 	positions: firstleft.whiteFineblocks.concat(firstright.whiteFineblocks).concat(central.whiteFineblocks).concat(thirdleft.whiteFineblocks).concat(thirdright.whiteFineblocks),
+	// 	scale: 11,
+	// 	json: whitefineblock
+	// },
+	// {  //钻石
+	// 	name: 'DIAMENT',
+	// 	url: config.modelSrc + "/diament.json",
+	// 	material: {color: '#f0efa5'},
+	// 	positions: diamentOffests,
+	// 	scale: 1200,
+	// 	json: diament
+	// },
+	// {  //皇冠
+	// 	name: 'CROWN',
+	// 	url: config.modelSrc + "/crown.json",
+	// 	material: {},
+	// 	positions: crownOffests,
+	// 	scale: 100,
+	// 	json: crown
+	// },
+	// {  //后20%钢琴黑块
+	// 	name: 'BARRICADE3',
+	// 	url: config.modelSrc + "/blackKeysPart3.json",
+	// 	material: {color: '#9c9c9c'},
+	// 	positions: blackKeysPart3,
+	// 	scale: 11,
+	// 	json: barricade3
+	// },
 	// {  //宝石
 	// 	name: 'GEMSTONE',
 	// 	url: config.modelSrc + "/gemstone.json",

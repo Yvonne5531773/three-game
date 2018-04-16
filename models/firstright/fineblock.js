@@ -8,7 +8,7 @@ const thickWidth = 75,
 	offestY = 20,
 	z = 2,
 	delay = 1,
-	duration = .45
+	duration = .4
 export const whiteFineblocks = [
 	{  //4
 		x: 690+(middleWidth)+2.5*(fineWidth), y: 2*middleWidth+1.5*fineWidth+1, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1, animt: 1, delay: delay+5*(duration), duration: duration

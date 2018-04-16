@@ -1,4 +1,4 @@
-﻿import THREE from '../../libs/three.min'
+﻿// import THREE from '../../libs/three.min'
 
 /*
 Interface GameScene
@@ -8,8 +8,9 @@ getBallMaterial();
 */
 export default class Ball
 {
-	size = 10;
-	height = 9.5 ;
+	//1.1 : 1
+	size = 16;
+	height = 10.47;
 	cube = null;
 	speed = new THREE.Vector3(0, 0, 0);
 	trail = [];
@@ -42,7 +43,6 @@ export default class Ball
 		cube.castShadow = true;
 		cube.visible = false;
 		this.cube = cube;
-
 		this.gameScene.getScene().add(cube);
 	};
 	

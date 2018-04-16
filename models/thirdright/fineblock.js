@@ -6,7 +6,7 @@ const thickWidth = 75,
 	rotationY = Math.PI,
 	offestX = -10 + 5100,
 	offestY = 20 + 4900,
-	z = 0
+	z = 2
 export const whiteFineblocks = [
 	{  //3
 		x: 700+offestX+middleWidth+4*fineWidth, y: 490+middleWidth+fineWidth+offestY, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, msort: 1, direction: 1

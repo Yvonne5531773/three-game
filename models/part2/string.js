@@ -8,7 +8,7 @@ export const strings = [
     // l1
 	{
 		x: offest + 1030,
-		y: offest + 990,
+		y: offest + 1190,
         z: Z,
         scale: 10,
         gap: 4,
@@ -18,7 +18,7 @@ export const strings = [
     // r1
 	{
 		x: offest + 1100,
-		y: offest + 850,
+		y: offest + 920,
         z: Z,
         scale: 10,
         gap: 5,
@@ -67,8 +67,8 @@ export const strings = [
     // },
     // l4
 	{
-		x: offest + 1220,
-		y: offest + 1260,
+		x: offest + 1150,
+		y: offest + 1300,
         z: Z,
         scale: 10,
         gap: 5,
@@ -77,7 +77,7 @@ export const strings = [
     },
     // r4
 	{
-		x: offest + 1430,
+		x: offest + 1330,
 		y: offest + 1180,
         z: Z,
         scale: 10,
@@ -107,7 +107,7 @@ export const strings = [
     // },
     // l6
 	{
-		x: offest + 1350,
+		x: offest + 1250,
 		y: offest + 1500,
         z: Z,
         scale: 10,
@@ -137,7 +137,7 @@ export const strings = [
     // },
     // r8
 	{
-		x: offest + 1540,
+		x: offest + 1500,
 		y: offest + 1500,
         z: Z,
         scale: 10,
@@ -157,7 +157,7 @@ export const strings = [
     // },
     // l10
 	{
-		x: offest + 1500,
+		x: offest + 1350,
 		y: offest + 2000,
         z: Z,
         scale: 10,
@@ -218,7 +218,7 @@ export const strings = [
     // l13
 	{
 		x: offest + 1810,
-		y: offest + 2250,
+		y: offest + 2320,
         z: Z,
         scale: 10,
         gap: 5,
@@ -238,7 +238,7 @@ export const strings = [
     // l14
 	{
 		x: offest + 2580,
-		y: offest + 2560,
+		y: offest + 2620,
         z: Z,
         scale: 10,
         gap: 5,
@@ -247,8 +247,8 @@ export const strings = [
     },
     // r14
 	{
-		x: offest + 2700,
-		y: offest + 2450,
+		x: offest + 2650,
+		y: offest + 2400,
         z: Z,
         scale: 10,
         gap: 4,
@@ -257,8 +257,8 @@ export const strings = [
     },
     // l15
 	{
-		x: offest + 2850,
-		y: offest + 2850,
+		x: offest + 2860,
+		y: offest + 2860,
         z: Z,
         scale: 10,
         gap: 5,
@@ -278,7 +278,7 @@ export const strings = [
     // l16
 	{
 		x: offest + 3550,
-		y: offest + 3200,
+		y: offest + 3300,
         z: Z,
         scale: 10,
         gap: 5,
@@ -297,7 +297,7 @@ export const strings = [
     },
     // l17
 	{
-		x: offest + 3920,
+		x: offest + 3850,
 		y: offest + 3650,
         z: Z,
         scale: 10,

@@ -8,7 +8,7 @@ const thickWidth = 75,
 	rotationY = Math.PI* 0.5,
 	z = 2,
 	delay = 1,
-	duration = .45
+	duration = .4
 export const whiteThickblocks = [
 	{  //12
 		x: thickWidth+5*middleWidth+5*(fineWidth+1), y: 845+3*thickWidth+4*middleWidth+2*fineWidth, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0, direction: 0, animt: 1, delay: delay+22*(duration), duration: duration

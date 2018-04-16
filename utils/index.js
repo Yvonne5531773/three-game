@@ -1,7 +1,7 @@
 export const audio = (action, innerAudioContext) => {
-	// if(!innerAudioContext) return
-	// action === 1 && innerAudioContext.play()
-	// action === 2 && innerAudioContext.destroy()
+	if(!innerAudioContext) return
+	action === 1 && innerAudioContext.play()
+	action === 2 && innerAudioContext.destroy()
 }
 
 export const submitRequest = ({method = 'get', url = '', data = ''}) => {
@@ -10,7 +10,7 @@ export const submitRequest = ({method = 'get', url = '', data = ''}) => {
 		request.onreadystatechange = function () {
 			if (request.readyState === 4) {
 				if (request.status === 200) {
-					resolve(JSON.parse(request.responseText))
+					resolve((request.responseText))
 				} else {
 					reject(request.status)
 				}

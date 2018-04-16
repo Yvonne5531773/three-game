@@ -12,7 +12,6 @@ import Ball from './gamelogic/ball.js'
 import { position, groceryStr} from './gamelogic/position.js'
 import { diamentOffests } from '../models/diament/diament'
 import { crownOffests } from '../models/crown/crown'
-import threeCamera from '3dcamera'
 import GameState from './gamelogic/gamestate.js'
 
 export default class gameDanceLine {
@@ -48,7 +47,9 @@ export default class gameDanceLine {
 		ball: new Ball,     //dancing line
 		map: new Map,       //地图数据
 		runner: new Runner, //游戏运行逻辑
-		
+		pianoKeys: [],
+		right: [],
+		left: [],
 		gameState: new GameState
 	}
 	calval = {
@@ -68,17 +69,19 @@ export default class gameDanceLine {
 		platformStart1Pos: {},
 		platformEnd1Pos: {}
 	}
+
+	loader = new THREE.OBJLoader( new THREE.LoadingManager() );
+
 	//touch的回调方法
 	eventTouchStartFun = this.onTouchStart.bind(null, this)
 	//方块常量
 	materials = {
-		barricade: new THREE.MeshLambertMaterial({color: '#575a52', ambient: '#575a52', lineWidth: 1}),
-		block: new THREE.MeshLambertMaterial({color: '#e9e9e9', ambient: '#e9e9e9', lineWidth: 1}),
-		cube: new THREE.MeshLambertMaterial({color: '#e7b066', ambient: '#e7b066', lineWidth: 1}),
-		diament: new THREE.MeshLambertMaterial({color: '#f9eb4c', ambient: '#f9eb4c', lineWidth: 1}),
-		crown: new THREE.MeshLambertMaterial({color: '#f9eb4c', ambient: '#f9eb4c', lineWidth: 1}),
-		plane: new THREE.MeshBasicMaterial( {color: '#f6e2b1', ambient: '#f6e2b1', side: THREE.DoubleSide} )
-		// plane: new THREE.MeshLambertMaterial({color: '#dfcda0', ambient: '#dfcda0'})
+		barricade: new THREE.MeshLambertMaterial({color: '#575a52'}),
+		block: new THREE.MeshLambertMaterial({color: '#e9e9e9'}),
+		cube: new THREE.MeshLambertMaterial({color: '#e7b066'}),
+		diament: new THREE.MeshLambertMaterial({color: '#f9eb4c'}),
+		crown: new THREE.MeshLambertMaterial({color: '#f9eb4c'}),
+		plane: new THREE.MeshBasicMaterial( {color: '#f6e2b1', side: THREE.DoubleSide} )
 	}
 
 	constructor() {
@@ -95,7 +98,7 @@ export default class gameDanceLine {
 		this.initRender()
 		this.vm.scene = new THREE.Scene()
 		//素材
-		this.initMaterials(config.loadAction)
+		// this.initMaterials(config.loadAction)
 		//音乐
 		this.initAudio()
 		//相机
@@ -109,14 +112,14 @@ export default class gameDanceLine {
 		//初始化开始位置
 		//this.setInitCubePosition({x: this.vm.cube[0].position.x, y: this.vm.cube[0].position.y})
 		//地板块
-		this.initPlane({
-			sizeX: 3* 1100,
-			sizeY: 3* 1080,
-			x: 1100- 650,
-			y: 1080- 400,
-			z: -12,
-			name: 'PLANE1'
-		})
+		// this.initPlane({
+		// 	sizeX: 3* 1100,
+		// 	sizeY: 3* 1080,
+		// 	x: 1100- 650,
+		// 	y: 1080- 400,
+		// 	z: -52,
+		// 	name: 'PLANE1'
+		// })
 		this.initPlane({
 			sizeX: 2* 1000,
 			sizeY: 2* 1000,
@@ -127,7 +130,7 @@ export default class gameDanceLine {
 		})
 
 		//相机类
-		this.vm.threeCamera = new threeCamera()
+		// this.vm.threeCamera = new threeCamera()
 		//camera辅助线
 		// this.vm.scene.add(this.vm.threeCamera.cameraWorker)
 
@@ -135,43 +138,82 @@ export default class gameDanceLine {
 		//初始化运行逻辑，必须放到最后面
 		this.initRunner();
 
-		this.initPart2()
+		// this.initPart2()
+		const that = this
+		this.loader.load('http://act.cmcmcdn.com/liebao/wechatGame/danceline/123.obj', function ( object ) {
+			object.scale.x = object.scale.y = object.scale.z = 18
+			object.position.x = 0;
+			object.position.y = 0;
+			object.position.z = -600;
+			object.rotation.y = -Math.PI
+			that.vm.pianoKeys = object.children.filter(function(o) {
+				return !!~o.name.indexOf('PianoKey')
+			} )
+			that.vm.pianoKeys.forEach((key => {
+				key.material = that.materials.block
+			}))
+			that.vm.right = object.children.filter(function(o) {
+				return !!~o.name.indexOf('Right')
+			} )
+			that.vm.left = object.children.filter(function(o) {
+				return !!~o.name.indexOf('left')
+			} )
+			const hars = object.children.filter(function(o) {
+				return !!~o.name.indexOf('HaracterTail_ncl1_62')
+			} )
+			hars.forEach(h => {
+				h.material = that.materials.cube
+			})
+			console.log('object', object)
+			console.log('hars', hars)
+			that.vm.ball.cube = hars[0]
+			hars[0].visible = false
+			that.vm.right[0].material = that.materials.barricade
+			that.vm.left[0].material = that.materials.barricade
+
+			that.vm.scene.add(object);
+		}, this.onProgress, this.onError );
+	}
+	onProgress = function ( xhr ) {
+		if ( xhr.lengthComputable ) {
+			var percentComplete = xhr.loaded / xhr.total * 100;
+			console.log( Math.round(percentComplete, 2) + '% downloaded' );
+		}
+	}
+	onError = function ( xhr ) {
 	}
 
 	initRender() {
 		this.vm.renderer = new THREE.WebGLRenderer({
 			canvas: canvas,
-			antialias: true
+			antialias: true  //微信默认都是false
 		})
+		this.vm.renderer.setPixelRatio(window.devicePixelRatio) //设备比例适配
 		this.vm.renderer.shadowMapEnabled = true
 		this.vm.renderer.setClearColor('#f7fce3', 1)
 	}
 
 	initCamera() {
-		// this.vm.camera = new THREE.PerspectiveCamera(10, 0.5, 1, 30000)
-		// this.vm.camera.position.set(1500, 1500, 6550);
+		// this.vm.camera = new THREE.PerspectiveCamera(20, 0.5, 1, 30000)
+		// this.vm.camera.position.set(3500, 3500, 6550);
 		// this.vm.camera.position.set(5000, 5000, 5550);
 		// this.vm.camera.position.set(8875, 8875, 7850)
+		this.vm.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 5000);
+		this.vm.camera.position.set(0, 550, 100)
 
-		this.vm.camera = new THREE.PerspectiveCamera(30, 0.5, 1, 2000)  //透视相机;far: 加载的范围，与性能有关
-		this.vm.camera.position.set(-375, -375, 850)
+		// this.vm.camera = new THREE.PerspectiveCamera(30, 0.5, 1, 2000)  //透视相机;far: 加载的范围，与性能有关
+		// this.vm.camera.position.set(-375, -375, 850)
 		this.vm.camera.up.x = 0
 		this.vm.camera.up.y = 0
-		this.vm.camera.up.z = 1
-		// this.vm.camera.up.z = 0
+		this.vm.camera.up.z = 0
+		// this.vm.camera.up.z = 1
 		this.vm.camera.lookAt(this.vm.scene.position)
-
-		// 测试代码
-		// this.vm.camera.lookAt(new THREE.Vector3(-375, -380, 0))
-		// this.vm.camera.position.set(1900, 1700, 1200);  //3 俯视的高度
-		// this.vm.camera.position.set(2300, 2500, 1200);  //3 俯视的高度
-		// this.vm.camera.lookAt(new THREE.Vector3(0, 0, 0))
 	}
 
 	initLight() {
 		this.vm.scene.add(new THREE.AmbientLight(0xc9c9c9))
 		const directional = new THREE.DirectionalLight(0xc9c9c9, 0.5)
-		directional.position.set(-2, 1, 3)
+		directional.position.set(-2, 3, 1)
 		directional.shadowMapHeight = 2048
 		directional.shadowMapWidth = 2048
 		this.vm.scene.add(directional)
@@ -286,6 +328,7 @@ export default class gameDanceLine {
 
 	initMapData() {
 		const jsonStr = JSON.stringify(position);
+		console.log('position', position)
 		this.vm.map.generateFromJson(jsonStr, groceryStr);
 	}
 
@@ -310,16 +353,15 @@ export default class gameDanceLine {
 
 	initSnakeAnimate(mesh, duration, delay) {
 		var game = this;
-		
 		new __TWEEN.Tween({scale: 0, rotation: 0, mesh: mesh})
 			.to({
 				scale: 1,
-				rotation: 0.5* Math.PI
+				rotation: -0.25* Math.PI
 			}, duration)
 			.delay(delay)
 			.onUpdate(function() {
-				this.mesh.scale.z = this.scale
-				this.mesh.rotation.z = this.rotation
+				this.mesh.scale.x = this.scale
+				this.mesh.rotation.y = this.rotation
 			})
 			.onStart(function () {
 				this.mesh.visible = true
@@ -464,8 +506,8 @@ export default class gameDanceLine {
 		const data = new gamepart2(),
 			that = this
 		this.part2.part2Cube = data.cubes
-		this.part2.platformStart1Pos = data.cubes.find(cube => cube.name && cube.name === 'PLATFORM_START_1')
-		this.part2.platformEnd1Pos = data.cubes.find(cube => cube.name && cube.name === 'PLATFORM_END_1')
+		// this.part2.platformStart1Pos = data.cubes.find(cube => cube.name && cube.name === 'PLATFORM_START_1')
+		// this.part2.platformEnd1Pos = data.cubes.find(cube => cube.name && cube.name === 'PLATFORM_END_1')
 		data.cubes.forEach(cube => {
 			this.vm.scene.add(cube)
 			this.vm.models.push(cube)
@@ -490,7 +532,7 @@ export default class gameDanceLine {
 				})
 				.start()
 		})
-
+		console.log('data.cubes', data.cubes)
 		this.strings = data.strings;
 		data.strings.forEach(strObj => {
 			this.vm.scene.add(strObj.mesh)
@@ -510,7 +552,7 @@ export default class gameDanceLine {
 		this.removeEvents()
 		setTimeout(() => {
 			//重启游戏
-			// this.reset()
+			this.reset()
 		}, 1000)
 	}
 
@@ -537,10 +579,10 @@ export default class gameDanceLine {
 	}
 
 	animates() {
-		this.calval.diamentMesh.forEach(diament => {
+		this.calval.diamentMesh && this.calval.diamentMesh.forEach(diament => {
 			this.animateDiament(diament, 0.05)
 		})
-		this.calval.crownMesh.forEach(mesh => {
+		this.calval.crownMesh && this.calval.crownMesh.forEach(mesh => {
 			this.animateCrown(mesh, 0.05)
 		})
 		if (this.gameStatus.part2) {
@@ -548,9 +590,9 @@ export default class gameDanceLine {
 			let cursorNum = +this.vm.runner.cursor_.name;
 
 			// 抖动的线动画
-			this.strings.forEach(strObj => {
-				strObj.anim()
-			})
+			// this.strings.forEach(strObj => {
+			// 	strObj.anim()
+			// })
 
 			// 钢琴锤子动画
 			if (cursorNum > 41) {
@@ -581,40 +623,51 @@ export default class gameDanceLine {
 				Loop(scene, node.links[i]);
 			}
 		}
+		console.log('createLines this.vm.map.standBlock', this.vm.map.standBlock)
 		Loop(this.vm.scene, this.vm.map.standBlock);
+		for (var i = 0; i < this.vm.map.floors.length; ++i) {
+			var r = this.vm.map.floors[i];
+			var material = new THREE.LineBasicMaterial({ color: 0xff0000+i*20 });
+			
+			var geometry = new THREE.Geometry();
+			geometry.vertices.push(r.p1);
+			geometry.vertices.push(r.p2);
+			geometry.vertices.push(r.p3);
+			geometry.vertices.push(r.p4);
+			geometry.vertices.push(r.p1);
+			var line = new THREE.Line(geometry, material);
+			this.vm.scene.add(line);
+		}
 	}
 
 	//interface GameScene for Runner
 	startSegment (startpos, direction, corner) {
-
+		console.log("pos:" + startpos.x + "," + startpos.y + "," + startpos.z);
 		this.vm.ball.startSegment(startpos, direction, corner);
-
+		/*
 		//相机随着线的运动，镜头跟着走
-		//const offest = 380,
+		const offest = 380;
 			//zAsc = 0.00 //夹角增量
-		//this.vm.camera.position.x = startpos.x - offest;
-		//this.vm.camera.position.y = startpos.y - offest;
-		//this.vm.gameState.IsRunning() && (this.vm.camera.position.z += zAsc);
+		this.vm.camera.position.x = startpos.x - offest;
+		this.vm.camera.position.y = startpos.y - offest;
+		this.vm.camera.position.z = 850;
+		*/
 	}
 
 	doneSegment (startpos, endpos) {
 		this.vm.ball.doneSegment(startpos, endpos);
-
 	}
 
 	walkSegment (startpos, endpos, droped) {
-
 		this.vm.ball.walkSegment(startpos, endpos, droped);
-
+		/*
 		//相机随着线的运动，镜头跟着走
 		const offest = 380,
 			zAsc = 0.00 //夹角增量
-		//this.vm.camera.position.x = endpos.x - offest;
-		//this.vm.camera.position.y = endpos.y - offest;
-		
-		//this.vm.camera.rotation.z += 0.001;
-		// this.vm.camera.lookAt(new THREE.Vector3(0, 0, 0))
-		//!this.vm.pauseFlag && (this.vm.camera.position.z += zAsc);
+		this.vm.camera.position.x = endpos.x - offest;
+		this.vm.camera.position.y = endpos.y - offest;
+		this.vm.camera.position.z = 850;
+		*/
 	}
 
 	bumpWall(pos) {
@@ -622,48 +675,36 @@ export default class gameDanceLine {
 	}
 
 	flyOut(pos) {
-
 		this.gameover("游戏结束");
-
 	}
 
 	hitDiamond(index) {
-		
 		console.log("HitDiamond:" + index);
-		
 		if (this.calval.diamentMesh == null) {
 			return ;
 		}
-		
 		console.log("钻石个数：" + this.calval.diamentMesh.length);
-		
 		if (index < this.calval.diamentMesh.length) {
 			this.changeDiamentPosition(this.calval.diamentMesh[index]);
 		}
 	}
 
 	attainCrown(index) {
-		
 		console.log("AttainCrown:" + index);
 		if (this.calval.crownMesh == null) {
 			return ;
 		}
-		
 		console.log("皇冠个数：" + this.calval.crownMesh.length);
-		
 		if (index < this.calval.crownMesh.length) {
 			this.changeCrownPosition(this.calval.crownMesh[index]);
 		}
 	}
 
 	passNode(pos, name) {
-
-
 		if (name === "destination") {
-			//this.gameover("恭喜过关");
-			this.vm.runner.passMission();
+			this.gameover("恭喜过关");
+			//this.vm.runner.passMission();
 		}
-
 	}
 
 	getCollisions(type) {
@@ -674,7 +715,6 @@ export default class gameDanceLine {
 			const collisions = this.vm.models.filter(model => ~this.vm.floorCollision.indexOf(model.name));
 			return collisions;
 		}
-
 		return null;
 	}
 
@@ -684,7 +724,6 @@ export default class gameDanceLine {
 	}
 
 	getBallMaterial() {
-
 		return this.materials.cube;
 	}
 	

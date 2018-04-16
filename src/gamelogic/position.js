@@ -2,7 +2,8 @@ const thickWidth = 75,
 	middleWidth = 64,
 	fineWidth = 31
 export const position = [
-	{"x":0, "y":0, "z":0, "name":"1", "camera":{"vx":65,"vy":65,"vz":0}},
+	// {"x":0, "y":0, "z":-5, "name":"1", "camera":{"vx":65,"vy":65,"vz":0}},
+	{"x":0, "y":0, "z":-600, "name":"1"},
 	{"x":2*middleWidth, "y":0, "z":0, "name":"2"},
 	{"x":2*middleWidth, "y":middleWidth, "z":0, "name":"3"},
 	{"x":3*middleWidth, "y":middleWidth, "z":0, "name":"4"},
@@ -98,9 +99,9 @@ export const position = [
 	{"x":16*thickWidth+22*middleWidth+29*fineWidth, "y":16*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"94", "boundary": 1},
 	{"x":16*thickWidth+24*middleWidth+29*fineWidth, "y":16*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"95", "camera":{"vx":90,"vy":40,"vz":0, "rz":0.1}},
 	{"x":16*thickWidth+24*middleWidth+29*fineWidth, "y":17*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"96"},
-	{"x":17.5*thickWidth+24*middleWidth+29*fineWidth, "y":17*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"97","camera":{"vx":90,"vy":40,"vz":0, "rz":0.0}},
+	{"x":17.5*thickWidth+24*middleWidth+29*fineWidth, "y":17*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"97","camera":{"vx":90,"vy":40,"vz":0}},
 	{"x":17.5*thickWidth+24*middleWidth+29*fineWidth, "y":18*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"98"},
-	{"x":17.5*thickWidth+25.5*middleWidth+29*fineWidth, "y":18*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"99", "camera":{"vx":65,"vy":65,"vz":0}},
+	{"x":17.5*thickWidth+25.5*middleWidth+29*fineWidth, "y":18*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"99", "camera":{"vx":65,"vy":65,"vz":0, "rz":0.0}},
 	{"x":17.5*thickWidth+25.5*middleWidth+29*fineWidth, "y":19.5*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"100"},
 	{"x":17.5*thickWidth+26.5*middleWidth+29*fineWidth, "y":19.5*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"101"},
 	{"x":17.5*thickWidth+26.5*middleWidth+29*fineWidth, "y":20*thickWidth+25*middleWidth+23.5*fineWidth, "z":0, "name":"102"},
@@ -116,25 +117,25 @@ export const position = [
 	{"x":24.5*thickWidth+26*middleWidth+31*fineWidth, "y":20*thickWidth+30*middleWidth+23.5*fineWidth, "z":0, "name":"112", "camera":{"vx":65,"vy":65,"vz":0}},
 
 	{"x":27*thickWidth+26*middleWidth+31*fineWidth, "y":20*thickWidth+30*middleWidth+23.5*fineWidth, "z":0, "name":"113"},
-	{"x":27*thickWidth+26*middleWidth+31*fineWidth, "y":21*thickWidth+30*middleWidth+23.5*fineWidth, "z":0, "name":"114", "camera":{"vx":10,"vy":130,"vz":0}},
-	{"x":27*thickWidth+26*middleWidth+31*fineWidth, "y":21*thickWidth+30*middleWidth+23.5*fineWidth, "z":0, "name":"115"},
+	{"x":27*thickWidth+26*middleWidth+31*fineWidth, "y":21*thickWidth+30*middleWidth+23.5*fineWidth, "z":0, "name":"114", "camera":{"vx":130,"vy":10,"vz":0}},
+	//{"x":27*thickWidth+26*middleWidth+31*fineWidth, "y":21*thickWidth+30*middleWidth+23.5*fineWidth, "z":0, "name":"115"},
 	{"x":27*thickWidth+27*middleWidth+31*fineWidth, "y":21*thickWidth+30*middleWidth+23.5*fineWidth, "z":0, "name":"116"},
-	{"x":27*thickWidth+27*middleWidth+31*fineWidth, "y":21*thickWidth+32*middleWidth+23.5*fineWidth, "z":0, "name":"117"},
+	{"x":27*thickWidth+27*middleWidth+31*fineWidth, "y":21*thickWidth+32*middleWidth+23.5*fineWidth, "z":0, "name":"117", "camera":{"vx":65,"vy":65,"vz":0}},
 	{"x":27*thickWidth+29*middleWidth+31*fineWidth, "y":21*thickWidth+32*middleWidth+23.5*fineWidth, "z":0, "name":"118"},
-	{"x":27*thickWidth+29*middleWidth+31*fineWidth, "y":21*thickWidth+34*middleWidth+23*fineWidth, "z":0, "name":"119", "camera":{"vx":65,"vy":65,"vz":0}},
+	{"x":27*thickWidth+29*middleWidth+31*fineWidth, "y":21*thickWidth+34*middleWidth+23*fineWidth, "z":0, "name":"119"},
 	{"x":28*thickWidth+29*middleWidth+31*fineWidth, "y":21*thickWidth+34*middleWidth+23*fineWidth, "z":0, "name":"120"},
 	{"x":28*thickWidth+29*middleWidth+31*fineWidth, "y":23*thickWidth+34*middleWidth+23*fineWidth, "z":0, "name":"121"},
 	{"x":29*thickWidth+29*middleWidth+31*fineWidth, "y":23*thickWidth+34*middleWidth+23*fineWidth, "z":0, "name":"122"},
 	{"x":29*thickWidth+29*middleWidth+31*fineWidth, "y":23*thickWidth+35*middleWidth+23*fineWidth, "z":0, "name":"123"},
-	{"x":30*thickWidth+29*middleWidth+31*fineWidth, "y":23*thickWidth+35*middleWidth+23*fineWidth, "z":0, "name":"124"},
+	{"x":30*thickWidth+29*middleWidth+31*fineWidth, "y":23*thickWidth+35*middleWidth+23*fineWidth, "z":0, "name":"124", "camera":{"vx":65,"vy":65,"vz":0}},
 	{"x":30*thickWidth+29*middleWidth+31*fineWidth, "y":23*thickWidth+36*middleWidth+23*fineWidth, "z":0, "name":"125"},
-	{"x":31*thickWidth+29*middleWidth+31*fineWidth, "y":23*thickWidth+36*middleWidth+23*fineWidth, "z":0, "name":"126"},
+	{"x":31*thickWidth+29*middleWidth+31*fineWidth, "y":23*thickWidth+36*middleWidth+23*fineWidth, "z":0, "name":"126", "camera":{"vx":10,"vy":130,"vz":0}},
 	{"x":31*thickWidth+29*middleWidth+31*fineWidth, "y":23*thickWidth+40*middleWidth+23*fineWidth, "z":0, "name":"127"},
-	{"x":31*thickWidth+30*middleWidth+31*fineWidth, "y":23*thickWidth+40*middleWidth+23*fineWidth, "z":0, "name":"128"},
-	{"x":31*thickWidth+30*middleWidth+31*fineWidth, "y":23*thickWidth+40*middleWidth+24.5*fineWidth, "z":0, "name":"129"},
-	{"x":31*thickWidth+30*middleWidth+31.5*fineWidth, "y":23*thickWidth+40*middleWidth+24.5*fineWidth, "z":0, "name":"130"},
-	{"x":31*thickWidth+30*middleWidth+31.5*fineWidth, "y":23*thickWidth+40*middleWidth+25*fineWidth, "z":0, "name":"131", "boundary": 1},
-	{"x":31*thickWidth+30*middleWidth+31.5*fineWidth, "y":27*thickWidth+40*middleWidth+25*fineWidth, "z":0, "name":"132"},
+	{"x":31*thickWidth+30*middleWidth+31*fineWidth, "y":23*thickWidth+40*middleWidth+23*fineWidth, "z":0, "name":"128", "camera":{"vx":65,"vy":65,"vz":0}},
+	{"x":31*thickWidth+30*middleWidth+31*fineWidth, "y":23*thickWidth+40*middleWidth+24.5*fineWidth, "z":0, "name":"129", "camera":{"vx":130,"vy":10,"vz":0}},
+	{"x":31*thickWidth+30*middleWidth+31.5*fineWidth, "y":23*thickWidth+40*middleWidth+24.5*fineWidth, "z":0, "name":"130", "camera":{"vx":65,"vy":65,"vz":0, "rz":0.1}},
+	{"x":31*thickWidth+30*middleWidth+31.5*fineWidth, "y":23*thickWidth+40*middleWidth+25*fineWidth, "z":0, "name":"131", "boundary": 1, "camera":{"vx":10,"vy":130,"vz":0, "rz":0.1}},
+	{"x":31*thickWidth+30*middleWidth+31.5*fineWidth, "y":27*thickWidth+40*middleWidth+25*fineWidth, "z":0, "name":"destination", "camera":{"vx":65,"vy":65,"vz":0, "rz":0.0}},
 	{"x":31*thickWidth+30*middleWidth+31.5*fineWidth, "y":28*thickWidth+40*middleWidth+25.5*fineWidth, "z":0, "name":"133"},
 	{"x":31*thickWidth+31*middleWidth+32*fineWidth, "y":28*thickWidth+40*middleWidth+25.5*fineWidth, "z":0, "name":"134"},
 	{"x":31*thickWidth+31*middleWidth+32*fineWidth, "y":28*thickWidth+40.5*middleWidth+26.5*fineWidth, "z":0, "name":"135"},
@@ -162,9 +163,9 @@ export const position = [
 	// {"x": 80000, "y": 80000, "z":0, "name":"destination"},
 	{"x":80000, "y":80000, "z":0, "name":"infinite"}
 ]
-
+//{"center":{"x":450, "y":680, "z":0}, "cx":3300, "cy":3300}, {"center":{"x":5920, "y":6080, "z":-20}, "cx":2000, "cy":2000}
 export const groceryStr = '{\
-	"diamonds":[{"x":310,"y":305,"z":0}, {"x":880,"y":910,"z":0}],\
-	"crowns":[{"x":1960,"y":2000,"z":0}],\
-	"floors":[{"center":{"x":520, "y":680, "z":0}, "cx":3300, "cy":3300}, {"center":{"x":5920, "y":6080, "z":-20}, "cx":2000, "cy":2000}]\
-	}';
+	"diamonds":[{"x":310,"y":305,"z":-12}, {"x":890,"y":950,"z":-12}],\
+	"crowns":[{"x":1960,"y":2000,"z":-12}],\
+	"floors":[{"center":{"x":450,"y":680,"z":-12},"cx":3300,"cy":3300},{"center":{"x":5920,"y":6080,"z":-32},"cx":2000,"cy":2000},{"center":{"x":2132,"y":2016,"z":-12},"cx":85,"cy":255},{"center":{"x":2052,"y":2016,"z":-12},"cx":85,"cy":255},{"center":{"x":2217,"y":2117,"z":-12},"cx":85,"cy":85},{"center":{"x":2227,"y":2202,"z":-12},"cx":105,"cy":85},{"center":{"x":2326.2,"y":2244.5,"z":-12},"cx":105,"cy":170},{"center":{"x":2326.2,"y":2372,"z":-12},"cx":105,"cy":85},{"center":{"x":2392,"y":2388,"z":-12},"cx":85,"cy":127.5},{"center":{"x":2434.5,"y":2441,"z":-12},"cx":85,"cy":127.5},{"center":{"x":2477,"y":2526,"z":-12},"cx":85,"cy":170},{"center":{"x":2519.5,"y":2611,"z":-12},"cx":85,"cy":127.5},{"center":{"x":2562,"y":2674.75,"z":-12},"cx":85,"cy":127.5},{"center":{"x":2604.5,"y":2887.25,"z":-12},"cx":85,"cy":425},{"center":{"x":2625.75,"y":3121,"z":-12},"cx":127.5,"cy":85},{"center":{"x":2710.75,"y":3142.25,"z":-12},"cx":85,"cy":127.5},{"center":{"x":2732,"y":3206,"z":-12},"cx":127.5,"cy":85},{"center":{"x":2817,"y":3227.25,"z":-12},"cx":85,"cy":127.5},{"center":{"x":2838.25,"y":3312.25,"z":-12},"cx":127.5,"cy":85},{"center":{"x":2944.5,"y":3312.25,"z":-12},"cx":85,"cy":85},{"center":{"x":2987,"y":3376,"z":-12},"cx":127.5,"cy":85},{"center":{"x":3029.5,"y":3418.5,"z":-12},"cx":127.5,"cy":85},{"center":{"x":3157,"y":3461,"z":-12},"cx":255,"cy":85},{"center":{"x":3369.5,"y":3503.5,"z":-12},"cx":255,"cy":85},{"center":{"x":3497,"y":3546,"z":-12},"cx":85,"cy":42.5},{"center":{"x":3667,"y":3546,"z":-62},"cx":85,"cy":85},{"center":{"x":3675.5,"y":3631,"z":-62},"cx":102,"cy":85},{"center":{"x":3769,"y":3639.5,"z":-62},"cx":85,"cy":102},{"center":{"x":3777.5,"y":3724.5,"z":-62},"cx":102,"cy":85},{"center":{"x":3871,"y":3733,"z":-62},"cx":85,"cy":102},{"center":{"x":3896.5,"y":3826.5,"z":-62},"cx":136,"cy":85},{"center":{"x":4007,"y":3886,"z":-62},"cx":272,"cy":85},{"center":{"x":4100.5,"y":3945.5,"z":-62},"cx":136,"cy":85},{"center":{"x":4126,"y":4005,"z":-62},"cx":136,"cy":85},{"center":{"x":4219.5,"y":4064.5,"z":-62},"cx":272,"cy":85},{"center":{"x":4396.299999999999,"y":4124,"z":-62},"cx":272,"cy":85},{"center":{"x":4573.1,"y":4183.5,"z":-62},"cx":272,"cy":85},{"center":{"x":4666.6,"y":4268.5,"z":-62},"cx":85,"cy":85},{"center":{"x":4751.6,"y":4277,"z":-62},"cx":85,"cy":102},{"center":{"x":4760.1,"y":4370.5,"z":-62},"cx":102,"cy":85},{"center":{"x":4853.6,"y":4379,"z":-62},"cx":85,"cy":102},{"center":{"x":4862.1,"y":4472.5,"z":-62},"cx":102,"cy":85},{"center":{"x":4955.6,"y":4506.5,"z":-62},"cx":85,"cy":153},{"center":{"x":4989.6,"y":4625.5,"z":-62},"cx":153,"cy":85},{"center":{"x":5066.1,"y":4693.5,"z":-62},"cx":153,"cy":85},{"center":{"x":5142.6,"y":4761.5,"z":-62},"cx":153,"cy":85},{"center":{"x":5176.6,"y":4897.5,"z":-62},"cx":85,"cy":187.00000000000003},{"center":{"x":5193.6,"y":5033.5,"z":-62},"cx":118.99999999999999,"cy":85},{"center":{"x":5236.1,"y":5076,"z":-62},"cx":85,"cy":42.5},{"center":{"x":5257.35,"y":5097.25,"z":-62},"cx":42.5,"cy":21.25}]\
+}';

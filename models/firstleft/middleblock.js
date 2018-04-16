@@ -7,7 +7,7 @@ const thickWidth = 75,
 	rotationY = Math.PI* 0.5,
 	z = 2,
 	delay = 1,
-	duration = .45
+	duration = .4
 export const whiteMiddleblocks = [
 	{  //1
 		x: 0, y: 545, z: z, rotationX: -rotationX, rotationY: rotationY, rotationZ: 0

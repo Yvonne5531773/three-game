@@ -9,7 +9,7 @@ const thickWidth = 75,
 	offestY = 20,
 	z = 2,
 	delay = 1,
-	duration = .45
+	duration = .4
 export const whiteMiddleblocks = [
 	{  //1
 		x: 690, y: 0, z: z, rotationX: rotationX, rotationY: rotationY, rotationZ: 0, animt: 1, direction: 1, delay: delay, duration: duration
