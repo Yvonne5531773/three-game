@@ -25,7 +25,6 @@ export default class gameDanceLine {
 		len: 1,
 		nx: 40,                     //范围宽
 		ny: 40,                     //范围高
-		snake: [],
 		pauseFlag: true,
 		end: false,
 		models: [],
@@ -108,7 +107,7 @@ export default class gameDanceLine {
 		//事件
 		this.initEvents()
 		//运动方块
-		this.initSnake()
+		this.initBall()
 		//初始化开始位置
 		//this.setInitCubePosition({x: this.vm.cube[0].position.x, y: this.vm.cube[0].position.y})
 		//地板块
@@ -310,20 +309,21 @@ export default class gameDanceLine {
 		this.vm.models.push(mesh)
 	}
 
-	initSnake() {
+	initBall() {
 		this.vm.ball.setGameScene(this);
 		this.vm.ball.createElement();
-		
-		const duration = 0.5, delay = 1;
+		const duration = 0.5,
+			delay = 1
 		//初始方块动画
-		this.initSnakeAnimate(this.vm.ball.cube,duration, delay);
+		this.initBallAnimate(this.vm.ball.cube,duration, delay);
 	}
 
 	initRunner() {
 		//创建球，游戏运行逻辑，地图
-		this.vm.runner.setGameScene(this);
-		this.vm.runner.setMap(this.vm.map);
-		this.createLines();
+		this.vm.runner.setGameScene(this)
+		console.log('in initRunner this.vm.map', this.vm.map)
+		this.vm.runner.setMap(this.vm.map)
+		this.createLines()
 	}
 
 	initMapData() {
@@ -351,7 +351,7 @@ export default class gameDanceLine {
 		this.calval.sortMeshs = this.vm.models.filter(model => model.animated)
 	}
 
-	initSnakeAnimate(mesh, duration, delay) {
+	initBallAnimate(mesh, duration, delay) {
 		var game = this;
 		new __TWEEN.Tween({scale: 0, rotation: 0, mesh: mesh})
 			.to({
@@ -392,9 +392,9 @@ export default class gameDanceLine {
 	}
 
 	getMove() {
-		//var now = Date.now()
-		this.vm.runner.run(this.vm.delta / 1000);
-		//console.log(Date.now() - now);
+		console.log('in getMove')
+		const speed = this.vm.delta / 300
+		this.vm.runner.run(speed);
 	}
 
 	run() {
@@ -403,11 +403,9 @@ export default class gameDanceLine {
 		this.vm.delta = this.vm.now - this.vm.then
 		if (this.vm.delta > 1000 / this.vm.fps) {
 			this.vm.then = this.vm.now - (this.vm.delta % 1000 / this.vm.fps)
-			
 			if (this.vm.gameState.IsStart()){
 				this.getMove()
 			}
-			
 			this.doRender()
 			this.animates()
 			this.checkGameStatus()
@@ -416,12 +414,12 @@ export default class gameDanceLine {
 		}
 	}
 
-	changeDiamentPosition(diament) {
+	changeDiamentPosition (diament) {
 		this.vm.getDiamentCount++;
 		this.destory(diament);
 	}
 	
-	changeCrownPosition(crown) {
+	changeCrownPosition (crown) {
 		this.vm.getCrownCount++;
 		this.destory(crown);
 	}
@@ -434,11 +432,11 @@ export default class gameDanceLine {
 		}
 	}
 
-	animateDiament(diament, angle) {
+	animateDiament (diament, angle) {
 		Object.keys(diament).length>0 && (diament.rotation.y -= angle)
 	}
 
-	animateCrown(crown, angle) {
+	animateCrown (crown, angle) {
 		Object.keys(crown).length>0 && (crown.rotation.y -= angle)
 	}
 
@@ -483,22 +481,16 @@ export default class gameDanceLine {
 			return
 		}
 		if (that.vm.gameState.IsStart()) {
+			console.log('onTouchStart turn')
 			that.vm.runner.turn()
 		} else {
-			that.startGame();
-			audio(1, that.vm.innerAudioContext);
-			that.calval.sortMeshs.forEach( mesh => {
-				that.animateBlocks(mesh)
-			})
+			console.log('onTouchStart start')
+			that.startGame()
+			audio(1, that.vm.innerAudioContext)
+			// that.calval.sortMeshs.forEach( mesh => {
+			// 	that.animateBlocks(mesh)
+			// })
 		}
-	}
-
-	onWindowResize() {
-		let width = window.innerWidth || window.document.body.clientWidth,
-			height = window.innerHeight || window.document.body.clientHeight
-		this.vm.renderer.setSize(width, height)
-		this.vm.camera.aspect = width / height
-		this.vm.camera.updateProjectionMatrix()
 	}
 
 	//第二部分场景
@@ -729,6 +721,14 @@ export default class gameDanceLine {
 	
 	GetCamera() {
 		return this.vm.camera;
+	}
+
+	onWindowResize() {
+		let width = window.innerWidth || window.document.body.clientWidth,
+			height = window.innerHeight || window.document.body.clientHeight
+		this.vm.renderer.setSize(width, height)
+		this.vm.camera.aspect = width / height
+		this.vm.camera.updateProjectionMatrix()
 	}
 }
 
