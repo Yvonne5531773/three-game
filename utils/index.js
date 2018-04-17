@@ -1,7 +1,7 @@
 export const audio = (action, innerAudioContext) => {
 	if(!innerAudioContext) return
-	action === 1 && innerAudioContext.play()
-	action === 2 && innerAudioContext.destroy()
+	// action === 1 && innerAudioContext.play()
+	// action === 2 && innerAudioContext.destroy()
 }
 
 export const submitRequest = ({method = 'get', url = '', data = ''}) => {

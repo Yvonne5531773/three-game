@@ -311,7 +311,7 @@ export default class gameDanceLine {
 
 	initBall() {
 		this.vm.ball.setGameScene(this);
-		this.vm.ball.createElement();
+		this.vm.ball.createCube();
 		const duration = 0.5,
 			delay = 1
 		//初始方块动画
@@ -392,8 +392,7 @@ export default class gameDanceLine {
 	}
 
 	getMove() {
-		console.log('in getMove')
-		const speed = this.vm.delta / 300
+		const speed = this.vm.delta / 1000
 		this.vm.runner.run(speed);
 	}
 

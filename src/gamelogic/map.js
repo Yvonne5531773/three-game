@@ -48,10 +48,10 @@ export default class Map {
 	}
 
 	generateFromJson(jsonStrNode, jsonStrGrocery) {
-		var json = JSON.parse(jsonStrNode);
+		let json = JSON.parse(jsonStrNode);
 		this.readPosition(json);
-		var jsonGrocery = JSON.parse(jsonStrGrocery);
-		if (jsonGrocery != null) {
+		let jsonGrocery = JSON.parse(jsonStrGrocery);
+		if (jsonGrocery) {
 			this.ReadDiamond(jsonGrocery);
 			this.ReadCrown(jsonGrocery);
 			this.ReadFloors(jsonGrocery);
@@ -59,47 +59,47 @@ export default class Map {
 	}
 
 	ReadDiamond(json) {
-		var pts = json.diamonds;
-		if (pts == null) return;
-		for (var i = 0; i < pts.length; ++i) {
-			var pos = pts[i];
-			var obj = new Cookie();
-			obj.position.set(pos.x, pos.y, pos.z);
-			obj.index = i;
-			this.diamonds.push(obj);
+		let pts = json.diamonds
+		if (!pts) return
+		for (let i = 0; i < pts.length; ++i) {
+			let pos = pts[i],
+				obj = new Cookie()
+			obj.position.set(pos.x, pos.y, pos.z)
+			obj.index = i
+			this.diamonds.push(obj)
 		}
 	}
 
 	ReadCrown(json) {
-		var pts = json.crowns;
-		if (pts == null) return;
-		for (var i = 0; i < pts.length; ++i) {
-			var pos = pts[i];
-			var obj = new Cookie();
-			obj.position.set(pos.x, pos.y, pos.z);
-			obj.index = i;
-			this.crowns.push(obj);
+		let pts = json.crowns
+		if (!pts) return
+		for (let i = 0; i < pts.length; ++i) {
+			let pos = pts[i],
+				obj = new Cookie()
+			obj.position.set(pos.x, pos.y, pos.z)
+			obj.index = i
+			this.crowns.push(obj)
 		}
 	}
 
 	ReadFloors(json) {
-		var rects = json.floors;
-		if (rects == null) return;
-		for (var i = 0; i < rects.length; ++i) {
-			var obj = rects[i];
+		let rects = json.floors
+		if (!rects) return
+		for (let i = 0; i < rects.length; ++i) {
+			let obj = rects[i]
 			//中点+尺寸写法
 			if (obj.hasOwnProperty("center")) {
-				var vecX = this.axesX.clone();
-				vecX.multiplyScalar(obj.cx / 2);
-				var vecY = this.axesY.clone();
-				vecY.multiplyScalar(obj.cy / 2);
-				var center = new THREE.Vector3(obj.center.x, obj.center.y, obj.center.z);
-				var rect = new Rect();
-				rect.p1.copy(center).sub(vecX).sub(vecY);
-				rect.p2.copy(center).sub(vecX).add(vecY);
-				rect.p3.copy(center).add(vecX).add(vecY);
-				rect.p4.copy(center).add(vecX).sub(vecY);
-				this.floors.push(rect);
+				let vecX = this.axesX.clone()
+				vecX.multiplyScalar(obj.cx / 2)
+				let vecY = this.axesY.clone()
+				vecY.multiplyScalar(obj.cy / 2)
+				let center = new THREE.Vector3(obj.center.x, obj.center.y, obj.center.z)
+				let rect = new Rect()
+				rect.p1.copy(center).sub(vecX).sub(vecY)
+				rect.p2.copy(center).sub(vecX).add(vecY)
+				rect.p3.copy(center).add(vecX).add(vecY)
+				rect.p4.copy(center).add(vecX).sub(vecY)
+				this.floors.push(rect)
 			}
 		}
 	}
@@ -150,43 +150,37 @@ export default class Map {
 
 	calcNormals () {
 		function normal(node) {
-			console.log('in calcNormals Normal node normals', node.normals)
 			for (let i = 0; i < node.links.length; ++i) {
 				let vec = node.links[i].position.clone()
-				console.log('in calcNormals Normal vec1', vec)
-				console.log('in calcNormals Normal node.position', node.position)
-				vec.sub(node.position)
-				vec.normalize()
-				console.log('in calcNormals Normal node.links[i]', node.links[i])
-				console.log('in calcNormals Normal vec2', vec)
+				vec.sub(node.position)      //两个坐标值进行减法运算
+				vec.normalize()             //对象向量进行归一化计算
 				node.normals.push(vec)
 				normal(node.links[i])
 			}
 		}
-		console.log('in calcNormals this.standBlock normals', this.standBlock.normals)
 		normal(this.standBlock)
 	}
 
 	calcRects() {
 		function calcNodeRect(node) {
-			for (var i = 0; i < node.links.length; ++i) {
-				var offsetVec = node.normals[i].clone();
+			for (let i = 0; i < node.links.length; ++i) {
+				let offsetVec = node.normals[i].clone();
 				offsetVec.multiplyScalar(node.links[i].tail);
 
-				var pt1 = node.position.clone();
+				let pt1 = node.position.clone();
 				pt1.sub(offsetVec);
 
-				var pt2 = node.links[i].position.clone();
+				let pt2 = node.links[i].position.clone();
 				pt2.add(offsetVec);
 
-				var vecCross = new THREE.Vector3(0, 0, 1);
+				let vecCross = new THREE.Vector3(0, 0, 1);
 				vecCross.cross(node.normals[i]);
 				vecCross.normalize();
 
 				offsetVec.copy(vecCross);
 				offsetVec.multiplyScalar(node.regions[i]);
 
-				var rect = new Rect;
+				let rect = new Rect;
 				rect.p1.copy(pt1);
 				rect.p1.sub(offsetVec);
 
@@ -207,27 +201,26 @@ export default class Map {
 	}
 
 	calcRectsSimple() {
-		console.log('in calcRectsSimple')
-		var map = this
+		let map = this
 		function calcNodeRect(node) {
-			for (var i = 0; i < node.links.length; ++i) {
-				var pt1 = node.position.clone();
-				var pt2 = node.links[i].position.clone();
-				var center = pt1.clone();
+			for (let i = 0; i < node.links.length; ++i) {
+				let pt1 = node.position.clone();
+				let pt2 = node.links[i].position.clone();
+				let center = pt1.clone();
 				center.add(pt2);
 				center.divideScalar(2);
-				var offsetH = map.horizon.clone();
+				let offsetH = map.horizon.clone();
 				offsetH.multiplyScalar(map.box);
-				var alixZ = new THREE.Vector3(0, 0, 1);
-				var alixV = new THREE.Vector3(0, 0, 0);
+				let alixZ = new THREE.Vector3(0, 0, 1);
+				let alixV = new THREE.Vector3(0, 0, 0);
 				alixV.crossVectors(alixZ, offsetH);
 				alixV.normalize();
-				var vecSegment = pt2.clone();
+				let vecSegment = pt2.clone();
 				vecSegment.sub(pt1);
 				vecSegment.projectOnVector(alixV);
 				vecSegment.divideScalar(2);
 				//offsetH.multiplyScalar(map.box);
-				var rect = new Rect;
+				let rect = new Rect;
 				rect.p1.copy(center);
 				rect.p1.add(offsetH);
 				rect.p1.sub(vecSegment);
@@ -253,11 +246,11 @@ export default class Map {
 
 	CalcPlaneForTest() {
 		/*
-		var cy = 0;
-		var json = [{"center":{"x":450, "y":680, "z":-12}, "cx":3300, "cy":3300}, {"center":{"x":5920, "y":6080, "z":-32}, "cx":2000, "cy":2000},{"center":{"x":2132,"y":2016,"z":-12},"cx":85,"cy":255}];
-		var cz = -12;
+		let cy = 0;
+		let json = [{"center":{"x":450, "y":680, "z":-12}, "cx":3300, "cy":3300}, {"center":{"x":5920, "y":6080, "z":-32}, "cx":2000, "cy":2000},{"center":{"x":2132,"y":2016,"z":-12},"cx":85,"cy":255}];
+		let cz = -12;
 
-		for (var i = 1; i < lands.length; ++i) {
+		for (let i = 1; i < lands.length; ++i) {
 
 			if (cy < lands[i].height) {
 					cy = lands[i].height;
@@ -268,7 +261,7 @@ export default class Map {
 				cz += -50;
 			}
 
-			var r = {"center":{"x":lands[i].x, "y":lands[i].y, "z":cz}, "cx":lands[i].width, "cy":lands[i].height};
+			let r = {"center":{"x":lands[i].x, "y":lands[i].y, "z":cz}, "cx":lands[i].width, "cy":lands[i].height};
 			json.push(r);
 		}
 

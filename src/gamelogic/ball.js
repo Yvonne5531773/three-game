@@ -8,28 +8,29 @@ getBallMaterial();
 */
 export default class Ball {
 	//1.1 : 1
-	size = 16;
-	height = 10.47;
-	cube = null;
-	speed = new THREE.Vector3(0, 0, 0);
-	trail = [];
-	gameScene = null;
-	vertical = new THREE.Vector3(0.5, 0.5, 0);
+	size = 20
+	height = 14
+	cube = null
+	speed = new THREE.Vector3(0, 0, 0)
+	trail = []
+	gameScene = null
+	vertical = new THREE.Vector3(0.5, 0.5, 0)
+	boxGeometry = new THREE.BoxGeometry(this.size, this.size, this.size)
 
 	constructor() {
 
+	}
+
+	getBoxGeometry () {
+		return this.boxGeometry
 	}
 
 	setGameScene(gameScene) {
 		this.gameScene = gameScene
 	}
 
-	createElement() {
-		this.createCube()
-	}
-
 	createCube() {
-		var cubeGeometry = new THREE.BoxGeometry(this.size, this.size, this.height);
+		var cubeGeometry = this.getBoxGeometry()
 		var material = this.gameScene.getBallMaterial();
 		var cube = new THREE.Mesh(cubeGeometry, material);
 		cube.updateMatrix();
@@ -40,27 +41,26 @@ export default class Ball {
 	};
 
 	startSegment(startpos, direction, corner) {
-		var xyDirection = direction.clone();
-		xyDirection.z = 0;
-		var yalix = new THREE.Vector3(0, 1, 0);
-		var angle = yalix.angleTo(xyDirection);
+		let xyDirection = direction.clone();
+		xyDirection.y = 0;
+		let yalix = new THREE.Vector3(0, 1, 0),
+			angle = yalix.angleTo(xyDirection);
 		if (xyDirection.x > 0) {
 			angle = -angle;
 		}
 		this.cube.position.copy(startpos);
 		this.cube.rotation.z = angle;
 		//create new cube
-		var cubeGeometry = new THREE.BoxGeometry(this.size, this.size, this.height);
-		var material = this.gameScene.getBallMaterial();
+		let cubeGeometry = this.getBoxGeometry(),
+			material = this.gameScene.getBallMaterial(),
+			cubeCorner = new THREE.Mesh(cubeGeometry, material)
+		cubeCorner.position.copy(startpos)
+		cubeCorner.rotation.z = angle
 
-		var cubeCorner = new THREE.Mesh(cubeGeometry, material);
-		cubeCorner.position.copy(startpos);
-		cubeCorner.rotation.z = angle;
-
-		var cubTail = null;
+		let cubTail = null
 		if (corner) {
 			//第一个位置拐角方块先隐藏
-			if (this.trail.length == 0) {
+			if (this.trail.length === 0) {
 				cubeCorner.visible = false;
 			}
 			this.gameScene.getScene().add(cubeCorner);
@@ -75,25 +75,21 @@ export default class Ball {
 	}
 
 	doneSegment(startpos, endpos) {
-		var vecSeg = endpos.clone();
-		vecSeg.sub(startpos);
-		vecSeg.z = 0;
-		// var yalix = new THREE.Vector3(0, 1, 0);
-		// var angle = yalix.angleTo(vecSeg);
-		// if (vecSeg.x > 0) {
-		// 	angle = -angle;
-		// }
+		var vecSeg = endpos.clone()
+		vecSeg.sub(startpos)
+		vecSeg.y = 0
 		var cube = this.trail[this.trail.length - 1];
 		if (cube) {
-			cube.position.addVectors(startpos, endpos);
-			cube.position.divideScalar(2);
-			cube.scale.y = vecSeg.length() / this.size;
+			cube.position.addVectors(startpos, endpos)
+			cube.position.divideScalar(2)
+			cube.scale.y = vecSeg.length() / this.size
 		}
 	}
 
 	walkSegment (startpos, endpos, droped) {
+		// console.log('in walkSegment startpos', startpos)
+		// console.log('in walkSegment endpos', endpos)
 		//第一处拐角方块
-		console.log('in walkSegment this.trail', this.trail)
 		if (this.trail.length === 2) {
 			let cube = this.trail[0];
 			if (cube) {
@@ -101,7 +97,7 @@ export default class Ball {
 				cube.rotation.y = Math.PI* -0.25
 			}
 		}
-		this.cube.position.copy(endpos);
+		this.cube.position.copy(endpos)
 		if (!droped) {
 			let tail = this.trail[this.trail.length - 1];
 			if (tail) {
@@ -110,11 +106,8 @@ export default class Ball {
 				vecSeg.y = 0
 				tail.rotation.y = Math.PI* -0.25
 				tail.visible = true
-				console.log('in walkSegment startpos', startpos)
-				console.log('in walkSegment endpos', endpos)
-				tail.position.addVectors(startpos, endpos)
-				tail.position.divideScalar(2)
-				console.log('in walkSegment vecSeg.length()', vecSeg.length())
+				tail.position.addVectors(startpos, endpos)      //三维向量相加
+				tail.position.divideScalar(2)                   //用来将三维向量的(x,y,z)坐标值直接与参数scalar相除
 				tail.scale.z = vecSeg.length() / this.size
 			}
 		}

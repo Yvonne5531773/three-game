@@ -33,8 +33,8 @@ function PtInRect(p, p1, p2, p3, p4) {
 }
 
 export default class Runner {
-	height = 11;
-	size = 10.47;
+	size = 20;
+	height = 14;
 	game = null;
 	direction_ = new THREE.Vector3(0, 0, 0);
 	preDirection = new THREE.Vector3(0, 0, 0);
@@ -68,7 +68,6 @@ export default class Runner {
 		let direction = this.calcNextDirection()
 		console.log('in setMap direction', direction)
 		if (direction) {
-			direction.z = 0
 			this.direction_.copy(direction)
 		}
 		if (this.cursor_) {
@@ -105,15 +104,15 @@ export default class Runner {
 	}
 
 	run (duration) {
-		console.log('in run this.direction_', this.direction_)
+		// console.log('in run this.direction_', this.direction_)
 		if (!this.map_) return
-		console.log('in run this.cursor_', this.cursor_)
+		// console.log('in run this.cursor_', this.cursor_)
 		if (this.cursor_) {
 			let offsetVec = this.direction_.clone();
 			offsetVec.multiplyScalar(duration * this.speed)
 			this.position_.add(offsetVec)
-			console.log('in run this.position_', this.position_)
-			console.log('in run offsetVec', offsetVec)
+			// console.log('in run this.position_', this.position_)
+			// console.log('in run offsetVec', offsetVec)
 			//掉落
 			if (this.droped) {
 				var offsetZ = this.gravity.clone();
@@ -164,7 +163,7 @@ export default class Runner {
 		var direction = this.calcNextDirection();
 		console.log('TurnDirection direction', direction)
 		if (direction) {
-			direction.z = 0;
+			direction.y = 0;
 			this.preDirection = this.direction_;
 			this.direction_.copy(direction);
 			this.nodes_.push(this.position_.clone());
