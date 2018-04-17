@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e608ced5-09b6-4f97-a52b-a4c6c0df62fc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/3dmain.js" afterPath="$PROJECT_DIR$/src/3dmain.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamelogic/ball.js" afterPath="$PROJECT_DIR$/src/gamelogic/ball.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamelogic/map.js" afterPath="$PROJECT_DIR$/src/gamelogic/map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamelogic/position.js" afterPath="$PROJECT_DIR$/src/gamelogic/position.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamelogic/runner.js" afterPath="$PROJECT_DIR$/src/gamelogic/runner.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/index.js" afterPath="$PROJECT_DIR$/utils/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -78,8 +73,8 @@
       <file leaf-file-name="ball.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gamelogic/ball.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="99" column="35" lean-forward="true" selection-start-line="99" selection-start-column="35" selection-end-line="99" selection-end-column="35" />
+            <state relative-caret-position="555">
+              <caret line="88" column="27" lean-forward="false" selection-start-line="88" selection-start-column="27" selection-end-line="88" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -163,7 +158,6 @@
       <find>direction_</find>
       <find>regions</find>
       <find>startSegment</find>
-      <find>var</find>
       <find>16</find>
       <find>in run this.cursor</find>
       <find>in walkSegment vecSeg.length()</find>
@@ -172,6 +166,7 @@
       <find>in</find>
       <find>in get</find>
       <find>size</find>
+      <find>var</find>
     </findStrings>
     <replaceStrings>
       <replace>createPlane</replace>
@@ -535,24 +530,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="three-game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="three-game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="asset" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -691,17 +668,18 @@
       <workItem from="1521730594353" duration="9013000" />
       <workItem from="1521822256276" duration="5364000" />
       <workItem from="1521992655354" duration="10571000" />
-      <workItem from="1523891230137" duration="7247000" />
+      <workItem from="1523891230137" duration="7363000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="169149000" />
+    <option name="totallyTimeSpent" value="169265000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="575" y="0" width="1332" height="1057" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16109422" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16109422" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21119325" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1044,8 +1022,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gamelogic/ball.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="99" column="35" lean-forward="true" selection-start-line="99" selection-start-column="35" selection-end-line="99" selection-end-column="35" />
+        <state relative-caret-position="555">
+          <caret line="88" column="27" lean-forward="false" selection-start-line="88" selection-start-column="27" selection-end-line="88" selection-end-column="27" />
           <folding />
         </state>
       </provider>

@@ -30,9 +30,9 @@ export default class Ball {
 	}
 
 	createCube() {
-		var cubeGeometry = this.getBoxGeometry()
-		var material = this.gameScene.getBallMaterial();
-		var cube = new THREE.Mesh(cubeGeometry, material);
+		let cubeGeometry = this.getBoxGeometry()
+		let material = this.gameScene.getBallMaterial();
+		let cube = new THREE.Mesh(cubeGeometry, material);
 		cube.updateMatrix();
 		cube.castShadow = true;
 		cube.visible = false;
@@ -75,10 +75,10 @@ export default class Ball {
 	}
 
 	doneSegment(startpos, endpos) {
-		var vecSeg = endpos.clone()
+		let vecSeg = endpos.clone()
 		vecSeg.sub(startpos)
 		vecSeg.y = 0
-		var cube = this.trail[this.trail.length - 1];
+		let cube = this.trail[this.trail.length - 1];
 		if (cube) {
 			cube.position.addVectors(startpos, endpos)
 			cube.position.divideScalar(2)
